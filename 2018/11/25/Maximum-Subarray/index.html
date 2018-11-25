@@ -5,19 +5,19 @@
   
 
   
-  <title>hexo-github搭建总结 | welcome，my github</title>
+  <title>Maximum Subarray | welcome，my github</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="下面是我搭建博客的一些总结 搭建步骤1.安装git2.设置git免密登陆3.安装node.js4.安装hexo5.关联git和hexo6.测试关联结果7.搭建问题总结 1.git安装、测试git安装完后可以使用以下命令测试1$ git --version 7.搭建问题总结1.node.js安装后先执行npm install -g cnpm –registry=https://registry.np">
+  <meta name="description" content="最大和的子序列 题目Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum. Example: Input: [-2,1,-3,4,-1,2,1,-5,4],Output: 6Expl">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hexo-github搭建总结">
-<meta property="og:url" content="http://yoursite.com/2018/10/28/hexo-github搭建总结/index.html">
+<meta property="og:title" content="Maximum Subarray">
+<meta property="og:url" content="http://yoursite.com/2018/11/25/Maximum-Subarray/index.html">
 <meta property="og:site_name" content="welcome，my github">
-<meta property="og:description" content="下面是我搭建博客的一些总结 搭建步骤1.安装git2.设置git免密登陆3.安装node.js4.安装hexo5.关联git和hexo6.测试关联结果7.搭建问题总结 1.git安装、测试git安装完后可以使用以下命令测试1$ git --version 7.搭建问题总结1.node.js安装后先执行npm install -g cnpm –registry=https://registry.np">
+<meta property="og:description" content="最大和的子序列 题目Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum. Example: Input: [-2,1,-3,4,-1,2,1,-5,4],Output: 6Expl">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-11-02T14:12:35.379Z">
+<meta property="og:updated_time" content="2018-11-25T15:03:17.662Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hexo-github搭建总结">
-<meta name="twitter:description" content="下面是我搭建博客的一些总结 搭建步骤1.安装git2.设置git免密登陆3.安装node.js4.安装hexo5.关联git和hexo6.测试关联结果7.搭建问题总结 1.git安装、测试git安装完后可以使用以下命令测试1$ git --version 7.搭建问题总结1.node.js安装后先执行npm install -g cnpm –registry=https://registry.np">
+<meta name="twitter:title" content="Maximum Subarray">
+<meta name="twitter:description" content="最大和的子序列 题目Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum. Example: Input: [-2,1,-3,4,-1,2,1,-5,4],Output: 6Expl">
   
     <link rel="alternate" href="/atom.xml" title="welcome，my github" type="application/atom+xml">
   
@@ -64,10 +64,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-hexo-github搭建总结" class="article article-type-post" itemscope="" itemprop="blogPost">
+        <section id="main"><article id="post-Maximum-Subarray" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/10/28/hexo-github搭建总结/" class="article-date">
-  <time datetime="2018-10-28T04:48:54.000Z" itemprop="datePublished">2018-10-28</time>
+    <a href="/2018/11/25/Maximum-Subarray/" class="article-date">
+  <time datetime="2018-11-25T14:55:11.000Z" itemprop="datePublished">2018-11-25</time>
 </a>
     
   </div>
@@ -78,7 +78,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      hexo-github搭建总结
+      Maximum Subarray
     </h1>
   
 
@@ -86,15 +86,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>下面是我搭建博客的一些总结</p>
-<h2 id="搭建步骤"><a href="#搭建步骤" class="headerlink" title="搭建步骤"></a>搭建步骤</h2><p>1.安装git<br>2.设置git免密登陆<br>3.安装node.js<br>4.安装hexo<br>5.关联git和hexo<br>6.测试关联结果<br>7.搭建问题总结</p>
-<h3 id="1-git安装、测试"><a href="#1-git安装、测试" class="headerlink" title="1.git安装、测试"></a>1.git安装、测试</h3><p>git安装完后可以使用以下命令测试<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git --version</span><br></pre></td></tr></table></figure></p>
-<h3 id="7-搭建问题总结"><a href="#7-搭建问题总结" class="headerlink" title="7.搭建问题总结"></a>7.搭建问题总结</h3><p>1.node.js安装后先执行npm install -g cnpm –registry=<a href="https://registry.npm.taobao.org" target="_blank" rel="noopener">https://registry.npm.taobao.org</a> ，安装阿里的镜像，以后都使用cnpm代替npm安装模块<br>2.hexo关联git的时候，配置_config.yml文件冒号后面记得留空格，否则会关联失败，并且不报错，很难找到问题</p>
+        <p>最大和的子序列</p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum.</p>
+<p>Example:</p>
+<p>Input: [-2,1,-3,4,-1,2,1,-5,4],<br>Output: 6<br>Explanation: [4,-1,2,1] has the largest sum = 6.</p>
+<p>Follow up:</p>
+<p>If you have figured out the O(n) solution, try coding another solution using the divide and conquer approach, which is more subtle.</p>
+<p>##解析重点<br>1.子序列的和图像是类似股票图的，有波峰波谷<br>2.那我们需要记录最高点（max），及当前值（sum），当前值小于0的时候，我们需要重新开始计算sum</p>
+<p>##scala代码<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">object</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">maxSubArray</span></span>(nums: <span class="type">Array</span>[<span class="type">Int</span>]): <span class="type">Int</span> = &#123;</span><br><span class="line">    <span class="keyword">var</span> sum = <span class="type">Integer</span>.<span class="type">MIN_VALUE</span></span><br><span class="line">    <span class="keyword">var</span> max = sum</span><br><span class="line">    <span class="keyword">for</span>(num &lt;- nums)&#123;</span><br><span class="line">      sum = <span class="keyword">if</span> (sum&lt;<span class="number">0</span>) num <span class="keyword">else</span> sum+num<span class="comment">//计算当前和值，当sum小于0时重新计算</span></span><br><span class="line">      max=<span class="type">Math</span>.max(max,sum)<span class="comment">//计算全局最大值</span></span><br><span class="line">    &#125;</span><br><span class="line">    max</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/10/28/hexo-github搭建总结/" data-id="cjox0m0by0001pwv392jkghg5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/25/Maximum-Subarray/" data-id="cjox0m0bs0000pwv3j9pd8mzm" class="article-share-link">Share</a>
       
       
     </footer>
@@ -103,19 +107,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/11/04/windows10-docker-tensorflow-安装流程/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          windows10 docker tensorflow 安装流程
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/10/28/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/11/04/windows10-docker-tensorflow-安装流程/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Hello World</div>
+      <div class="article-nav-title">windows10 docker tensorflow 安装流程</div>
     </a>
   
 </nav>
