@@ -62,6 +62,53 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Intersection-of-Two-Linked-Lists" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/28/Intersection-of-Two-Linked-Lists/" class="article-date">
+  <time datetime="2018-11-28T14:48:32.000Z" itemprop="datePublished">2018-11-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/28/Intersection-of-Two-Linked-Lists/">Intersection of Two Linked Lists</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>两个链表的交集</p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Write a program to find the node at which the intersection of two singly linked lists begins.</p>
+<p>For example, the following two linked lists:</p>
+<p>A:          a1 → a2<br>                   ↘<br>                     c1 → c2 → c3<br>                   ↗<br>B:     b1 → b2 → b3</p>
+<p>begin to intersect at node c1.</p>
+<p>Notes:</p>
+<pre><code>If the two linked lists have no intersection at all, return null.
+The linked lists must retain their original structure after the function returns.
+You may assume there are no cycles anywhere in the entire linked structure.
+Your code should preferably run in O(n) time and use only O(1) memory.
+</code></pre><h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.我们注意到两个链表如果有交集，那么相交之后的的node都是相交的，因此，我们只需要找出相交的node即可<br>2.如果两个链表长度相同，我们只需要一起迭代即可，但是两个链表长度不同呢，怎么办？可以用A+B=B+A的形式，<br>即两个链表一起迭代，a迭代完后迭代b，同时b迭代完后a，第二轮就可以知道相交的点了。</p>
+<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) &#123;</span></span><br><span class="line"><span class="comment"> *         val = x;</span></span><br><span class="line"><span class="comment"> *         next = null;</span></span><br><span class="line"><span class="comment"> *     &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> ListNode <span class="title">getIntersectionNode</span><span class="params">(ListNode headA, ListNode headB)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//boundary check</span></span><br><span class="line">    <span class="keyword">if</span>(headA == <span class="keyword">null</span> || headB == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    </span><br><span class="line">    ListNode a = headA;</span><br><span class="line">    ListNode b = headB;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//if a &amp; b have different len, then we will stop the loop after second iteration</span></span><br><span class="line">    <span class="keyword">while</span>( a != b)&#123;</span><br><span class="line">    	<span class="comment">//for the end of first iteration, we just reset the pointer to the head of another linkedlist</span></span><br><span class="line">        a = a == <span class="keyword">null</span>? headB : a.next;</span><br><span class="line">        b = b == <span class="keyword">null</span>? headA : b.next;    </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/11/28/Intersection-of-Two-Linked-Lists/" data-id="cjp1aqhrv000084v3ufnyftbc" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Linked-List-Cycle" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/11/26/Linked-List-Cycle/" class="article-date">
@@ -92,7 +139,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/26/Linked-List-Cycle/" data-id="cjoyftqw90001e4v3xa4bjp46" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/26/Linked-List-Cycle/" data-id="cjp1aqhs5000284v35fkmbu15" class="article-share-link">Share</a>
       
       
     </footer>
@@ -146,7 +193,7 @@ Open brackets must be closed in the correct order.
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/26/Valid-Parentheses/" data-id="cjoyftqwi0002e4v37ox1kcso" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/26/Valid-Parentheses/" data-id="cjp1aqhs7000384v3ajh8wvwv" class="article-share-link">Share</a>
       
       
     </footer>
@@ -189,7 +236,7 @@ Open brackets must be closed in the correct order.
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/25/Maximum-Subarray/" data-id="cjoyftqw40000e4v33si1wach" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/25/Maximum-Subarray/" data-id="cjp1aqhsa000684v33pw2ix0u" class="article-share-link">Share</a>
       
       
     </footer>
@@ -231,7 +278,7 @@ Open brackets must be closed in the correct order.
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/11/04/windows10-docker-tensorflow-安装流程/" data-id="cjoyftqwm0005e4v3dj3v2lan" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/11/04/windows10-docker-tensorflow-安装流程/" data-id="cjp1aqhs8000484v3wigxyvlt" class="article-share-link">Share</a>
       
       
     </footer>
@@ -271,7 +318,7 @@ Open brackets must be closed in the correct order.
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/10/28/hexo-github搭建总结/" data-id="cjoyftqwl0004e4v3y4fpbpci" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/10/28/hexo-github搭建总结/" data-id="cjp1aqhs9000584v3xg27ztu7" class="article-share-link">Share</a>
       
       
     </footer>
@@ -316,7 +363,7 @@ Open brackets must be closed in the correct order.
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/10/28/hello-world/" data-id="cjoyftqwj0003e4v3ciymcs06" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/10/28/hello-world/" data-id="cjp1aqhs1000184v35pzpwxfu" class="article-share-link">Share</a>
       
       
     </footer>
@@ -357,6 +404,10 @@ Open brackets must be closed in the correct order.
       <ul>
         
           <li>
+            <a href="/2018/11/28/Intersection-of-Two-Linked-Lists/">Intersection of Two Linked Lists</a>
+          </li>
+        
+          <li>
             <a href="/2018/11/26/Linked-List-Cycle/">Linked List Cycle</a>
           </li>
         
@@ -370,10 +421,6 @@ Open brackets must be closed in the correct order.
         
           <li>
             <a href="/2018/11/04/windows10-docker-tensorflow-安装流程/">windows10 docker tensorflow 安装流程</a>
-          </li>
-        
-          <li>
-            <a href="/2018/10/28/hexo-github搭建总结/">hexo-github搭建总结</a>
           </li>
         
       </ul>
