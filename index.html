@@ -62,6 +62,51 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-LRU-Cache" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/27/LRU-Cache/" class="article-date">
+  <time datetime="2018-12-27T15:19:30.000Z" itemprop="datePublished">2018-12-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/27/LRU-Cache/">LRU Cache</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近最少缓存</p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Design and implement a data structure for Least Recently Used (LRU) cache. It should support the following operations:<br>get and put.</p>
+<p>get(key) - Get the value (will always be positive) of the key if the key exists in the cache, otherwise return -1.<br>put(key, value) - Set or insert the value if the key is not already present. When the cache reached its capacity, it<br>should invalidate the least recently used item before inserting a new item.</p>
+<p>Follow up:<br>Could you do both operations in O(1) time complexity?</p>
+<p>Example:</p>
+<p>LRUCache cache = new LRUCache( 2 /<em> capacity </em>/ );</p>
+<p>cache.put(1, 1);<br>cache.put(2, 2);<br>cache.get(1);       // returns 1<br>cache.put(3, 3);    // evicts key 2<br>cache.get(2);       // returns -1 (not found)<br>cache.put(4, 4);    // evicts key 1<br>cache.get(1);       // returns -1 (not found)<br>cache.get(3);       // returns 3<br>cache.get(4);       // returns 4</p>
+<h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.我们需要对缓存的数据根据时间排序，所以我们可以使用数组或者链表。当put数据时，我们按顺序存储数据即可，不过缓存空间有<br>大小，这时如果空间满了，需要删除第一条数据。当get数据时，可以看作把数据重新put了一次，这时需要把数据重原位置移除，put<br>到最后。综上，我们使用链表更合适。<br>2.我们需要以O(1)的时间get和put，所以我们需要同时维护一组hash表。</p>
+<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><p>因为java里面有了LinkedHashMap，所以我们这里直接使用了。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LRUCache</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Map&lt;Integer, Integer&gt; map;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> capacity;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LRUCache</span><span class="params">(<span class="keyword">int</span> capacity)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.capacity = capacity;</span><br><span class="line">        <span class="comment">// 注意，需要开启 ordering mode，此时若元素被访问（put、get）就会被移到链表尾</span></span><br><span class="line">        map = <span class="keyword">new</span> LinkedHashMap&lt;Integer, Integer&gt;(capacity, <span class="number">0.75f</span>, <span class="keyword">true</span>) &#123;</span><br><span class="line">            <span class="comment">/**</span></span><br><span class="line"><span class="comment">             * removeEldestEntry 方法会在插入元素之后调用，用以判断是否需要移除链表表头元素（最近最少访问元素）</span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">removeEldestEntry</span><span class="params">(Map.Entry eldest)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> size() &gt; capacity;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> map.getOrDefault(key, -<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">        map.put(key, value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riverzzz.github.io/2018/12/27/LRU-Cache/" data-id="cjq6rsedb0000dgv36xprvk7n" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-spiral-Matrix-II" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/12/26/spiral-Matrix-II/" class="article-date">
@@ -93,7 +138,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/12/26/spiral-Matrix-II/" data-id="cjq59g4cg000778v3c6cqwp35" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/12/26/spiral-Matrix-II/" data-id="cjq6rsee30008dgv3acd0jiau" class="article-share-link">Share</a>
       
       
     </footer>
@@ -145,7 +190,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/" data-id="cjq59g4d3000b78v399qrydkg" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/" data-id="cjq6rsee7000bdgv3zeaa0qna" class="article-share-link">Share</a>
       
       
     </footer>
@@ -181,7 +226,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/12/11/读-Deep-contextualized-word-representations-总结/" data-id="cjq59g4cx000878v3vjg2d2lg" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/12/11/读-Deep-contextualized-word-representations-总结/" data-id="cjq6rseen000cdgv3z6mk2hzj" class="article-share-link">Share</a>
       
       
     </footer>
@@ -227,7 +272,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/12/04/面试题总结/" data-id="cjq59g4d1000a78v3oogb15eg" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/12/04/面试题总结/" data-id="cjq6rsee5000adgv3j7nnp7vv" class="article-share-link">Share</a>
       
       
     </footer>
@@ -267,7 +312,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/11/28/Longest-Common-Prefix/" data-id="cjq59g4ca000678v3v7ojlweu" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/11/28/Longest-Common-Prefix/" data-id="cjq6rsedn0002dgv3zi0rg492" class="article-share-link">Share</a>
       
       
     </footer>
@@ -314,7 +359,7 @@ Your code should preferably run in O(n) time and use only O(1) memory.
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/11/28/Intersection-of-Two-Linked-Lists/" data-id="cjq59g4c5000278v3xvdjdvz9" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/11/28/Intersection-of-Two-Linked-Lists/" data-id="cjq6rsedn0003dgv3yomyv2fv" class="article-share-link">Share</a>
       
       
     </footer>
@@ -354,7 +399,7 @@ Your code should preferably run in O(n) time and use only O(1) memory.
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/11/26/Linked-List-Cycle/" data-id="cjq59g4c6000378v3vrp67gc6" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/11/26/Linked-List-Cycle/" data-id="cjq6rsedj0001dgv3z2uwvb9q" class="article-share-link">Share</a>
       
       
     </footer>
@@ -408,7 +453,7 @@ Open brackets must be closed in the correct order.
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/11/26/Valid-Parentheses/" data-id="cjq59g4c2000178v3l41tj6ty" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/11/26/Valid-Parentheses/" data-id="cjq6rseds0006dgv3iq61sq8z" class="article-share-link">Share</a>
       
       
     </footer>
@@ -451,49 +496,7 @@ Open brackets must be closed in the correct order.
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/11/25/Maximum-Subarray/" data-id="cjq59g4bv000078v3lq018mtq" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-windows10-docker-tensorflow-安装流程" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/11/04/windows10-docker-tensorflow-安装流程/" class="article-date">
-  <time datetime="2018-11-04T13:43:01.000Z" itemprop="datePublished">2018-11-04</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/04/windows10-docker-tensorflow-安装流程/">windows10 docker tensorflow 安装流程</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>下面是windows10专业版docker安装tensorflow流程</p>
-<h2 id="搭建步骤"><a href="#搭建步骤" class="headerlink" title="搭建步骤"></a>搭建步骤</h2><p>1.windows10上docker安装<br>2.设置docker镜像代理<br>3.docker安装tensorflow<br>4.测试tensorflow<br>5.安装总结</p>
-<h3 id="1-windows10上安装docker"><a href="#1-windows10上安装docker" class="headerlink" title="1.windows10上安装docker"></a>1.windows10上安装docker</h3><p>略略略</p>
-<p>docker安装完后可以使用以下命令测试<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run hello-world</span><br></pre></td></tr></table></figure></p>
-<p>命令正常运行得到想要的结果即安装正常</p>
-<h3 id="5-搭建问题总结"><a href="#5-搭建问题总结" class="headerlink" title="5.搭建问题总结"></a>5.搭建问题总结</h3><p>1.windows10安装docker最好升级到专业版，激活可以去淘宝买激活码<br>2.docker最好设置镜像代理，否则会很慢</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/11/04/windows10-docker-tensorflow-安装流程/" data-id="cjq59g4c7000478v39v72oigo" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/11/25/Maximum-Subarray/" data-id="cjq6rsedp0004dgv3xdz57eyb" class="article-share-link">Share</a>
       
       
     </footer>
@@ -539,6 +542,10 @@ Open brackets must be closed in the correct order.
       <ul>
         
           <li>
+            <a href="/2018/12/27/LRU-Cache/">LRU Cache</a>
+          </li>
+        
+          <li>
             <a href="/2018/12/26/spiral-Matrix-II/">spiral Matrix II</a>
           </li>
         
@@ -552,10 +559,6 @@ Open brackets must be closed in the correct order.
         
           <li>
             <a href="/2018/12/04/面试题总结/">面试题总结</a>
-          </li>
-        
-          <li>
-            <a href="/2018/11/28/Longest-Common-Prefix/">Longest Common Prefix</a>
           </li>
         
       </ul>
