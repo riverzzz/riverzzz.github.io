@@ -62,6 +62,105 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Permutations" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/02/Permutations/" class="article-date">
+  <time datetime="2019-01-02T15:34:25.000Z" itemprop="datePublished">2019-01-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/02/Permutations/">Permutations</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>全排列</p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Given a collection of distinct integers, return all possible permutations.</p>
+<p>Example:</p>
+<p>Input: [1,2,3]<br>Output:<br>[<br>  [1,2,3],<br>  [1,3,2],<br>  [2,1,3],<br>  [2,3,1],<br>  [3,1,2],<br>  [3,2,1]<br>]</p>
+<h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.这本质上一道数学题，只是需要用代码合适的表示出来。全排列的话，等于数据个数的阶层n！。那么我们可以用递归来实现，<br>第一层递归循环数组所有的数，第二层循环n-1个数，一直到最后一层，这样就把所有的都找出来了。<br>2.但是，这么做会产生很多小对象，所以改为每层递归都循环所有的数n，然后如果零时数组包含的相关数，则跳出此次循环，这<br>样就不会出现重复的。<br>3.可以把原始数组转换成hashMap的结构，这样检查临时数组是否包含相关数时可以减少复杂度。</p>
+<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><p>原始数组转换成hashMap的结构就交给大家了，我这里没写。。。</p>
+<pre><code class="java"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>{
+    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; permute(<span class="keyword">int</span>[] nums) {
+        List&lt;List&lt;Integer&gt;&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();
+        recPermute(list,nums,<span class="keyword">new</span> ArrayList&lt;&gt;());
+        <span class="keyword">return</span> list;
+    }
+
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">recPermute</span><span class="params">(List&lt;List&lt;Integer&gt;&gt; list,<span class="keyword">int</span>[] nums,List&lt;Integer&gt; tempList)</span></span>{
+        <span class="keyword">if</span>(tempList.size() == nums.length){
+            list.add(<span class="keyword">new</span> ArrayList&lt;&gt;(tempList));
+        }<span class="keyword">else</span>{
+            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++){
+                <span class="keyword">if</span>(tempList.contains(nums[i])) <span class="keyword">continue</span>; <span class="comment">// element already exists, skip</span>
+                tempList.add(nums[i]);
+                recPermute(list, nums, tempList);
+                tempList.remove(tempList.size() - <span class="number">1</span>);
+            }
+        } 
+    }
+}
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riverzzz.github.io/2019/01/02/Permutations/" data-id="cjqfcv69k0001xov3ltspf5bl" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-tf-低阶api学习笔记" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/01/tf-低阶api学习笔记/" class="article-date">
+  <time datetime="2019-01-01T15:37:26.000Z" itemprop="datePublished">2019-01-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/01/tf-低阶api学习笔记/">tf-低阶api学习笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riverzzz.github.io/2019/01/01/tf-低阶api学习笔记/" data-id="cjqfcv6bt0009xov3t0w019ud" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-LRU-Cache" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/12/27/LRU-Cache/" class="article-date">
@@ -97,7 +196,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/12/27/LRU-Cache/" data-id="cjq6rsedb0000dgv36xprvk7n" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/12/27/LRU-Cache/" data-id="cjqfcv69e0000xov3b4gn01k7" class="article-share-link">Share</a>
       
       
     </footer>
@@ -138,7 +237,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/12/26/spiral-Matrix-II/" data-id="cjq6rsee30008dgv3acd0jiau" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/12/26/spiral-Matrix-II/" data-id="cjqfcv6c7000bxov30sf8wox8" class="article-share-link">Share</a>
       
       
     </footer>
@@ -190,7 +289,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/" data-id="cjq6rsee7000bdgv3zeaa0qna" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/" data-id="cjqfcv6c9000cxov3hbtrlxx0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -226,7 +325,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/12/11/读-Deep-contextualized-word-representations-总结/" data-id="cjq6rseen000cdgv3z6mk2hzj" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/12/11/读-Deep-contextualized-word-representations-总结/" data-id="cjqfcv6cl000exov3el8we8do" class="article-share-link">Share</a>
       
       
     </footer>
@@ -272,7 +371,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/12/04/面试题总结/" data-id="cjq6rsee5000adgv3j7nnp7vv" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/12/04/面试题总结/" data-id="cjqfcv6ch000dxov31npmzgnj" class="article-share-link">Share</a>
       
       
     </footer>
@@ -312,7 +411,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/11/28/Longest-Common-Prefix/" data-id="cjq6rsedn0002dgv3zi0rg492" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/11/28/Longest-Common-Prefix/" data-id="cjqfcv69u0005xov395ktoyh0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -359,7 +458,7 @@ Your code should preferably run in O(n) time and use only O(1) memory.
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/11/28/Intersection-of-Two-Linked-Lists/" data-id="cjq6rsedn0003dgv3yomyv2fv" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/11/28/Intersection-of-Two-Linked-Lists/" data-id="cjqfcv69n0002xov35r9r06mj" class="article-share-link">Share</a>
       
       
     </footer>
@@ -399,104 +498,7 @@ Your code should preferably run in O(n) time and use only O(1) memory.
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/11/26/Linked-List-Cycle/" data-id="cjq6rsedj0001dgv3z2uwvb9q" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Valid-Parentheses" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/11/26/Valid-Parentheses/" class="article-date">
-  <time datetime="2018-11-26T13:32:04.000Z" itemprop="datePublished">2018-11-26</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/26/Valid-Parentheses/">Valid Parentheses</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>有效的括号</p>
-<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Given a string containing just the characters ‘(‘, ‘)’, ‘{‘, ‘}’, ‘[‘ and ‘]’, determine if the input string is valid.</p>
-<p>An input string is valid if:</p>
-<pre><code>Open brackets must be closed by the same type of brackets.
-Open brackets must be closed in the correct order.
-</code></pre><p>Note that an empty string is also considered valid.</p>
-<p>Example 1:</p>
-<p>Input: “()”<br>Output: true</p>
-<p>Example 2:</p>
-<p>Input: “()[]{}”<br>Output: true</p>
-<p>Example 3:</p>
-<p>Input: “(]”<br>Output: false</p>
-<p>Example 4:</p>
-<p>Input: “([)]”<br>Output: false</p>
-<p>Example 5:</p>
-<p>Input: “{[]}”<br>Output: true</p>
-<h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.这道题最重要是找出括号之间的规律，当有左括号的时候不用管，出现右括号的时候要检查左边是否有对应的括号，<br>有的话将其消除掉，不断重复这个过程。但是，这需要我们从内到外处理数据，我们可以借助栈来处理这种情况。<br>2.循环处理表达式的每个括号，当遇到左括号时，我们将其推入栈。<br>3.当遇到右括号时，弹出栈顶元素，看是否匹配，如果无法消除，则表达式无效，如果匹配，则消除这对数据。<br>4.如果最后站内任有元素，表达式无效。</p>
-<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><p>具体java代码参考官方<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Hash table that takes care of the mappings.</span></span><br><span class="line">  <span class="keyword">private</span> HashMap&lt;Character, Character&gt; mappings;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Initialize hash map with mappings. This simply makes the code easier to read.</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Solution</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.mappings = <span class="keyword">new</span> HashMap&lt;Character, Character&gt;();</span><br><span class="line">    <span class="keyword">this</span>.mappings.put(<span class="string">')'</span>, <span class="string">'('</span>);</span><br><span class="line">    <span class="keyword">this</span>.mappings.put(<span class="string">'&#125;'</span>, <span class="string">'&#123;'</span>);</span><br><span class="line">    <span class="keyword">this</span>.mappings.put(<span class="string">']'</span>, <span class="string">'['</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isValid</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Initialize a stack to be used in the algorithm.</span></span><br><span class="line">    Stack&lt;Character&gt; stack = <span class="keyword">new</span> Stack&lt;Character&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++) &#123;</span><br><span class="line">      <span class="keyword">char</span> c = s.charAt(i);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// If the current character is a closing bracket.</span></span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">this</span>.mappings.containsKey(c)) &#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Get the top element of the stack. If the stack is empty, set a dummy value of '#'</span></span><br><span class="line">        <span class="keyword">char</span> topElement = stack.empty() ? <span class="string">'#'</span> : stack.pop();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// If the mapping for this bracket doesn't match the stack's top element, return false.</span></span><br><span class="line">        <span class="keyword">if</span> (topElement != <span class="keyword">this</span>.mappings.get(c)) &#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// If it was an opening bracket, push to the stack.</span></span><br><span class="line">        stack.push(c);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// If the stack still contains elements, then it is an invalid expression.</span></span><br><span class="line">    <span class="keyword">return</span> stack.isEmpty();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/11/26/Valid-Parentheses/" data-id="cjq6rseds0006dgv3iq61sq8z" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Maximum-Subarray" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/11/25/Maximum-Subarray/" class="article-date">
-  <time datetime="2018-11-25T14:55:11.000Z" itemprop="datePublished">2018-11-25</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/25/Maximum-Subarray/">Maximum Subarray</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>最大和的子序列</p>
-<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum.</p>
-<p>Example:</p>
-<p>Input: [-2,1,-3,4,-1,2,1,-5,4],<br>Output: 6<br>Explanation: [4,-1,2,1] has the largest sum = 6.</p>
-<p>Follow up:</p>
-<p>If you have figured out the O(n) solution, try coding another solution using the divide and conquer approach, which is more subtle.</p>
-<h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.子序列的和图像是类似股票图的，有波峰波谷<br>2.那我们需要记录最高点（max），及当前值（sum），当前值小于0的时候，我们需要重新开始计算sum</p>
-<h2 id="scala代码"><a href="#scala代码" class="headerlink" title="scala代码"></a>scala代码</h2><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">object</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">maxSubArray</span></span>(nums: <span class="type">Array</span>[<span class="type">Int</span>]): <span class="type">Int</span> = &#123;</span><br><span class="line">    <span class="keyword">var</span> sum = <span class="type">Integer</span>.<span class="type">MIN_VALUE</span></span><br><span class="line">    <span class="keyword">var</span> max = sum</span><br><span class="line">    <span class="keyword">for</span>(num &lt;- nums)&#123;</span><br><span class="line">      sum = <span class="keyword">if</span> (sum&lt;<span class="number">0</span>) num <span class="keyword">else</span> sum+num<span class="comment">//计算当前和值，当sum小于0时重新计算</span></span><br><span class="line">      max=<span class="type">Math</span>.max(max,sum)<span class="comment">//计算全局最大值</span></span><br><span class="line">    &#125;</span><br><span class="line">    max</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/11/25/Maximum-Subarray/" data-id="cjq6rsedp0004dgv3xdz57eyb" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/11/26/Linked-List-Cycle/" data-id="cjqfcv69p0003xov3b76dzmt5" class="article-share-link">Share</a>
       
       
     </footer>
@@ -529,7 +531,7 @@ Open brackets must be closed in the correct order.
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li></ul>
     </div>
   </div>
 
@@ -542,6 +544,14 @@ Open brackets must be closed in the correct order.
       <ul>
         
           <li>
+            <a href="/2019/01/02/Permutations/">Permutations</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/01/tf-低阶api学习笔记/">tf-低阶api学习笔记</a>
+          </li>
+        
+          <li>
             <a href="/2018/12/27/LRU-Cache/">LRU Cache</a>
           </li>
         
@@ -551,14 +561,6 @@ Open brackets must be closed in the correct order.
         
           <li>
             <a href="/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/">读 Deep Neural Networks for YouTube Recommendations  总结</a>
-          </li>
-        
-          <li>
-            <a href="/2018/12/11/读-Deep-contextualized-word-representations-总结/">读 Deep contextualized word representations 总结</a>
-          </li>
-        
-          <li>
-            <a href="/2018/12/04/面试题总结/">面试题总结</a>
           </li>
         
       </ul>
@@ -573,7 +575,7 @@ Open brackets must be closed in the correct order.
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2018 riverzzz<br>
+      &copy; 2019 riverzzz<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
