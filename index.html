@@ -62,6 +62,51 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Kth-Smallest-Element-in-a-BST" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/06/Kth-Smallest-Element-in-a-BST/" class="article-date">
+  <time datetime="2019-01-06T04:51:16.000Z" itemprop="datePublished">2019-01-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/06/Kth-Smallest-Element-in-a-BST/">Kth Smallest Element in a BST</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>二叉搜索树中第k个最小的数</p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Given a binary search tree, write a function kthSmallest to find the kth smallest element in it.</p>
+<p>Note:<br>You may assume k is always valid, 1 ≤ k ≤ BST’s total elements.</p>
+<p>Example 1:</p>
+<p>Input: root = [3,1,4,null,2], k = 1<br>   3<br>  / \<br> 1   4<br>  \<br>   2<br>Output: 1</p>
+<p>Example 2:</p>
+<p>Input: root = [5,3,6,2,4,null,null,1], k = 3<br>       5<br>      / \<br>     3   6<br>    / \<br>   2   4<br>  /<br> 1<br>Output: 3</p>
+<p>Follow up:<br>What if the BST is modified (insert/delete operations) often and you need to find the kth smallest frequently? How would you optimize the kthSmallest routine?</p>
+<h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.看图中的树，我们以中序遍历就可以得到从小到大的排列。<br>2.然后，我们要找到第k个数，那么我们中序遍历的时候，记录下自己当前遍历到的位置，当当前位置等于k时，即为我们需要的值。</p>
+<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * public class TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode left;</span></span><br><span class="line"><span class="comment"> *     TreeNode right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> number = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">kthSmallest</span><span class="params">(TreeNode root, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        count=k;</span><br><span class="line">        kSmallest(root);</span><br><span class="line">        <span class="keyword">return</span> number;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">kSmallest</span><span class="params">(TreeNode root)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root.left!=<span class="keyword">null</span>) kSmallest(root.left);</span><br><span class="line">        count--;</span><br><span class="line">        <span class="keyword">if</span>(count==<span class="number">0</span>)&#123;</span><br><span class="line">            number=root.val;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(root.right!=<span class="keyword">null</span>) kSmallest(root.right);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riverzzz.github.io/2019/01/06/Kth-Smallest-Element-in-a-BST/" data-id="cjqkfg76j0000e0v3k97rcmfi" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Permutations" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/01/02/Permutations/" class="article-date">
@@ -115,7 +160,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/02/Permutations/" data-id="cjqfcv69k0001xov3ltspf5bl" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/02/Permutations/" data-id="cjqkfg7730006e0v3ethcpdqi" class="article-share-link">Share</a>
       
       
     </footer>
@@ -151,7 +196,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/01/tf-低阶api学习笔记/" data-id="cjqfcv6bt0009xov3t0w019ud" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/01/tf-低阶api学习笔记/" data-id="cjqkfg77c000be0v31rumfu1a" class="article-share-link">Share</a>
       
       
     </footer>
@@ -196,7 +241,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/12/27/LRU-Cache/" data-id="cjqfcv69e0000xov3b4gn01k7" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/12/27/LRU-Cache/" data-id="cjqkfg76s0002e0v36qnltqzg" class="article-share-link">Share</a>
       
       
     </footer>
@@ -237,7 +282,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/12/26/spiral-Matrix-II/" data-id="cjqfcv6c7000bxov30sf8wox8" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/12/26/spiral-Matrix-II/" data-id="cjqkfg7790009e0v3box82ljq" class="article-share-link">Share</a>
       
       
     </footer>
@@ -289,7 +334,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/" data-id="cjqfcv6c9000cxov3hbtrlxx0" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/" data-id="cjqkfg77f000de0v3zx6977i9" class="article-share-link">Share</a>
       
       
     </footer>
@@ -325,7 +370,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/12/11/读-Deep-contextualized-word-representations-总结/" data-id="cjqfcv6cl000exov3el8we8do" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/12/11/读-Deep-contextualized-word-representations-总结/" data-id="cjqkfg77h000fe0v34nrxi1s1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -371,7 +416,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/12/04/面试题总结/" data-id="cjqfcv6ch000dxov31npmzgnj" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/12/04/面试题总结/" data-id="cjqkfg77f000ee0v3j51fgpws" class="article-share-link">Share</a>
       
       
     </footer>
@@ -411,7 +456,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/11/28/Longest-Common-Prefix/" data-id="cjqfcv69u0005xov395ktoyh0" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/11/28/Longest-Common-Prefix/" data-id="cjqkfg76y0004e0v32wci3dme" class="article-share-link">Share</a>
       
       
     </footer>
@@ -458,47 +503,7 @@ Your code should preferably run in O(n) time and use only O(1) memory.
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/11/28/Intersection-of-Two-Linked-Lists/" data-id="cjqfcv69n0002xov35r9r06mj" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Linked-List-Cycle" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/11/26/Linked-List-Cycle/" class="article-date">
-  <time datetime="2018-11-26T14:46:13.000Z" itemprop="datePublished">2018-11-26</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/26/Linked-List-Cycle/">Linked List Cycle</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>循环链表</p>
-<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Given a linked list, determine if it has a cycle in it.</p>
-<p>Follow up:<br>Can you solve it without using extra space? </p>
-<h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.一开始只想到了hash table 的解决方案<br>2.后面参考官方，使用了双指针的方式，一个快指针，一个慢指针，如果是环形快指针一定可以追上慢指针</p>
-<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment">  * class ListNode &#123;</span></span><br><span class="line"><span class="comment">  *     int val;</span></span><br><span class="line"><span class="comment">  *     ListNode next;</span></span><br><span class="line"><span class="comment">  *     ListNode(int x) &#123;</span></span><br><span class="line"><span class="comment">  *         val = x;</span></span><br><span class="line"><span class="comment">  *         next = null;</span></span><br><span class="line"><span class="comment">  *     &#125;</span></span><br><span class="line"><span class="comment">  * &#125;</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasCycle</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    ListNode slow = head;</span><br><span class="line">    ListNode fast = head.next;</span><br><span class="line">    <span class="keyword">while</span> (slow != fast) &#123;</span><br><span class="line">      <span class="keyword">if</span> (fast == <span class="keyword">null</span> || fast.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      slow = slow.next;</span><br><span class="line">      fast = fast.next.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/11/26/Linked-List-Cycle/" data-id="cjqfcv69p0003xov3b76dzmt5" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/11/28/Intersection-of-Two-Linked-Lists/" data-id="cjqkfg76v0003e0v3nmp81em2" class="article-share-link">Share</a>
       
       
     </footer>
@@ -544,6 +549,10 @@ Your code should preferably run in O(n) time and use only O(1) memory.
       <ul>
         
           <li>
+            <a href="/2019/01/06/Kth-Smallest-Element-in-a-BST/">Kth Smallest Element in a BST</a>
+          </li>
+        
+          <li>
             <a href="/2019/01/02/Permutations/">Permutations</a>
           </li>
         
@@ -557,10 +566,6 @@ Your code should preferably run in O(n) time and use only O(1) memory.
         
           <li>
             <a href="/2018/12/26/spiral-Matrix-II/">spiral Matrix II</a>
-          </li>
-        
-          <li>
-            <a href="/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/">读 Deep Neural Networks for YouTube Recommendations  总结</a>
           </li>
         
       </ul>
