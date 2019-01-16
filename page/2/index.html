@@ -62,6 +62,47 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-spiral-Matrix-II" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/26/spiral-Matrix-II/" class="article-date">
+  <time datetime="2018-12-26T14:05:44.000Z" itemprop="datePublished">2018-12-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/26/spiral-Matrix-II/">spiral Matrix II</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>螺旋矩阵</p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Given a positive integer n, generate a square matrix filled with elements from 1 to n2 in spiral order.</p>
+<p>Example:</p>
+<p>Input: 3<br>Output:<br>[<br> [ 1, 2, 3 ],<br> [ 8, 9, 4 ],<br> [ 7, 6, 5 ]<br>]</p>
+<h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.这可以看作一道数学找规律的题目，上，右，下，左是为循环一圈，坐标循环一圈时有规律的变化。上时横坐标不变，<br>纵坐标不断增加，到最右边终止上边的循环，横坐标+1.其他位置依此类推。<br>2.终止条件，中心时终止，即左&lt;=右时终止。</p>
+<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[][] generateMatrix(<span class="keyword">int</span> n) &#123;</span><br><span class="line">	    <span class="keyword">int</span>[][] ret = <span class="keyword">new</span> <span class="keyword">int</span>[n][n];</span><br><span class="line">	    <span class="keyword">int</span> left = <span class="number">0</span>,top = <span class="number">0</span>;</span><br><span class="line">	    <span class="keyword">int</span> right = n -<span class="number">1</span>,down = n - <span class="number">1</span>;</span><br><span class="line">	    <span class="keyword">int</span> count = <span class="number">1</span>;</span><br><span class="line">	    <span class="keyword">while</span> (left &lt;= right) &#123;</span><br><span class="line">		    <span class="keyword">for</span> (<span class="keyword">int</span> j = left; j &lt;= right; j ++) &#123;</span><br><span class="line">			    ret[top][j] = count++;</span><br><span class="line">		    &#125;</span><br><span class="line">		    top ++;</span><br><span class="line">		    <span class="keyword">for</span> (<span class="keyword">int</span> i = top; i &lt;= down; i ++) &#123;</span><br><span class="line">			    ret[i][right] = count ++;</span><br><span class="line">		    &#125;</span><br><span class="line">		    right --;</span><br><span class="line">		    <span class="keyword">for</span> (<span class="keyword">int</span> j = right; j &gt;= left; j --) &#123;</span><br><span class="line">			    ret[down][j] = count ++;</span><br><span class="line">		    &#125;</span><br><span class="line">		    down --;</span><br><span class="line">		    <span class="keyword">for</span> (<span class="keyword">int</span> i = down; i &gt;= top; i --) &#123;</span><br><span class="line">			    ret[i][left] = count ++;</span><br><span class="line">		    &#125;</span><br><span class="line">		    left ++;</span><br><span class="line">	    &#125;</span><br><span class="line">	    <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riverzzz.github.io/2018/12/26/spiral-Matrix-II/" data-id="cjqz9jhk1000dq4v3xe621hik" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-读-Deep-Neural-Networks-for-YouTube-Recommendations-总结" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/" class="article-date">
@@ -104,7 +145,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/" data-id="cjqxwakrs000ebov3kn543o86" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/" data-id="cjqz9jhkn000kq4v3edfzqc7i" class="article-share-link">Share</a>
       
       
     </footer>
@@ -140,7 +181,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/12/11/读-Deep-contextualized-word-representations-总结/" data-id="cjqxwakrv000ibov3vx87uiv9" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/12/11/读-Deep-contextualized-word-representations-总结/" data-id="cjqz9jhk6000jq4v3qsuab2wc" class="article-share-link">Share</a>
       
       
     </footer>
@@ -186,7 +227,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/12/04/面试题总结/" data-id="cjqxwakry000kbov3zgr70j9n" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/12/04/面试题总结/" data-id="cjqz9jhko000lq4v3gyk2700r" class="article-share-link">Share</a>
       
       
     </footer>
@@ -226,7 +267,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/11/28/Longest-Common-Prefix/" data-id="cjqxwakri0008bov3ef6arvgt" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/11/28/Longest-Common-Prefix/" data-id="cjqz9jhju0008q4v36dtlec2f" class="article-share-link">Share</a>
       
       
     </footer>
@@ -273,7 +314,7 @@ Your code should preferably run in O(n) time and use only O(1) memory.
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/11/28/Intersection-of-Two-Linked-Lists/" data-id="cjqxwakrc0004bov3hb6rkgzb" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/11/28/Intersection-of-Two-Linked-Lists/" data-id="cjqz9jhjh0004q4v3fnpm7doq" class="article-share-link">Share</a>
       
       
     </footer>
@@ -313,7 +354,7 @@ Your code should preferably run in O(n) time and use only O(1) memory.
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/11/26/Linked-List-Cycle/" data-id="cjqxwakre0005bov3pzoes8zg" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/11/26/Linked-List-Cycle/" data-id="cjqz9jhjp0007q4v3ebf0becm" class="article-share-link">Share</a>
       
       
     </footer>
@@ -367,7 +408,7 @@ Open brackets must be closed in the correct order.
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/11/26/Valid-Parentheses/" data-id="cjqxwakro000abov3hgi965pz" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/11/26/Valid-Parentheses/" data-id="cjqz9jhk3000fq4v3xu2orz1l" class="article-share-link">Share</a>
       
       
     </footer>
@@ -410,7 +451,7 @@ Open brackets must be closed in the correct order.
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/11/25/Maximum-Subarray/" data-id="cjqxwakru000fbov3h6klmw6m" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/11/25/Maximum-Subarray/" data-id="cjqz9jhjj0005q4v3lcnybhzl" class="article-share-link">Share</a>
       
       
     </footer>
@@ -452,47 +493,7 @@ Open brackets must be closed in the correct order.
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/11/04/windows10-docker-tensorflow-安装流程/" data-id="cjqxwakrr000dbov3v5f7p3ou" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hexo-github搭建总结" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/10/28/hexo-github搭建总结/" class="article-date">
-  <time datetime="2018-10-28T04:48:54.000Z" itemprop="datePublished">2018-10-28</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/10/28/hexo-github搭建总结/">hexo-github搭建总结</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>下面是我搭建博客的一些总结</p>
-<h2 id="搭建步骤"><a href="#搭建步骤" class="headerlink" title="搭建步骤"></a>搭建步骤</h2><p>1.安装git<br>2.设置git免密登陆<br>3.安装node.js<br>4.安装hexo<br>5.关联git和hexo<br>6.测试关联结果<br>7.搭建问题总结</p>
-<h3 id="1-git安装、测试"><a href="#1-git安装、测试" class="headerlink" title="1.git安装、测试"></a>1.git安装、测试</h3><p>git安装完后可以使用以下命令测试<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git --version</span><br></pre></td></tr></table></figure></p>
-<h3 id="7-搭建问题总结"><a href="#7-搭建问题总结" class="headerlink" title="7.搭建问题总结"></a>7.搭建问题总结</h3><p>1.node.js安装后先执行npm install -g cnpm –registry=<a href="https://registry.npm.taobao.org" target="_blank" rel="noopener">https://registry.npm.taobao.org</a> ，安装阿里的镜像，以后都使用cnpm代替npm安装模块<br>2.hexo关联git的时候，配置_config.yml文件冒号后面记得留空格，否则会关联失败，并且不报错，很难找到问题</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/10/28/hexo-github搭建总结/" data-id="cjqxwakrv000hbov31xw0khpy" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/11/04/windows10-docker-tensorflow-安装流程/" data-id="cjqz9jhk5000iq4v3wba17iuh" class="article-share-link">Share</a>
       
       
     </footer>
@@ -538,6 +539,10 @@ Open brackets must be closed in the correct order.
       <ul>
         
           <li>
+            <a href="/2019/01/16/Container-With-Most-Water/">Container With Most Water</a>
+          </li>
+        
+          <li>
             <a href="/2019/01/15/Unique-Paths/">Unique Paths</a>
           </li>
         
@@ -551,10 +556,6 @@ Open brackets must be closed in the correct order.
         
           <li>
             <a href="/2019/01/09/Sort-List/">Sort List</a>
-          </li>
-        
-          <li>
-            <a href="/2019/01/06/Gray-Code/">Gray Code</a>
           </li>
         
       </ul>
