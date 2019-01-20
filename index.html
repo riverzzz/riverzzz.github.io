@@ -62,6 +62,48 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-3Sum-Closest" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/20/3Sum-Closest/" class="article-date">
+  <time datetime="2019-01-20T14:43:41.000Z" itemprop="datePublished">2019-01-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/20/3Sum-Closest/">3Sum Closest</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最接近3数之和</p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Given an array nums of n integers and an integer target, find three integers in nums such that the sum is closest to target. Return the sum of the three integers. You may assume that each input would have exactly one solution.</p>
+<p>Example:</p>
+<p>Given array nums = [-1, 2, 1, -4], and target = 1.</p>
+<p>The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).</p>
+<h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.根据题目我们需要知道最接近target的x+y+z。为了知道当我们移动元素的时候3数的和是增大还是减小，我们需要对数组进行排序。<br>2.当排完序，我们固定一个数y=a[0]，然后x初始固定为a[1],z=a[n].我们可以知道当x右移时，3数和会增大，当z左移时会减小。由此，我们可以使用两个循环得到我们想要<br>的结果，第一层控制y的循环，第二层控制x、z的循环。</p>
+<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">threeSumClosest</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 排序</span></span><br><span class="line">        Arrays.sort(nums);</span><br><span class="line">        <span class="keyword">int</span> closestNum = nums[<span class="number">0</span>] + nums[<span class="number">1</span>] + nums[<span class="number">2</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length - <span class="number">2</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> l = i + <span class="number">1</span>, r = nums.length - <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">while</span> (l &lt; r)&#123;</span><br><span class="line">                <span class="keyword">int</span> threeSum = nums[l] + nums[r] + nums[i];</span><br><span class="line">                <span class="keyword">if</span> (Math.abs(threeSum - target) &lt; Math.abs(closestNum - target)) &#123;</span><br><span class="line">                    closestNum = threeSum;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (threeSum &gt; target) &#123;</span><br><span class="line">                    <span class="keyword">while</span> (l &lt; r &amp;&amp; nums[r] == nums[r - <span class="number">1</span>]) r--;</span><br><span class="line">                    r--;</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (threeSum &lt; target) &#123;</span><br><span class="line">                    <span class="keyword">while</span> (l &lt; r &amp;&amp; nums[l] == nums[l + <span class="number">1</span>]) l++;</span><br><span class="line">                    l++;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="comment">// 如果已经等于target的话, 肯定是最接近的</span></span><br><span class="line">                    <span class="keyword">return</span> target;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> closestNum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riverzzz.github.io/2019/01/20/3Sum-Closest/" data-id="cjr50wg4h00000cv3y5de0jdl" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Lowest-Common-Ancestor-of-a-Binary-Tree" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/01/16/Lowest-Common-Ancestor-of-a-Binary-Tree/" class="article-date">
@@ -99,7 +141,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/16/Lowest-Common-Ancestor-of-a-Binary-Tree/" data-id="cjqzbr3ci0009kcv31k6ntji3" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/16/Lowest-Common-Ancestor-of-a-Binary-Tree/" data-id="cjr50wg5200090cv30ocoyua9" class="article-share-link">Share</a>
       
       
     </footer>
@@ -143,7 +185,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/16/Container-With-Most-Water/" data-id="cjqzbr3c20001kcv345zp2yu1" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/16/Container-With-Most-Water/" data-id="cjr50wg4p00020cv3ss6d7j6c" class="article-share-link">Share</a>
       
       
     </footer>
@@ -194,7 +236,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/15/Unique-Paths/" data-id="cjqzbr3ck000bkcv3qkg01zl0" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/15/Unique-Paths/" data-id="cjr50wg58000f0cv3tiwrobnr" class="article-share-link">Share</a>
       
       
     </footer>
@@ -236,7 +278,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/14/Kth-Largest-Element-in-an-Array/" data-id="cjqzbr3bv0000kcv3y2r2qihu" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/14/Kth-Largest-Element-in-an-Array/" data-id="cjr50wg4m00010cv31io1xwrh" class="article-share-link">Share</a>
       
       
     </footer>
@@ -279,7 +321,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/10/Product-of-Array-Except-Self/" data-id="cjqzbr3cm000dkcv3ijz5xvho" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/10/Product-of-Array-Except-Self/" data-id="cjr50wg53000a0cv3zjo488b5" class="article-share-link">Share</a>
       
       
     </footer>
@@ -323,7 +365,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/09/Sort-List/" data-id="cjqzbr3cm000ckcv3gsmjvq0w" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/09/Sort-List/" data-id="cjr50wg5b000j0cv308ar2c9p" class="article-share-link">Share</a>
       
       
     </footer>
@@ -369,7 +411,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/06/Gray-Code/" data-id="cjqzbr3c30002kcv3ugsiujtr" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/06/Gray-Code/" data-id="cjr50wg4t00040cv3kr32rak4" class="article-share-link">Share</a>
       
       
     </footer>
@@ -414,7 +456,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/06/Kth-Smallest-Element-in-a-BST/" data-id="cjqzbr3c90004kcv3v58so4c9" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/06/Kth-Smallest-Element-in-a-BST/" data-id="cjr50wg4w00050cv3h6psky8c" class="article-share-link">Share</a>
       
       
     </footer>
@@ -477,43 +519,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/02/Permutations/" data-id="cjqzbr3cj000akcv3nf7ucpbt" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-tf-低阶api学习笔记" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/01/tf-低阶api学习笔记/" class="article-date">
-  <time datetime="2019-01-01T15:37:26.000Z" itemprop="datePublished">2019-01-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/01/tf-低阶api学习笔记/">tf-低阶api学习笔记</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/01/tf-低阶api学习笔记/" data-id="cjqzbr3cr000ikcv3nouu1twx" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/02/Permutations/" data-id="cjr50wg55000c0cv3hj4rhm8u" class="article-share-link">Share</a>
       
       
     </footer>
@@ -559,6 +565,10 @@
       <ul>
         
           <li>
+            <a href="/2019/01/20/3Sum-Closest/">3Sum Closest</a>
+          </li>
+        
+          <li>
             <a href="/2019/01/16/Lowest-Common-Ancestor-of-a-Binary-Tree/">Lowest Common Ancestor of a Binary Tree</a>
           </li>
         
@@ -572,10 +582,6 @@
         
           <li>
             <a href="/2019/01/14/Kth-Largest-Element-in-an-Array/">Kth Largest Element in an Array</a>
-          </li>
-        
-          <li>
-            <a href="/2019/01/10/Product-of-Array-Except-Self/">Product of Array Except Self</a>
           </li>
         
       </ul>
