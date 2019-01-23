@@ -62,6 +62,48 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Kth-Largest-Element-in-an-Array" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/14/Kth-Largest-Element-in-an-Array/" class="article-date">
+  <time datetime="2019-01-14T15:28:44.000Z" itemprop="datePublished">2019-01-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/14/Kth-Largest-Element-in-an-Array/">Kth Largest Element in an Array</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>数组中第k大的数</p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Find the kth largest element in an unsorted array. Note that it is the kth largest element in the sorted order, not the kth distinct element.</p>
+<p>Example 1:</p>
+<p>Input: [3,2,1,5,6,4] and k = 2<br>Output: 5<br>Example 2:</p>
+<p>Input: [3,2,3,1,2,4,5,5,6] and k = 4<br>Output: 4<br>Note:<br>You may assume k is always valid, 1 ≤ k ≤ array’s length.</p>
+<h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.这一题没有太多可以说的，把排序的代码修改一下就可以了。像堆排、快排等。</p>
+<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findKthLargest</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n = a.length;</span><br><span class="line">    <span class="keyword">int</span> p = quickSelect(a, <span class="number">0</span>, n - <span class="number">1</span>, n - k + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> a[p];</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// return the index of the kth smallest number</span></span><br><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">quickSelect</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> lo, <span class="keyword">int</span> hi, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// use quick sort's idea</span></span><br><span class="line">    <span class="comment">// put nums that are &lt;= pivot to the left</span></span><br><span class="line">    <span class="comment">// put nums that are  &gt; pivot to the right</span></span><br><span class="line">    <span class="keyword">int</span> i = lo, j = hi, pivot = a[hi];</span><br><span class="line">    <span class="keyword">while</span> (i &lt; j) &#123;</span><br><span class="line">      <span class="keyword">if</span> (a[i++] &gt; pivot) swap(a, --i, --j);</span><br><span class="line">    &#125;</span><br><span class="line">    swap(a, i, hi);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// count the nums that are &lt;= pivot from lo</span></span><br><span class="line">    <span class="keyword">int</span> m = i - lo + <span class="number">1</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// pivot is the one!</span></span><br><span class="line">    <span class="keyword">if</span> (m == k)     <span class="keyword">return</span> i;</span><br><span class="line">    <span class="comment">// pivot is too big, so it must be on the left</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (m &gt; k) <span class="keyword">return</span> quickSelect(a, lo, i - <span class="number">1</span>, k);</span><br><span class="line">    <span class="comment">// pivot is too small, so it must be on the right</span></span><br><span class="line">    <span class="keyword">else</span>            <span class="keyword">return</span> quickSelect(a, i + <span class="number">1</span>, hi, k - m);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> tmp = a[i];</span><br><span class="line">    a[i] = a[j];</span><br><span class="line">    a[j] = tmp;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riverzzz.github.io/2019/01/14/Kth-Largest-Element-in-an-Array/" data-id="cjr9bf9gp0005esv3km219tm9" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Product-of-Array-Except-Self" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/01/10/Product-of-Array-Except-Self/" class="article-date">
@@ -95,7 +137,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/10/Product-of-Array-Except-Self/" data-id="cjr99u4u2000ctov3azn0obpv" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/10/Product-of-Array-Except-Self/" data-id="cjr9bf9gz000besv398tji1iu" class="article-share-link">Share</a>
       
       
     </footer>
@@ -139,7 +181,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/09/Sort-List/" data-id="cjr99u4u8000itov32cikr8u2" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/09/Sort-List/" data-id="cjr9bf9h3000gesv3akezkdqu" class="article-share-link">Share</a>
       
       
     </footer>
@@ -185,7 +227,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/06/Gray-Code/" data-id="cjr99u4ti0002tov3vutdt0rn" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/06/Gray-Code/" data-id="cjr9bf9gj0002esv3rdnc5s62" class="article-share-link">Share</a>
       
       
     </footer>
@@ -230,7 +272,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/06/Kth-Smallest-Element-in-a-BST/" data-id="cjr99u4tw0008tov3dmh4n25w" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/06/Kth-Smallest-Element-in-a-BST/" data-id="cjr9bf9gt0006esv3hxkba5cy" class="article-share-link">Share</a>
       
       
     </footer>
@@ -293,7 +335,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/02/Permutations/" data-id="cjr99u4u3000etov33iqw4nr6" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/02/Permutations/" data-id="cjr9bf9h2000eesv324dkytrm" class="article-share-link">Share</a>
       
       
     </footer>
@@ -329,7 +371,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/01/tf-低阶api学习笔记/" data-id="cjr99u4ua000ltov3m4woti0e" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/01/tf-低阶api学习笔记/" data-id="cjr9bf9ha000oesv3639jv1h6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -374,7 +416,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/12/27/LRU-Cache/" data-id="cjr99u4tv0007tov3psqjdg24" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/12/27/LRU-Cache/" data-id="cjr9bf9go0004esv3ecmv0t6a" class="article-share-link">Share</a>
       
       
     </footer>
@@ -415,7 +457,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/12/26/spiral-Matrix-II/" data-id="cjr99u4uc000ntov3nmnqlyp3" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/12/26/spiral-Matrix-II/" data-id="cjr9bf9h9000mesv3d1s3acw1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -467,43 +509,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/" data-id="cjr99u4uc000mtov39br0m5ee" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-读-Deep-contextualized-word-representations-总结" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/12/11/读-Deep-contextualized-word-representations-总结/" class="article-date">
-  <time datetime="2018-12-11T14:19:33.000Z" itemprop="datePublished">2018-12-11</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/11/读-Deep-contextualized-word-representations-总结/">读 Deep contextualized word representations 总结</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/12/11/读-Deep-contextualized-word-representations-总结/" data-id="cjr99u4ug000rtov39mf7kz95" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/" data-id="cjr9bf9hb000pesv3mundsqhy" class="article-share-link">Share</a>
       
       
     </footer>
@@ -549,6 +555,10 @@
       <ul>
         
           <li>
+            <a href="/2019/01/23/Spiral-Matrix/">Spiral Matrix</a>
+          </li>
+        
+          <li>
             <a href="/2019/01/23/Search-in-Rotated-Sorted-Array/">Search in Rotated Sorted Array</a>
           </li>
         
@@ -562,10 +572,6 @@
         
           <li>
             <a href="/2019/01/22/读图解transformer总结/">读图解transformer总结</a>
-          </li>
-        
-          <li>
-            <a href="/2019/01/20/Multiply-Strings/">Multiply Strings</a>
           </li>
         
       </ul>
