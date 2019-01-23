@@ -62,6 +62,93 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Product-of-Array-Except-Self" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/10/Product-of-Array-Except-Self/" class="article-date">
+  <time datetime="2019-01-10T14:51:29.000Z" itemprop="datePublished">2019-01-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/10/Product-of-Array-Except-Self/">Product of Array Except Self</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>数组除了自己剩余数的乘积</p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Given an array nums of n integers where n &gt; 1,  return an array output such that output[i] is equal to the product of all the elements of nums except nums[i].</p>
+<p>Example:</p>
+<p>Input:  [1,2,3,4]<br>Output: [24,12,8,6]</p>
+<p>Note: Please solve it without division and in O(n).</p>
+<p>Follow up:<br>Could you solve it with constant space complexity? (The output array does not count as extra space for the purpose of space complexity analysis.)</p>
+<h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.一开始我想着计算数组所有数的乘积，然后一个循环除以每个数自身即可，但是这里不让用除法。<br>2.那么我们怎么得到结果呢？a[i]=a[1]<em>…a[i-1]</em>a[i+1]*…a[n],根据上式，我们可以以a[i]为界限，把计算分为两部分，左边和右边乘积。这样我们只需要把数组<br>循环两次，第一次计算左边的乘积，第二次计算右边的乘积，合起来即为结果。</p>
+<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] productExceptSelf(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">    <span class="keyword">int</span> n = nums.length;</span><br><span class="line">    <span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">    res[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">	<span class="comment">//计算左边乘积</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">        res[i] = res[i - <span class="number">1</span>] * nums[i - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> right = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = n - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        res[i] *= right;<span class="comment">//将右边乘积合并到左边</span></span><br><span class="line">        right *= nums[i];<span class="comment">//计算右边乘积</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riverzzz.github.io/2019/01/10/Product-of-Array-Except-Self/" data-id="cjr99u4u2000ctov3azn0obpv" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Sort-List" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/09/Sort-List/" class="article-date">
+  <time datetime="2019-01-09T15:45:01.000Z" itemprop="datePublished">2019-01-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/09/Sort-List/">Sort List</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>链表排序</p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Sort a linked list in O(n log n) time using constant space complexity.</p>
+<p>Example 1:</p>
+<p>Input: 4-&gt;2-&gt;1-&gt;3<br>Output: 1-&gt;2-&gt;3-&gt;4</p>
+<p>Example 2:</p>
+<p>Input: -1-&gt;5-&gt;3-&gt;4-&gt;0<br>Output: -1-&gt;0-&gt;3-&gt;4-&gt;5</p>
+<h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.既然涉及到排序，那我们肯定使用常见的排序算法，速度快的我们一般选择归并排序。<br>2.归并排序涉及到数据切分，那么我们怎么把链表分为两部分呢？这里我们使用快慢指针，将数据切为两部分。递归调用即可。<br>3.数据切分完后，涉及到合并切分完后的数据。这里切分完后得到是两个有序链表，那么我只需要合并两个有序链表即可，同样<br>是递归调用。</p>
+<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><p>整个代码和归并排序比较相似，如果不能理解可以先去看看归并排序。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">public</span> ListNode <span class="title">sortList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>)</span><br><span class="line">      <span class="keyword">return</span> head;</span><br><span class="line">        </span><br><span class="line">    <span class="comment">// step 1. cut the list to two halves</span></span><br><span class="line">    ListNode prev = <span class="keyword">null</span>, slow = head, fast = head;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> (fast != <span class="keyword">null</span> &amp;&amp; fast.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">      prev = slow;</span><br><span class="line">      slow = slow.next;</span><br><span class="line">      fast = fast.next.next;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">	<span class="comment">//这里将链表彻底划分为两个部分</span></span><br><span class="line">    prev.next = <span class="keyword">null</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// step 2. sort each half</span></span><br><span class="line">    ListNode l1 = sortList(head);</span><br><span class="line">    ListNode l2 = sortList(slow);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// step 3. merge l1 and l2</span></span><br><span class="line">    <span class="keyword">return</span> merge(l1, l2);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//合并两个有序链表</span></span><br><span class="line">  <span class="function">ListNode <span class="title">merge</span><span class="params">(ListNode l1, ListNode l2)</span> </span>&#123;</span><br><span class="line">    ListNode head = <span class="keyword">new</span> ListNode(<span class="number">0</span>), cur = head;</span><br><span class="line">    </span><br><span class="line">	<span class="comment">//循环比较两个链表第一个元素</span></span><br><span class="line">    <span class="keyword">while</span> (l1 != <span class="keyword">null</span> &amp;&amp; l2 != <span class="keyword">null</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (l1.val &lt; l2.val) &#123;</span><br><span class="line">        cur.next = l1;</span><br><span class="line">        l1 = l1.next;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        cur.next = l2;</span><br><span class="line">        l2 = l2.next;</span><br><span class="line">      &#125;</span><br><span class="line">      cur = cur.next;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">	<span class="comment">//合并第一个链表剩余节点到主链表</span></span><br><span class="line">    <span class="keyword">if</span> (l1 != <span class="keyword">null</span>)</span><br><span class="line">      cur.next = l1;</span><br><span class="line">    </span><br><span class="line">	<span class="comment">//合并第二个链表到主链表</span></span><br><span class="line">    <span class="keyword">if</span> (l2 != <span class="keyword">null</span>)</span><br><span class="line">      cur.next = l2;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> head.next;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riverzzz.github.io/2019/01/09/Sort-List/" data-id="cjr99u4u8000itov32cikr8u2" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Gray-Code" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/01/06/Gray-Code/" class="article-date">
@@ -98,7 +185,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/06/Gray-Code/" data-id="cjr7ws8f10002o0v3d8c7obzm" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/06/Gray-Code/" data-id="cjr99u4ti0002tov3vutdt0rn" class="article-share-link">Share</a>
       
       
     </footer>
@@ -143,7 +230,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/06/Kth-Smallest-Element-in-a-BST/" data-id="cjr7ws8f60005o0v3orrirrib" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/06/Kth-Smallest-Element-in-a-BST/" data-id="cjr99u4tw0008tov3dmh4n25w" class="article-share-link">Share</a>
       
       
     </footer>
@@ -206,7 +293,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/02/Permutations/" data-id="cjr7ws8fz000do0v3p847maav" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/02/Permutations/" data-id="cjr99u4u3000etov33iqw4nr6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -242,7 +329,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/01/tf-低阶api学习笔记/" data-id="cjr7ws8gt000mo0v3ergbrp5d" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/01/tf-低阶api学习笔记/" data-id="cjr99u4ua000ltov3m4woti0e" class="article-share-link">Share</a>
       
       
     </footer>
@@ -287,7 +374,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/12/27/LRU-Cache/" data-id="cjr7ws8fj0007o0v3dwbxrygm" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/12/27/LRU-Cache/" data-id="cjr99u4tv0007tov3psqjdg24" class="article-share-link">Share</a>
       
       
     </footer>
@@ -328,7 +415,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/12/26/spiral-Matrix-II/" data-id="cjr7ws8gr000lo0v3zxfmf187" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/12/26/spiral-Matrix-II/" data-id="cjr99u4uc000ntov3nmnqlyp3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -380,7 +467,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/" data-id="cjr7ws8gx000oo0v339qzzeda" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/" data-id="cjr99u4uc000mtov39br0m5ee" class="article-share-link">Share</a>
       
       
     </footer>
@@ -416,93 +503,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/12/11/读-Deep-contextualized-word-representations-总结/" data-id="cjr7ws8hv000qo0v3x57js3i1" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-面试题总结" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/12/04/面试题总结/" class="article-date">
-  <time datetime="2018-12-04T14:15:38.000Z" itemprop="datePublished">2018-12-04</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/04/面试题总结/">面试题总结</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>下面是我面试问到题目的总结</p>
-<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>1.spark计算任务划分，宽窄依赖，小文件处理<br>2.partition过多如何处理<br>3.java为什么使用iterator<br>4.多线程和多进程<br>5.hive结构图<br>6.hbase结构图<br>7.zookeeper<br>8.垃圾回收算法（7个，8个）</p>
-<p>1.机器学习偏差，方差<br>2.算法选取数据量<br>3.最近做了什么算法</p>
-<p>1.spark shuffle节点丢失，如何恢复<br>2.共享内存，存在竞争，如何处理（乐观锁）<br>3.jvm动态替换掉加载好的类<br>4.推荐系统协同过滤相关（倒排，近似近邻查找）<br>5.L1,L2正则</p>
-<p>1.L1，L2正则<br>2.逻辑回归与决策树的差异<br>3.什么是集成学习<br>4.map比较慢是为什么<br>5.spark任务有问题怎么定位<br>6.hadoop跑的比较慢的原因<br>7.hive原理<br>8.hbase原理，与hive的差异<br>9.hive存储格式</p>
-<p>1.spark分区算子<br>2.java锁（静态锁，对象锁）<br>3.线程池相关<br>4.垃圾回收（root，七种垃圾回收算法）</p>
-<p>1.acid（原子性，一致性，隔离性，持久性）<br>2.后序遍历二叉树<br>3.n个拍好序的数组全排（堆排）<br>4.两个拍好序的数组求交集（一个循环，一个二分查找）</p>
-<p>1.spark sql ，rdd df的差异<br>2.hbase为什么比mysql写的快<br>3.rowkey如何设计</p>
-<p>1.kafka原理特性<br>2.多线程，锁<br>3.dubbo框架原理<br>4.抽奖系统设计<br>5.spark任务优化</p>
-<p>1.tf-idf为什么取log<br>2.lr可以用来做什么<br>3.决策树和lr对比<br>4.java生产者和消费者</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/12/04/面试题总结/" data-id="cjr7ws8h3000po0v34rz4jawc" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Longest-Common-Prefix" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/11/28/Longest-Common-Prefix/" class="article-date">
-  <time datetime="2018-11-28T15:45:31.000Z" itemprop="datePublished">2018-11-28</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/28/Longest-Common-Prefix/">Longest Common Prefix</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>最大公共前缀</p>
-<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Write a function to find the longest common prefix string amongst an array of strings.</p>
-<p>If there is no common prefix, return an empty string “”.</p>
-<h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.大概思路，先找出字符串数组，第一个和第二个字符串公共前缀，然后拿这个公共前缀和第三个字符串比较找出公共部分，依此类推</p>
-<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">longestCommonPrefix</span><span class="params">(String[] strs)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(strs == <span class="keyword">null</span> || strs.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="string">""</span>;        </span><br><span class="line">        String prefix = strs[<span class="number">0</span>];        </span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; strs.length; i++) &#123;</span><br><span class="line">                <span class="keyword">while</span>(strs[i].indexOf(prefix) != <span class="number">0</span> &amp;&amp; prefix.length() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                    prefix = prefix.substring(<span class="number">0</span>, prefix.length() - <span class="number">1</span>);</span><br><span class="line">                &#125;                </span><br><span class="line">            &#125;</span><br><span class="line">        <span class="keyword">return</span> prefix;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/11/28/Longest-Common-Prefix/" data-id="cjr7ws8fl0008o0v3k5h6g0pi" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/12/11/读-Deep-contextualized-word-representations-总结/" data-id="cjr99u4ug000rtov39mf7kz95" class="article-share-link">Share</a>
       
       
     </footer>
@@ -548,6 +549,14 @@
       <ul>
         
           <li>
+            <a href="/2019/01/23/Search-in-Rotated-Sorted-Array/">Search in Rotated Sorted Array</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/23/读图解bert总结/">读图解bert总结</a>
+          </li>
+        
+          <li>
             <a href="/2019/01/22/Rotate-List/">Rotate List</a>
           </li>
         
@@ -557,14 +566,6 @@
         
           <li>
             <a href="/2019/01/20/Multiply-Strings/">Multiply Strings</a>
-          </li>
-        
-          <li>
-            <a href="/2019/01/20/3Sum-Closest/">3Sum Closest</a>
-          </li>
-        
-          <li>
-            <a href="/2019/01/16/Lowest-Common-Ancestor-of-a-Binary-Tree/">Lowest Common Ancestor of a Binary Tree</a>
           </li>
         
       </ul>
