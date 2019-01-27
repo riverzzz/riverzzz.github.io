@@ -5,16 +5,23 @@
   
 
   
-  <title>tf-低阶api学习笔记 | welcome，my github</title>
+  <title>Linked List Cycle || | welcome，my github</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
-<meta property="og:title" content="tf-低阶api学习笔记">
-<meta property="og:url" content="https://riverzzz.github.io/2019/01/01/tf-低阶api学习笔记/index.html">
+  <meta name="description" content="循环链表|| 题目Given a linked list, return the node where the cycle begins. If there is no cycle, return null. To represent a cycle in the given linked list, we use an integer pos which represents the posit">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linked List Cycle ||">
+<meta property="og:url" content="https://riverzzz.github.io/2019/01/27/Linked-List-Cycle-1/index.html">
 <meta property="og:site_name" content="welcome，my github">
+<meta property="og:description" content="循环链表|| 题目Given a linked list, return the node where the cycle begins. If there is no cycle, return null. To represent a cycle in the given linked list, we use an integer pos which represents the posit">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-01-01T15:37:26.104Z">
+<meta property="og:image" content="https://riverzzz.github.io/2019/01/27/Linked-List-Cycle-1/circularlinkedlist.png">
+<meta property="og:image" content="https://riverzzz.github.io/2019/01/27/Linked-List-Cycle-1/circularlinkedlist_test2.png">
+<meta property="og:image" content="https://riverzzz.github.io/2019/01/27/Linked-List-Cycle-1/circularlinkedlist_test3.png">
+<meta property="og:updated_time" content="2019-01-27T15:43:30.266Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tf-低阶api学习笔记">
+<meta name="twitter:title" content="Linked List Cycle ||">
+<meta name="twitter:description" content="循环链表|| 题目Given a linked list, return the node where the cycle begins. If there is no cycle, return null. To represent a cycle in the given linked list, we use an integer pos which represents the posit">
+<meta name="twitter:image" content="https://riverzzz.github.io/2019/01/27/Linked-List-Cycle-1/circularlinkedlist.png">
   
     <link rel="alternate" href="/atom.xml" title="welcome，my github" type="application/atom+xml">
   
@@ -61,10 +68,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-tf-低阶api学习笔记" class="article article-type-post" itemscope="" itemprop="blogPost">
+        <section id="main"><article id="post-Linked-List-Cycle-1" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/01/01/tf-低阶api学习笔记/" class="article-date">
-  <time datetime="2019-01-01T15:37:26.000Z" itemprop="datePublished">2019-01-01</time>
+    <a href="/2019/01/27/Linked-List-Cycle-1/" class="article-date">
+  <time datetime="2019-01-27T15:39:44.000Z" itemprop="datePublished">2019-01-27</time>
 </a>
     
   </div>
@@ -75,7 +82,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      tf-低阶api学习笔记
+      Linked List Cycle ||
     </h1>
   
 
@@ -83,11 +90,22 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>循环链表||</p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Given a linked list, return the node where the cycle begins. If there is no cycle, return null.</p>
+<p>To represent a cycle in the given linked list, we use an integer pos which represents the position (0-indexed) in the linked list where tail connects to. If pos is -1, then there is no cycle in the linked list.</p>
+<p>Note: Do not modify the linked list.</p>
+<p>Example 1:</p>
+<p>Input: head = [3,2,0,-4], pos = 1<br>Output: tail connects to node index 1<br>Explanation: There is a cycle in the linked list, where tail connects to the second node.<br><img src="/2019/01/27/Linked-List-Cycle-1/circularlinkedlist.png" title="circularlinkedlist"></p>
+<p>Example 2:</p>
+<p>Input: head = [1,2], pos = 0<br>Output: tail connects to node index 0<br>Explanation: There is a cycle in the linked list, where tail connects to the first node.<br><img src="/2019/01/27/Linked-List-Cycle-1/circularlinkedlist_test2.png" title="circularlinkedlist_test2"></p>
+<p>Example 3:</p>
+<p>Input: head = [1], pos = -1<br>Output: no cycle<br>Explanation: There is no cycle in the linked list.<br><img src="/2019/01/27/Linked-List-Cycle-1/circularlinkedlist_test3.png" title="circularlinkedlist_test3"></p>
+<p>Follow up:<br>Can you solve it without using extra space?</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/01/tf-低阶api学习笔记/" data-id="cjrf2wf01000ojkv3trop3z8f" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/27/Linked-List-Cycle-1/" data-id="cjrf2weyo0005jkv3om3jrgtg" class="article-share-link">Share</a>
       
       
     </footer>
@@ -96,19 +114,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2019/01/02/Permutations/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Permutations
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/12/27/LRU-Cache/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/01/24/大数据软件优化思路/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">LRU Cache</div>
+      <div class="article-nav-title">大数据软件优化思路</div>
     </a>
   
 </nav>
