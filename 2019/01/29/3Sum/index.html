@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>3Sum | welcome，my github</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="三数之和 题目Given an array nums of n integers, are there elements a, b, c in nums such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero. Note: The solution set must not">
+<meta property="og:type" content="article">
+<meta property="og:title" content="3Sum">
+<meta property="og:url" content="https://riverzzz.github.io/2019/01/29/3Sum/index.html">
+<meta property="og:site_name" content="welcome，my github">
+<meta property="og:description" content="三数之和 题目Given an array nums of n integers, are there elements a, b, c in nums such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero. Note: The solution set must not">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-01-29T15:15:12.755Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="3Sum">
+<meta name="twitter:description" content="三数之和 题目Given an array nums of n integers, are there elements a, b, c in nums such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero. Note: The solution set must not">
+  
+    <link rel="alternate" href="/atom.xml" title="welcome，my github" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">welcome，my github</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://riverzzz.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-3Sum" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/29/3Sum/" class="article-date">
+  <time datetime="2019-01-29T14:39:50.000Z" itemprop="datePublished">2019-01-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      3Sum
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>三数之和</p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Given an array nums of n integers, are there elements a, b, c in nums such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero.</p>
+<p>Note:</p>
+<p>The solution set must not contain duplicate triplets.</p>
+<p>Example:</p>
+<p>Given array nums = [-1, 0, 1, 2, -1, -4],</p>
+<p>A solution set is:<br>[<br>  [-1, 0, 1],<br>  [-1, -1, 2]<br>]</p>
+<h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.我们需要知道当移动数组时，三数的和改变的情况。那么，先对数组进行排序，这样移动数组时，我们知道和是变大还是变小。<br>2.固定一个数a之后，那么就变成了两数之和。这时，我们怎么移动b和c呢。b从左边开始移动，c从右边开始移动，当b+c&gt;0-a时,我们需要减小值，那么移动c，反之，<br>移动b，直到b、c相交。</p>
+<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; threeSum(<span class="keyword">int</span>[] num) &#123;</span><br><span class="line">    Arrays.sort(num);</span><br><span class="line">    List&lt;List&lt;Integer&gt;&gt; res = <span class="keyword">new</span> LinkedList&lt;&gt;(); </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; num.length-<span class="number">2</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i == <span class="number">0</span> || (i &gt; <span class="number">0</span> &amp;&amp; num[i] != num[i-<span class="number">1</span>])) &#123;</span><br><span class="line">            <span class="keyword">int</span> lo = i+<span class="number">1</span>, hi = num.length-<span class="number">1</span>, sum = <span class="number">0</span> - num[i];</span><br><span class="line">            <span class="keyword">while</span> (lo &lt; hi) &#123;</span><br><span class="line">                <span class="keyword">if</span> (num[lo] + num[hi] == sum) &#123;</span><br><span class="line">                    res.add(Arrays.asList(num[i], num[lo], num[hi]));</span><br><span class="line">                    <span class="keyword">while</span> (lo &lt; hi &amp;&amp; num[lo] == num[lo+<span class="number">1</span>]) lo++;</span><br><span class="line">                    <span class="keyword">while</span> (lo &lt; hi &amp;&amp; num[hi] == num[hi-<span class="number">1</span>]) hi--;</span><br><span class="line">                    lo++; hi--;</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (num[lo] + num[hi] &lt; sum) lo++;</span><br><span class="line">                <span class="keyword">else</span> hi--;</span><br><span class="line">           &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riverzzz.github.io/2019/01/29/3Sum/" data-id="cjrhwlkvg0000ecv3ocnbxc4w" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/01/28/Longest-Palindromic-Substring/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Longest Palindromic Substring</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/01/29/3Sum/">3Sum</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/28/Longest-Palindromic-Substring/">Longest Palindromic Substring</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/27/Linked-List-Cycle-1/">Linked List Cycle ||</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/24/大数据软件优化思路/">大数据软件优化思路</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/23/Spiral-Matrix/">Spiral Matrix</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 riverzzz<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

@@ -17,7 +17,7 @@
 <meta property="og:image" content="https://riverzzz.github.io/2019/01/27/Linked-List-Cycle-1/circularlinkedlist.png">
 <meta property="og:image" content="https://riverzzz.github.io/2019/01/27/Linked-List-Cycle-1/circularlinkedlist_test2.png">
 <meta property="og:image" content="https://riverzzz.github.io/2019/01/27/Linked-List-Cycle-1/circularlinkedlist_test3.png">
-<meta property="og:updated_time" content="2019-01-27T15:43:30.266Z">
+<meta property="og:updated_time" content="2019-01-29T14:51:08.106Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linked List Cycle ||">
 <meta name="twitter:description" content="循环链表|| 题目Given a linked list, return the node where the cycle begins. If there is no cycle, return null. To represent a cycle in the given linked list, we use an integer pos which represents the posit">
@@ -101,11 +101,13 @@
 <p>Example 3:</p>
 <p>Input: head = [1], pos = -1<br>Output: no cycle<br>Explanation: There is no cycle in the linked list.<br><img src="/2019/01/27/Linked-List-Cycle-1/circularlinkedlist_test3.png" title="circularlinkedlist_test3"></p>
 <p>Follow up:<br>Can you solve it without using extra space?</p>
+<h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.为了知道是否有循环，我们使用通用的方式使用快慢指针。<br>2.这里重要的是快慢指针相交的点c，他到head点的距离和循环的距离是相等的，那么从head点和交点c出发，他们相等的点就是交点。</p>
+<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) &#123;</span></span><br><span class="line"><span class="comment"> *         val = x;</span></span><br><span class="line"><span class="comment"> *         next = null;</span></span><br><span class="line"><span class="comment"> *     &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">detectCycle</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">	ListNode slow = head, fast = head;</span><br><span class="line">	<span class="keyword">while</span>(fast != <span class="keyword">null</span> &amp;&amp; fast.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">		fast = fast.next.next;</span><br><span class="line">		slow = slow.next;</span><br><span class="line">		<span class="keyword">if</span> (slow == fast) &#123;</span><br><span class="line">			<span class="keyword">while</span> (head != slow) &#123;</span><br><span class="line">				head = head.next;</span><br><span class="line">				slow = slow.next;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> slow;				</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;			</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/27/Linked-List-Cycle-1/" data-id="cjrggmrxe00054kv3rngjyavc" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/27/Linked-List-Cycle-1/" data-id="cjrhwlkw40007ecv3ey3sxlj2" class="article-share-link">Share</a>
       
       
     </footer>
@@ -163,6 +165,10 @@
       <ul>
         
           <li>
+            <a href="/2019/01/29/3Sum/">3Sum</a>
+          </li>
+        
+          <li>
             <a href="/2019/01/28/Longest-Palindromic-Substring/">Longest Palindromic Substring</a>
           </li>
         
@@ -176,10 +182,6 @@
         
           <li>
             <a href="/2019/01/23/Spiral-Matrix/">Spiral Matrix</a>
-          </li>
-        
-          <li>
-            <a href="/2019/01/23/Search-in-Rotated-Sorted-Array/">Search in Rotated Sorted Array</a>
           </li>
         
       </ul>
