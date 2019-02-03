@@ -62,6 +62,64 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Multiply-Strings" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/20/Multiply-Strings/" class="article-date">
+  <time datetime="2019-01-20T15:36:07.000Z" itemprop="datePublished">2019-01-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/20/Multiply-Strings/">Multiply Strings</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>字符串相乘</p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Given two non-negative integers num1 and num2 represented as strings, return the product of num1 and num2, also represented as a string.</p>
+<p>Example 1:</p>
+<p>Input: num1 = “2”, num2 = “3”<br>Output: “6”<br>Example 2:</p>
+<p>Input: num1 = “123”, num2 = “456”<br>Output: “56088”<br>Note:</p>
+<p>The length of both num1 and num2 is &lt; 110.<br>Both num1 and num2 contain only digits 0-9.<br>Both num1 and num2 do not contain any leading zero, except the number 0 itself.<br>You must not use any built-in BigInteger library or convert the inputs to integer directly.</p>
+<h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>num1的第i位(高位从0开始)和num2的第j位相乘的结果在乘积中的位置是[i+j, i+j+1]<br>例: 123 * 45,  123的第1位 2 和45的第0位 4 乘积 08 存放在结果的第[1, 2]位中<br>  index:    0 1 2 3 4  </p>
+<pre><code>    1 2 3
+*     4 5
+---------
+      1 5
+    1 0
+  0 5
+---------
+  0 6 1 5
+    1 2
+  0 8
+0 4
+---------
+0 5 5 3 5
+</code></pre><p>这样我们就可以单独都对每一位进行相乘计算把结果存入相应的index中        </p>
+<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">multiply</span><span class="params">(String num1, String num2)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> m = num1.length(), n = num2.length();</span><br><span class="line">    <span class="keyword">int</span>[] pos = <span class="keyword">new</span> <span class="keyword">int</span>[m + n];</span><br><span class="line">   </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = m - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = n - <span class="number">1</span>; j &gt;= <span class="number">0</span>; j--) &#123;</span><br><span class="line">            <span class="keyword">int</span> mul = (num1.charAt(i) - <span class="string">'0'</span>) * (num2.charAt(j) - <span class="string">'0'</span>); </span><br><span class="line">            <span class="keyword">int</span> p1 = i + j, p2 = i + j + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">int</span> sum = mul + pos[p2];</span><br><span class="line"></span><br><span class="line">            pos[p1] += sum / <span class="number">10</span>;</span><br><span class="line">            pos[p2] = (sum) % <span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;  </span><br><span class="line">    </span><br><span class="line">    StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> p : pos) <span class="keyword">if</span>(!(sb.length() == <span class="number">0</span> &amp;&amp; p == <span class="number">0</span>)) sb.append(p);</span><br><span class="line">    <span class="keyword">return</span> sb.length() == <span class="number">0</span> ? <span class="string">"0"</span> : sb.toString();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riverzzz.github.io/2019/01/20/Multiply-Strings/" data-id="cjrosaw8v000hoov31hqjlhh3" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-3Sum-Closest" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/01/20/3Sum-Closest/" class="article-date">
@@ -94,7 +152,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/20/3Sum-Closest/" data-id="cjrhwlkvt0003ecv3k42qe94o" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/20/3Sum-Closest/" data-id="cjrosaw7j0001oov3lncsefx7" class="article-share-link">Share</a>
       
       
     </footer>
@@ -141,7 +199,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/16/Lowest-Common-Ancestor-of-a-Binary-Tree/" data-id="cjrhwlkw80009ecv3s1a6fto6" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/16/Lowest-Common-Ancestor-of-a-Binary-Tree/" data-id="cjrosaw8r000coov3eq6yjk0i" class="article-share-link">Share</a>
       
       
     </footer>
@@ -185,7 +243,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/16/Container-With-Most-Water/" data-id="cjrhwlkvw0004ecv3j18netah" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/16/Container-With-Most-Water/" data-id="cjrosaw8e0004oov3hetx8dn3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -236,7 +294,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/15/Unique-Paths/" data-id="cjrhwlkwp000mecv3xlmj8mnd" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/15/Unique-Paths/" data-id="cjrosaw8y000koov30qmshj2q" class="article-share-link">Share</a>
       
       
     </footer>
@@ -278,7 +336,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/14/Kth-Largest-Element-in-an-Array/" data-id="cjrhwlkvx0005ecv3abn65pwc" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/14/Kth-Largest-Element-in-an-Array/" data-id="cjrosaw8f0005oov302w1142s" class="article-share-link">Share</a>
       
       
     </footer>
@@ -321,7 +379,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/10/Product-of-Array-Except-Self/" data-id="cjrhwlkwe000eecv38kjz71x0" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/10/Product-of-Array-Except-Self/" data-id="cjrosaw8x000joov3wcwke33c" class="article-share-link">Share</a>
       
       
     </footer>
@@ -365,7 +423,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/09/Sort-List/" data-id="cjrhwlkwi000iecv37zuvl7uf" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/09/Sort-List/" data-id="cjrosaw8z000loov3nk6d08ke" class="article-share-link">Share</a>
       
       
     </footer>
@@ -411,7 +469,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/06/Gray-Code/" data-id="cjrhwlkvp0001ecv38rgoatvk" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/06/Gray-Code/" data-id="cjrosaw7l0002oov3jjzrl8v4" class="article-share-link">Share</a>
       
       
     </footer>
@@ -456,70 +514,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/06/Kth-Smallest-Element-in-a-BST/" data-id="cjrhwlkw30006ecv3dbfuxhc9" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Permutations" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/02/Permutations/" class="article-date">
-  <time datetime="2019-01-02T15:34:25.000Z" itemprop="datePublished">2019-01-02</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/02/Permutations/">Permutations</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>全排列</p>
-<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Given a collection of distinct integers, return all possible permutations.</p>
-<p>Example:</p>
-<p>Input: [1,2,3]<br>Output:<br>[<br>  [1,2,3],<br>  [1,3,2],<br>  [2,1,3],<br>  [2,3,1],<br>  [3,1,2],<br>  [3,2,1]<br>]</p>
-<h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.这本质上一道数学题，只是需要用代码合适的表示出来。全排列的话，等于数据个数的阶层n！。那么我们可以用递归来实现，<br>第一层递归循环数组所有的数，第二层循环n-1个数，一直到最后一层，这样就把所有的都找出来了。<br>2.但是，这么做会产生很多小对象，所以改为每层递归都循环所有的数n，然后如果零时数组包含的相关数，则跳出此次循环，这<br>样就不会出现重复的。<br>3.可以把原始数组转换成hashMap的结构，这样检查临时数组是否包含相关数时可以减少复杂度。</p>
-<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><p>原始数组转换成hashMap的结构就交给大家了，我这里没写。。。</p>
-<pre><code class="java"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>{
-    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; permute(<span class="keyword">int</span>[] nums) {
-        List&lt;List&lt;Integer&gt;&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();
-        recPermute(list,nums,<span class="keyword">new</span> ArrayList&lt;&gt;());
-        <span class="keyword">return</span> list;
-    }
-
-    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">recPermute</span><span class="params">(List&lt;List&lt;Integer&gt;&gt; list,<span class="keyword">int</span>[] nums,List&lt;Integer&gt; tempList)</span></span>{
-        <span class="keyword">if</span>(tempList.size() == nums.length){
-            list.add(<span class="keyword">new</span> ArrayList&lt;&gt;(tempList));
-        }<span class="keyword">else</span>{
-            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++){
-                <span class="keyword">if</span>(tempList.contains(nums[i])) <span class="keyword">continue</span>; <span class="comment">// element already exists, skip</span>
-                tempList.add(nums[i]);
-                recPermute(list, nums, tempList);
-                tempList.remove(tempList.size() - <span class="number">1</span>);
-            }
-        } 
-    }
-}
-</code></pre>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/02/Permutations/" data-id="cjrhwlkwf000fecv30112wi6u" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/06/Kth-Smallest-Element-in-a-BST/" data-id="cjrosaw8i0007oov38lvhx0b8" class="article-share-link">Share</a>
       
       
     </footer>
@@ -552,7 +547,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li></ul>
     </div>
   </div>
 
@@ -563,6 +558,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2019/02/03/string-to-integer-atoi/">string to integer(atoi)</a>
+          </li>
         
           <li>
             <a href="/2019/01/29/3Sum/">3Sum</a>
@@ -578,10 +577,6 @@
         
           <li>
             <a href="/2019/01/24/大数据软件优化思路/">大数据软件优化思路</a>
-          </li>
-        
-          <li>
-            <a href="/2019/01/23/Spiral-Matrix/">Spiral Matrix</a>
           </li>
         
       </ul>
