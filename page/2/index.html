@@ -62,6 +62,48 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Rotate-List" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/22/Rotate-List/" class="article-date">
+  <time datetime="2019-01-22T15:08:34.000Z" itemprop="datePublished">2019-01-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/22/Rotate-List/">Rotate List</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>旋转链表</p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Given a linked list, rotate the list to the right by k places, where k is non-negative.</p>
+<p>Example 1:</p>
+<p>Input: 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL, k = 2<br>Output: 4-&gt;5-&gt;1-&gt;2-&gt;3-&gt;NULL<br>Explanation:<br>rotate 1 steps to the right: 5-&gt;1-&gt;2-&gt;3-&gt;4-&gt;NULL<br>rotate 2 steps to the right: 4-&gt;5-&gt;1-&gt;2-&gt;3-&gt;NULL<br>Example 2:</p>
+<p>Input: 0-&gt;1-&gt;2-&gt;NULL, k = 4<br>Output: 2-&gt;0-&gt;1-&gt;NULL<br>Explanation:<br>rotate 1 steps to the right: 2-&gt;0-&gt;1-&gt;NULL<br>rotate 2 steps to the right: 1-&gt;2-&gt;0-&gt;NULL<br>rotate 3 steps to the right: 0-&gt;1-&gt;2-&gt;NULL<br>rotate 4 steps to the right: 2-&gt;0-&gt;1-&gt;NULL</p>
+<h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.我们观察就可以知道旋转k个数，即将k%n个后面的数挪到前面即可。即将链表从n-k%n处分开，将后面的部分拼接到前面。<br>2.那么这里我们主要涉及到4个node，原来的first=node[1]、end=node[n]，改变后的first1=node[n-k%n+1]、end1=node[n-k%n]。因此，我们需要计算出n-&gt;链表长度，<br>及end、first1、end1。然后将几个node挪动即可。</p>
+<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">rotateRight</span><span class="params">(ListNode head, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head==<span class="keyword">null</span>||head.next==<span class="keyword">null</span>) <span class="keyword">return</span> head;</span><br><span class="line">        ListNode first = head,end = head,rotate=head;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">1</span>;end.next!=<span class="keyword">null</span>;i++) end = end.next; <span class="comment">//计算list长度n，找到end节点</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=i-k%i-<span class="number">1</span>;j&gt;<span class="number">0</span>;j--) rotate = rotate.next;<span class="comment">//找到旋转节点</span></span><br><span class="line">        end.next=first;<span class="comment">//旋转</span></span><br><span class="line">        first=rotate.next;</span><br><span class="line">        rotate.next=<span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">return</span> first;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riverzzz.github.io/2019/01/22/Rotate-List/" data-id="cjs0486te000jigv33cgiqbh3" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-读图解transformer总结" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/01/22/读图解transformer总结/" class="article-date">
@@ -88,7 +130,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/22/读图解transformer总结/" data-id="cjs01kv6a000xl8v3741rxe5w" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/22/读图解transformer总结/" data-id="cjs0486u3000zigv3xw5vwjir" class="article-share-link">Share</a>
       
       
     </footer>
@@ -146,7 +188,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/20/Multiply-Strings/" data-id="cjs01kv5e000gl8v39b4753ji" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/20/Multiply-Strings/" data-id="cjs0486tc000higv35q3l1f79" class="article-share-link">Share</a>
       
       
     </footer>
@@ -188,7 +230,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/20/3Sum-Closest/" data-id="cjs01kv4w0002l8v3i36cgtjz" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/20/3Sum-Closest/" data-id="cjs0486st0002igv30m2oriec" class="article-share-link">Share</a>
       
       
     </footer>
@@ -235,7 +277,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/16/Lowest-Common-Ancestor-of-a-Binary-Tree/" data-id="cjs01kv5a000cl8v3ursvlmnh" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/16/Lowest-Common-Ancestor-of-a-Binary-Tree/" data-id="cjs0486t6000digv37sboamx0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -279,7 +321,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/16/Container-With-Most-Water/" data-id="cjs01kv4t0001l8v3w0kc13wk" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/16/Container-With-Most-Water/" data-id="cjs0486su0003igv3s7i99olt" class="article-share-link">Share</a>
       
       
     </footer>
@@ -330,7 +372,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/15/Unique-Paths/" data-id="cjs01kv5k000nl8v3muq8fljs" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/15/Unique-Paths/" data-id="cjs0486tj000nigv3tks3bi7o" class="article-share-link">Share</a>
       
       
     </footer>
@@ -372,7 +414,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/14/Kth-Largest-Element-in-an-Array/" data-id="cjs01kv510005l8v36ynmiah3" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/14/Kth-Largest-Element-in-an-Array/" data-id="cjs0486sy0006igv3x5o2mudo" class="article-share-link">Share</a>
       
       
     </footer>
@@ -415,7 +457,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/10/Product-of-Array-Except-Self/" data-id="cjs01kv5g000il8v3cfordf9e" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/10/Product-of-Array-Except-Self/" data-id="cjs0486td000iigv3vdth9y9x" class="article-share-link">Share</a>
       
       
     </footer>
@@ -459,53 +501,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/09/Sort-List/" data-id="cjs01kv5i000ll8v3wnef44a1" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Gray-Code" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/06/Gray-Code/" class="article-date">
-  <time datetime="2019-01-06T13:39:18.000Z" itemprop="datePublished">2019-01-06</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/06/Gray-Code/">Gray Code</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>格雷编码</p>
-<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>The gray code is a binary numeral system where two successive values differ in only one bit.</p>
-<p>Given a non-negative integer n representing the total number of bits in the code, print the sequence of gray code. A gray code sequence must begin with 0.</p>
-<p>Example 1:</p>
-<p>Input: 2<br>Output: [0,1,3,2]<br>Explanation:<br>00 - 0<br>01 - 1<br>11 - 3<br>10 - 2</p>
-<p>For a given n, a gray code sequence may not be uniquely defined.<br>For example, [0,2,3,1] is also a valid gray code sequence.</p>
-<p>00 - 0<br>10 - 2<br>11 - 3<br>01 - 1</p>
-<p>Example 2:</p>
-<p>Input: 0<br>Output: [0]<br>Explanation: We define the gray code sequence to begin with 0.<br>             A gray code sequence of n has size = 2n, which for n = 0 the size is 20 = 1.<br>             Therefore, for n = 0 the gray code sequence is [0].</p>
-<h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.这一题不是很复杂，我们只需要知道格雷编码是怎么产生就可以了，G(i) = i ^ (i/2)，依照公式我们就可以计算出来所有的值。</p>
-<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">grayCode</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">        关键是搞清楚格雷编码的生成过程, G(i) = i ^ (i/2);</span></span><br><span class="line"><span class="comment">        如 n = 3: </span></span><br><span class="line"><span class="comment">        G(0) = 000, </span></span><br><span class="line"><span class="comment">        G(1) = 1 ^ 0 = 001 ^ 000 = 001</span></span><br><span class="line"><span class="comment">        G(2) = 2 ^ 1 = 010 ^ 001 = 011 </span></span><br><span class="line"><span class="comment">        G(3) = 3 ^ 1 = 011 ^ 001 = 010</span></span><br><span class="line"><span class="comment">        G(4) = 4 ^ 2 = 100 ^ 010 = 110</span></span><br><span class="line"><span class="comment">        G(5) = 5 ^ 2 = 101 ^ 010 = 111</span></span><br><span class="line"><span class="comment">        G(6) = 6 ^ 3 = 110 ^ 011 = 101</span></span><br><span class="line"><span class="comment">        G(7) = 7 ^ 3 = 111 ^ 011 = 100</span></span><br><span class="line"><span class="comment">        **/</span></span><br><span class="line">        List&lt;Integer&gt; ret = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1</span>&lt;&lt;n; ++i)</span><br><span class="line">            ret.add(i ^ i&gt;&gt;<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/06/Gray-Code/" data-id="cjs01kv500004l8v3ml8cj37h" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/09/Sort-List/" data-id="cjs0486th000ligv3ez81u04z" class="article-share-link">Share</a>
       
       
     </footer>
@@ -551,6 +547,10 @@
       <ul>
         
           <li>
+            <a href="/2019/02/11/Median-of-Two-Sorted-Arrays/">Median of Two Sorted Arrays</a>
+          </li>
+        
+          <li>
             <a href="/2019/02/11/Binary-Tree-Maximum-Path-Sum/">Binary Tree Maximum Path Sum</a>
           </li>
         
@@ -564,10 +564,6 @@
         
           <li>
             <a href="/2019/01/28/Longest-Palindromic-Substring/">Longest Palindromic Substring</a>
-          </li>
-        
-          <li>
-            <a href="/2019/01/27/Linked-List-Cycle-1/">Linked List Cycle ||</a>
           </li>
         
       </ul>

@@ -62,6 +62,52 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Gray-Code" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/06/Gray-Code/" class="article-date">
+  <time datetime="2019-01-06T13:39:18.000Z" itemprop="datePublished">2019-01-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/06/Gray-Code/">Gray Code</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>格雷编码</p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>The gray code is a binary numeral system where two successive values differ in only one bit.</p>
+<p>Given a non-negative integer n representing the total number of bits in the code, print the sequence of gray code. A gray code sequence must begin with 0.</p>
+<p>Example 1:</p>
+<p>Input: 2<br>Output: [0,1,3,2]<br>Explanation:<br>00 - 0<br>01 - 1<br>11 - 3<br>10 - 2</p>
+<p>For a given n, a gray code sequence may not be uniquely defined.<br>For example, [0,2,3,1] is also a valid gray code sequence.</p>
+<p>00 - 0<br>10 - 2<br>11 - 3<br>01 - 1</p>
+<p>Example 2:</p>
+<p>Input: 0<br>Output: [0]<br>Explanation: We define the gray code sequence to begin with 0.<br>             A gray code sequence of n has size = 2n, which for n = 0 the size is 20 = 1.<br>             Therefore, for n = 0 the gray code sequence is [0].</p>
+<h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.这一题不是很复杂，我们只需要知道格雷编码是怎么产生就可以了，G(i) = i ^ (i/2)，依照公式我们就可以计算出来所有的值。</p>
+<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">grayCode</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">        关键是搞清楚格雷编码的生成过程, G(i) = i ^ (i/2);</span></span><br><span class="line"><span class="comment">        如 n = 3: </span></span><br><span class="line"><span class="comment">        G(0) = 000, </span></span><br><span class="line"><span class="comment">        G(1) = 1 ^ 0 = 001 ^ 000 = 001</span></span><br><span class="line"><span class="comment">        G(2) = 2 ^ 1 = 010 ^ 001 = 011 </span></span><br><span class="line"><span class="comment">        G(3) = 3 ^ 1 = 011 ^ 001 = 010</span></span><br><span class="line"><span class="comment">        G(4) = 4 ^ 2 = 100 ^ 010 = 110</span></span><br><span class="line"><span class="comment">        G(5) = 5 ^ 2 = 101 ^ 010 = 111</span></span><br><span class="line"><span class="comment">        G(6) = 6 ^ 3 = 110 ^ 011 = 101</span></span><br><span class="line"><span class="comment">        G(7) = 7 ^ 3 = 111 ^ 011 = 100</span></span><br><span class="line"><span class="comment">        **/</span></span><br><span class="line">        List&lt;Integer&gt; ret = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1</span>&lt;&lt;n; ++i)</span><br><span class="line">            ret.add(i ^ i&gt;&gt;<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riverzzz.github.io/2019/01/06/Gray-Code/" data-id="cjs0486sw0004igv37dnlamjz" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Kth-Smallest-Element-in-a-BST" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/01/06/Kth-Smallest-Element-in-a-BST/" class="article-date">
@@ -97,7 +143,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/06/Kth-Smallest-Element-in-a-BST/" data-id="cjs01kv520006l8v39vib35hk" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/06/Kth-Smallest-Element-in-a-BST/" data-id="cjs0486t00008igv3yhqzxlai" class="article-share-link">Share</a>
       
       
     </footer>
@@ -160,7 +206,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/02/Permutations/" data-id="cjs01kv5d000fl8v3rvvoa20e" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/02/Permutations/" data-id="cjs0486ta000gigv3wimfp6ii" class="article-share-link">Share</a>
       
       
     </footer>
@@ -196,7 +242,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/01/tf-低阶api学习笔记/" data-id="cjs01kv5n000ql8v321tgyoc6" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/01/tf-低阶api学习笔记/" data-id="cjs0486tz000uigv3922p16r5" class="article-share-link">Share</a>
       
       
     </footer>
@@ -241,7 +287,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/12/27/LRU-Cache/" data-id="cjs01kv58000al8v3z63yjine" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/12/27/LRU-Cache/" data-id="cjs0486sz0007igv32nadh018" class="article-share-link">Share</a>
       
       
     </footer>
@@ -282,7 +328,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/12/26/spiral-Matrix-II/" data-id="cjs01kv5m000pl8v35b320ttz" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/12/26/spiral-Matrix-II/" data-id="cjs0486tx000rigv3je43opuj" class="article-share-link">Share</a>
       
       
     </footer>
@@ -334,7 +380,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/" data-id="cjs01kv5o000sl8v3gtdgwav4" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/" data-id="cjs0486u1000wigv3m105hqw8" class="article-share-link">Share</a>
       
       
     </footer>
@@ -370,7 +416,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/12/11/读-Deep-contextualized-word-representations-总结/" data-id="cjs01kv5s000wl8v3tzl90hkn" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/12/11/读-Deep-contextualized-word-representations-总结/" data-id="cjs0486u1000xigv3t09sel4n" class="article-share-link">Share</a>
       
       
     </footer>
@@ -416,7 +462,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/12/04/面试题总结/" data-id="cjs01kv6e000zl8v3cb7lmz80" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/12/04/面试题总结/" data-id="cjs0486ue0010igv321hyfqum" class="article-share-link">Share</a>
       
       
     </footer>
@@ -456,54 +502,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/11/28/Longest-Common-Prefix/" data-id="cjs01kv5d000el8v35psntkfx" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Intersection-of-Two-Linked-Lists" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/11/28/Intersection-of-Two-Linked-Lists/" class="article-date">
-  <time datetime="2018-11-28T14:48:32.000Z" itemprop="datePublished">2018-11-28</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/28/Intersection-of-Two-Linked-Lists/">Intersection of Two Linked Lists</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>两个链表的交集</p>
-<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Write a program to find the node at which the intersection of two singly linked lists begins.</p>
-<p>For example, the following two linked lists:</p>
-<p>A:          a1 → a2<br>                   ↘<br>                     c1 → c2 → c3<br>                   ↗<br>B:     b1 → b2 → b3</p>
-<p>begin to intersect at node c1.</p>
-<p>Notes:</p>
-<pre><code>If the two linked lists have no intersection at all, return null.
-The linked lists must retain their original structure after the function returns.
-You may assume there are no cycles anywhere in the entire linked structure.
-Your code should preferably run in O(n) time and use only O(1) memory.
-</code></pre><h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.我们注意到两个链表如果有交集，那么相交之后的的node都是相交的，因此，我们只需要找出相交的node即可<br>2.如果两个链表长度相同，我们只需要一起迭代即可，但是两个链表长度不同呢，怎么办？可以用A+B=B+A的形式，<br>即两个链表一起迭代，a迭代完后迭代b，同时b迭代完后a，第二轮就可以知道相交的点了。</p>
-<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) &#123;</span></span><br><span class="line"><span class="comment"> *         val = x;</span></span><br><span class="line"><span class="comment"> *         next = null;</span></span><br><span class="line"><span class="comment"> *     &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> ListNode <span class="title">getIntersectionNode</span><span class="params">(ListNode headA, ListNode headB)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//boundary check</span></span><br><span class="line">    <span class="keyword">if</span>(headA == <span class="keyword">null</span> || headB == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    </span><br><span class="line">    ListNode a = headA;</span><br><span class="line">    ListNode b = headB;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//if a &amp; b have different len, then we will stop the loop after second iteration</span></span><br><span class="line">    <span class="keyword">while</span>( a != b)&#123;</span><br><span class="line">    	<span class="comment">//for the end of first iteration, we just reset the pointer to the head of another linkedlist</span></span><br><span class="line">        a = a == <span class="keyword">null</span>? headB : a.next;</span><br><span class="line">        b = b == <span class="keyword">null</span>? headA : b.next;    </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/11/28/Intersection-of-Two-Linked-Lists/" data-id="cjs01kv530007l8v3h5j3sdjm" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/11/28/Longest-Common-Prefix/" data-id="cjs0486t4000bigv3kiscc90t" class="article-share-link">Share</a>
       
       
     </footer>
@@ -549,6 +548,10 @@ Your code should preferably run in O(n) time and use only O(1) memory.
       <ul>
         
           <li>
+            <a href="/2019/02/11/Median-of-Two-Sorted-Arrays/">Median of Two Sorted Arrays</a>
+          </li>
+        
+          <li>
             <a href="/2019/02/11/Binary-Tree-Maximum-Path-Sum/">Binary Tree Maximum Path Sum</a>
           </li>
         
@@ -562,10 +565,6 @@ Your code should preferably run in O(n) time and use only O(1) memory.
         
           <li>
             <a href="/2019/01/28/Longest-Palindromic-Substring/">Longest Palindromic Substring</a>
-          </li>
-        
-          <li>
-            <a href="/2019/01/27/Linked-List-Cycle-1/">Linked List Cycle ||</a>
           </li>
         
       </ul>

@@ -62,6 +62,53 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Median-of-Two-Sorted-Arrays" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/02/11/Median-of-Two-Sorted-Arrays/" class="article-date">
+  <time datetime="2019-02-11T08:42:44.000Z" itemprop="datePublished">2019-02-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/11/Median-of-Two-Sorted-Arrays/">Median of Two Sorted Arrays</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>两个排序数组的中位数</p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>There are two sorted arrays nums1 and nums2 of size m and n respectively.</p>
+<p>Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).</p>
+<p>You may assume nums1 and nums2 cannot be both empty.</p>
+<p>Example 1:</p>
+<p>nums1 = [1, 3]<br>nums2 = [2]</p>
+<p>The median is 2.0<br>Example 2:</p>
+<p>nums1 = [1, 2]<br>nums2 = [3, 4]</p>
+<p>The median is (2 + 3)/2 = 2.5</p>
+<h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.什么是中位数，中位数就是把数组分为相等两份的数，且左边比右边小。假设m&lt;n,那么对数组a[m]我们有m+1中切分方式。当我们从a[i]个位置切分数组时，b[j]要从哪里切分<br>才合适呢？j=m+n+1/2−i时，两个数组两边正好划分为相等的两部分。<br>2.划分为相等两份后，我们还要保证左边比右边小，这时我们需要移动i。<br>当B[j−1]≤A[i] 且 A[i−1]≤B[j]：这意味着我们找到了目标对象 i，所以可以停止搜索。<br>B[j−1]&gt;A[i]：这意味着 A[i] 太小，我们必须调整 i 以使 B[j−1]≤A[i]。我们可以增大 i，因为当 i 被增大的时候，j 就会被减小。因此 B[j−1] 会减小，而 A[i] 会增大，<br>那么 B[j−1]≤A[i] 就可能被满足。所以我们必须增大 i。也就是说，我们必须将搜索范围调整为 [i+1,imax]。 因此，设 imin=i+1。<br>A[i−1]&gt;B[j]： 这意味着 A[i−1] 太大，我们必须减小 i 以使 A[i−1]≤B[j]。 也就是说，我们必须将搜索范围调整为 [imin,i−1]。因此，设 imax=i−1。<br>也就是我们以二分法来搜索i的值。<br>3.目标值，max(A[i−1],B[j−1]), 当 m+n 为奇数时；<br>max(A[i−1],B[j−1])+min(A[i],B[j])/2, 当 m+n 为偶数时。</p>
+<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">findMedianSortedArrays</span><span class="params">(<span class="keyword">int</span>[] A, <span class="keyword">int</span>[] B)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> m = A.length;</span><br><span class="line">        <span class="keyword">int</span> n = B.length;</span><br><span class="line">        <span class="keyword">if</span> (m &gt; n) &#123; <span class="comment">// to ensure m&lt;=n</span></span><br><span class="line">            <span class="keyword">int</span>[] temp = A; A = B; B = temp;</span><br><span class="line">            <span class="keyword">int</span> tmp = m; m = n; n = tmp;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> iMin = <span class="number">0</span>, iMax = m, halfLen = (m + n + <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">while</span> (iMin &lt;= iMax) &#123;</span><br><span class="line">            <span class="keyword">int</span> i = (iMin + iMax) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">int</span> j = halfLen - i;</span><br><span class="line">            <span class="keyword">if</span> (i &lt; iMax &amp;&amp; B[j-<span class="number">1</span>] &gt; A[i])&#123;</span><br><span class="line">                iMin = i + <span class="number">1</span>; <span class="comment">// i is too small</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (i &gt; iMin &amp;&amp; A[i-<span class="number">1</span>] &gt; B[j]) &#123;</span><br><span class="line">                iMax = i - <span class="number">1</span>; <span class="comment">// i is too big</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123; <span class="comment">// i is perfect</span></span><br><span class="line">                <span class="keyword">int</span> maxLeft = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">if</span> (i == <span class="number">0</span>) &#123; maxLeft = B[j-<span class="number">1</span>]; &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (j == <span class="number">0</span>) &#123; maxLeft = A[i-<span class="number">1</span>]; &#125;</span><br><span class="line">                <span class="keyword">else</span> &#123; maxLeft = Math.max(A[i-<span class="number">1</span>], B[j-<span class="number">1</span>]); &#125;</span><br><span class="line">                <span class="keyword">if</span> ( (m + n) % <span class="number">2</span> == <span class="number">1</span> ) &#123; <span class="keyword">return</span> maxLeft; &#125;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">int</span> minRight = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">if</span> (i == m) &#123; minRight = B[j]; &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (j == n) &#123; minRight = A[i]; &#125;</span><br><span class="line">                <span class="keyword">else</span> &#123; minRight = Math.min(B[j], A[i]); &#125;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">return</span> (maxLeft + minRight) / <span class="number">2.0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0.0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riverzzz.github.io/2019/02/11/Median-of-Two-Sorted-Arrays/" data-id="cjs0486t9000figv3sklqrfd0" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Binary-Tree-Maximum-Path-Sum" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/02/11/Binary-Tree-Maximum-Path-Sum/" class="article-date">
@@ -102,7 +149,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/02/11/Binary-Tree-Maximum-Path-Sum/" data-id="cjs01kv4p0000l8v3kzxux0tn" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/02/11/Binary-Tree-Maximum-Path-Sum/" data-id="cjs0486sr0001igv3smew5htp" class="article-share-link">Share</a>
       
       
     </footer>
@@ -152,7 +199,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/02/03/string-to-integer-atoi/" data-id="cjs01kv5l000ol8v3wmxgohr5" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/02/03/string-to-integer-atoi/" data-id="cjs0486tx000sigv379r8iypc" class="article-share-link">Share</a>
       
       
     </footer>
@@ -196,7 +243,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/29/3Sum/" data-id="cjs01kv4x0003l8v3rvhxx7hm" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/29/3Sum/" data-id="cjs0486sm0000igv3qi7hs2ed" class="article-share-link">Share</a>
       
       
     </footer>
@@ -238,7 +285,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/28/Longest-Palindromic-Substring/" data-id="cjs01kv550008l8v30eyjzdwk" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/28/Longest-Palindromic-Substring/" data-id="cjs0486t5000cigv3gnqxo4ej" class="article-share-link">Share</a>
       
       
     </footer>
@@ -287,7 +334,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/27/Linked-List-Cycle-1/" data-id="cjs01kv560009l8v30ws0rnsz" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/27/Linked-List-Cycle-1/" data-id="cjs0486t2000aigv3r2hfpfa3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -324,7 +371,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/24/大数据软件优化思路/" data-id="cjs01kv5r000vl8v3qj1da7ev" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/24/大数据软件优化思路/" data-id="cjs0486u0000vigv3vyvb0dgw" class="article-share-link">Share</a>
       
       
     </footer>
@@ -366,7 +413,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/23/Spiral-Matrix/" data-id="cjs01kv5i000kl8v31aj0m7dg" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/23/Spiral-Matrix/" data-id="cjs0486ti000migv3f0sryy1t" class="article-share-link">Share</a>
       
       
     </footer>
@@ -412,7 +459,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/23/Search-in-Rotated-Sorted-Array/" data-id="cjs01kv5h000jl8v3lpia31a9" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/23/Search-in-Rotated-Sorted-Array/" data-id="cjs0486tf000kigv3xqd6l0z7" class="article-share-link">Share</a>
       
       
     </footer>
@@ -448,49 +495,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/23/读图解bert总结/" data-id="cjs01kv5q000ul8v33bkhrggo" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Rotate-List" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/22/Rotate-List/" class="article-date">
-  <time datetime="2019-01-22T15:08:34.000Z" itemprop="datePublished">2019-01-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/22/Rotate-List/">Rotate List</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>旋转链表</p>
-<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Given a linked list, rotate the list to the right by k places, where k is non-negative.</p>
-<p>Example 1:</p>
-<p>Input: 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL, k = 2<br>Output: 4-&gt;5-&gt;1-&gt;2-&gt;3-&gt;NULL<br>Explanation:<br>rotate 1 steps to the right: 5-&gt;1-&gt;2-&gt;3-&gt;4-&gt;NULL<br>rotate 2 steps to the right: 4-&gt;5-&gt;1-&gt;2-&gt;3-&gt;NULL<br>Example 2:</p>
-<p>Input: 0-&gt;1-&gt;2-&gt;NULL, k = 4<br>Output: 2-&gt;0-&gt;1-&gt;NULL<br>Explanation:<br>rotate 1 steps to the right: 2-&gt;0-&gt;1-&gt;NULL<br>rotate 2 steps to the right: 1-&gt;2-&gt;0-&gt;NULL<br>rotate 3 steps to the right: 0-&gt;1-&gt;2-&gt;NULL<br>rotate 4 steps to the right: 2-&gt;0-&gt;1-&gt;NULL</p>
-<h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.我们观察就可以知道旋转k个数，即将k%n个后面的数挪到前面即可。即将链表从n-k%n处分开，将后面的部分拼接到前面。<br>2.那么这里我们主要涉及到4个node，原来的first=node[1]、end=node[n]，改变后的first1=node[n-k%n+1]、end1=node[n-k%n]。因此，我们需要计算出n-&gt;链表长度，<br>及end、first1、end1。然后将几个node挪动即可。</p>
-<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">rotateRight</span><span class="params">(ListNode head, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head==<span class="keyword">null</span>||head.next==<span class="keyword">null</span>) <span class="keyword">return</span> head;</span><br><span class="line">        ListNode first = head,end = head,rotate=head;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">1</span>;end.next!=<span class="keyword">null</span>;i++) end = end.next; <span class="comment">//计算list长度n，找到end节点</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=i-k%i-<span class="number">1</span>;j&gt;<span class="number">0</span>;j--) rotate = rotate.next;<span class="comment">//找到旋转节点</span></span><br><span class="line">        end.next=first;<span class="comment">//旋转</span></span><br><span class="line">        first=rotate.next;</span><br><span class="line">        rotate.next=<span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">return</span> first;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/22/Rotate-List/" data-id="cjs01kv5f000hl8v3z28y36sm" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/23/读图解bert总结/" data-id="cjs0486u2000yigv3ob5s9knw" class="article-share-link">Share</a>
       
       
     </footer>
@@ -536,6 +541,10 @@
       <ul>
         
           <li>
+            <a href="/2019/02/11/Median-of-Two-Sorted-Arrays/">Median of Two Sorted Arrays</a>
+          </li>
+        
+          <li>
             <a href="/2019/02/11/Binary-Tree-Maximum-Path-Sum/">Binary Tree Maximum Path Sum</a>
           </li>
         
@@ -549,10 +558,6 @@
         
           <li>
             <a href="/2019/01/28/Longest-Palindromic-Substring/">Longest Palindromic Substring</a>
-          </li>
-        
-          <li>
-            <a href="/2019/01/27/Linked-List-Cycle-1/">Linked List Cycle ||</a>
           </li>
         
       </ul>
