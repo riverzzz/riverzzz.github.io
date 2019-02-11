@@ -7,14 +7,17 @@
   
   <title>string to integer(atoi) | welcome，my github</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
+  <meta name="description" content="字符串转换整数 题目Implement atoi which converts a string to an integer. The function first discards as many whitespace characters as necessary until the first non-whitespace character is found. Then, starting">
+<meta property="og:type" content="article">
 <meta property="og:title" content="string to integer(atoi)">
 <meta property="og:url" content="https://riverzzz.github.io/2019/02/03/string-to-integer-atoi/index.html">
 <meta property="og:site_name" content="welcome，my github">
+<meta property="og:description" content="字符串转换整数 题目Implement atoi which converts a string to an integer. The function first discards as many whitespace characters as necessary until the first non-whitespace character is found. Then, starting">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-03T08:17:37.359Z">
+<meta property="og:updated_time" content="2019-02-11T07:43:42.424Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="string to integer(atoi)">
+<meta name="twitter:description" content="字符串转换整数 题目Implement atoi which converts a string to an integer. The function first discards as many whitespace characters as necessary until the first non-whitespace character is found. Then, starting">
   
     <link rel="alternate" href="/atom.xml" title="welcome，my github" type="application/atom+xml">
   
@@ -83,11 +86,25 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>字符串转换整数</p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Implement atoi which converts a string to an integer.</p>
+<p>The function first discards as many whitespace characters as necessary until the first non-whitespace character is found. Then, starting from this character, takes an optional initial plus or minus sign followed by as many numerical digits as possible, and interprets them as a numerical value.</p>
+<p>The string can contain additional characters after those that form the integral number, which are ignored and have no effect on the behavior of this function.</p>
+<p>If the first sequence of non-whitespace characters in str is not a valid integral number, or if no such sequence exists because either str is empty or it contains only whitespace characters, no conversion is performed.</p>
+<p>If no valid conversion could be performed, a zero value is returned.</p>
+<p>Note:</p>
+<p>Only the space character ‘ ‘ is considered as whitespace character.<br>Assume we are dealing with an environment which could only store integers within the 32-bit signed integer range: [−231,  231 − 1]. If the numerical value is out of the range of representable values, INT_MAX (231 − 1) or INT_MIN (−231) is returned.<br>Example 1:</p>
+<p>Input: “42”<br>Output: 42<br>Example 2:</p>
+<p>Input: “   -42”<br>Output: -42<br>Explanation: The first non-whitespace character is ‘-‘, which is the minus sign.<br>             Then take as many numerical digits as possible, which gets 42.<br>Example 3:</p>
+<p>Input: “4193 with words”<br>Output: 4193<br>Explanation: Conversion stops at digit ‘3’ as the next character is not a numerical digit.<br>Example 4:</p>
+<p>Input: “words and 987”<br>Output: 0<br>Explanation: The first non-whitespace character is ‘w’, which is not a numerical<br>             digit or a +/- sign. Therefore no valid conversion could be performed.<br>Example 5:</p>
+<p>Input: “-91283472332”<br>Output: -2147483648<br>Explanation: The number “-91283472332” is out of the range of a 32-bit signed integer.<br>             Thefore INT_MIN (−231) is returned.</p>
+<h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.这题不是很复杂，根据逻辑判断下即可。需要注意的是，数字越界的判断。</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/02/03/string-to-integer-atoi/" data-id="cjrosaw91000noov3b7qlb4ne" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/02/03/string-to-integer-atoi/" data-id="cjs01kv5l000ol8v3wmxgohr5" class="article-share-link">Share</a>
       
       
     </footer>
@@ -95,6 +112,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2019/02/11/Binary-Tree-Maximum-Path-Sum/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Binary Tree Maximum Path Sum
+        
+      </div>
+    </a>
   
   
     <a href="/2019/01/29/3Sum/" id="article-nav-older" class="article-nav-link-wrap">
@@ -136,6 +162,10 @@
       <ul>
         
           <li>
+            <a href="/2019/02/11/Binary-Tree-Maximum-Path-Sum/">Binary Tree Maximum Path Sum</a>
+          </li>
+        
+          <li>
             <a href="/2019/02/03/string-to-integer-atoi/">string to integer(atoi)</a>
           </li>
         
@@ -149,10 +179,6 @@
         
           <li>
             <a href="/2019/01/27/Linked-List-Cycle-1/">Linked List Cycle ||</a>
-          </li>
-        
-          <li>
-            <a href="/2019/01/24/大数据软件优化思路/">大数据软件优化思路</a>
           </li>
         
       </ul>

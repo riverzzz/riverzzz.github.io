@@ -62,6 +62,56 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Binary-Tree-Maximum-Path-Sum" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/02/11/Binary-Tree-Maximum-Path-Sum/" class="article-date">
+  <time datetime="2019-02-11T07:32:35.000Z" itemprop="datePublished">2019-02-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/11/Binary-Tree-Maximum-Path-Sum/">Binary Tree Maximum Path Sum</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>二叉树中的最大路径和</p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Given a non-empty binary tree, find the maximum path sum.</p>
+<p>For this problem, a path is defined as any sequence of nodes from some starting node to any node in the tree along the parent-child connections. The path must contain at least one node and does not need to go through the root.</p>
+<p>Example 1:</p>
+<p>Input: [1,2,3]</p>
+<pre><code>  1
+ / \
+2   3
+</code></pre><p>Output: 6<br>Example 2:</p>
+<p>Input: [-10,9,20,null,null,15,7]</p>
+<p>   -10<br>   / \<br>  9  20<br>    /  \<br>   15   7</p>
+<p>Output: 42</p>
+<h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.最大路径和，我们需要递归计算路径的和，然后把最大的路径和存储起来。当路径上的和小于0时，我们需要舍弃这部分节点。同时我们还需要比较左右节点，路径大的<br>一边才是我们需要的。</p>
+<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> max;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxPathSum</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        max = Integer.MIN_VALUE;</span><br><span class="line">        maxCySum(root);</span><br><span class="line">        <span class="keyword">return</span> max;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxCySum</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> left = Math.max(<span class="number">0</span>, maxCySum(root.left));<span class="comment">//左节点路径和，当左节点小于0时舍弃</span></span><br><span class="line">        <span class="keyword">int</span> right = Math.max(<span class="number">0</span>, maxCySum(root.right));<span class="comment">//右节点路径和，当右节点小于0时舍弃</span></span><br><span class="line">        max = Math.max(max, left + right + root.val);<span class="comment">//累计计算max，保存最大的max</span></span><br><span class="line">        <span class="keyword">return</span> Math.max(left, right) + root.val;<span class="comment">//返回路径和大的路径和</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riverzzz.github.io/2019/02/11/Binary-Tree-Maximum-Path-Sum/" data-id="cjs01kv4p0000l8v3kzxux0tn" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-string-to-integer-atoi" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/02/03/string-to-integer-atoi/" class="article-date">
@@ -84,11 +134,25 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>字符串转换整数</p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Implement atoi which converts a string to an integer.</p>
+<p>The function first discards as many whitespace characters as necessary until the first non-whitespace character is found. Then, starting from this character, takes an optional initial plus or minus sign followed by as many numerical digits as possible, and interprets them as a numerical value.</p>
+<p>The string can contain additional characters after those that form the integral number, which are ignored and have no effect on the behavior of this function.</p>
+<p>If the first sequence of non-whitespace characters in str is not a valid integral number, or if no such sequence exists because either str is empty or it contains only whitespace characters, no conversion is performed.</p>
+<p>If no valid conversion could be performed, a zero value is returned.</p>
+<p>Note:</p>
+<p>Only the space character ‘ ‘ is considered as whitespace character.<br>Assume we are dealing with an environment which could only store integers within the 32-bit signed integer range: [−231,  231 − 1]. If the numerical value is out of the range of representable values, INT_MAX (231 − 1) or INT_MIN (−231) is returned.<br>Example 1:</p>
+<p>Input: “42”<br>Output: 42<br>Example 2:</p>
+<p>Input: “   -42”<br>Output: -42<br>Explanation: The first non-whitespace character is ‘-‘, which is the minus sign.<br>             Then take as many numerical digits as possible, which gets 42.<br>Example 3:</p>
+<p>Input: “4193 with words”<br>Output: 4193<br>Explanation: Conversion stops at digit ‘3’ as the next character is not a numerical digit.<br>Example 4:</p>
+<p>Input: “words and 987”<br>Output: 0<br>Explanation: The first non-whitespace character is ‘w’, which is not a numerical<br>             digit or a +/- sign. Therefore no valid conversion could be performed.<br>Example 5:</p>
+<p>Input: “-91283472332”<br>Output: -2147483648<br>Explanation: The number “-91283472332” is out of the range of a 32-bit signed integer.<br>             Thefore INT_MIN (−231) is returned.</p>
+<h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.这题不是很复杂，根据逻辑判断下即可。需要注意的是，数字越界的判断。</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/02/03/string-to-integer-atoi/" data-id="cjrosaw91000noov3b7qlb4ne" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/02/03/string-to-integer-atoi/" data-id="cjs01kv5l000ol8v3wmxgohr5" class="article-share-link">Share</a>
       
       
     </footer>
@@ -132,7 +196,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/29/3Sum/" data-id="cjrosaw7e0000oov3jl9e5b7s" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/29/3Sum/" data-id="cjs01kv4x0003l8v3rvhxx7hm" class="article-share-link">Share</a>
       
       
     </footer>
@@ -174,7 +238,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/28/Longest-Palindromic-Substring/" data-id="cjrosaw8h0006oov3s1tvghs0" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/28/Longest-Palindromic-Substring/" data-id="cjs01kv550008l8v30eyjzdwk" class="article-share-link">Share</a>
       
       
     </footer>
@@ -223,7 +287,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/27/Linked-List-Cycle-1/" data-id="cjrosaw8k0008oov3b6hj1wt1" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/27/Linked-List-Cycle-1/" data-id="cjs01kv560009l8v30ws0rnsz" class="article-share-link">Share</a>
       
       
     </footer>
@@ -260,7 +324,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/24/大数据软件优化思路/" data-id="cjrosaw9a000toov3jpn4ryx1" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/24/大数据软件优化思路/" data-id="cjs01kv5r000vl8v3qj1da7ev" class="article-share-link">Share</a>
       
       
     </footer>
@@ -302,7 +366,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/23/Spiral-Matrix/" data-id="cjrosaw8w000ioov31gjw349d" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/23/Spiral-Matrix/" data-id="cjs01kv5i000kl8v31aj0m7dg" class="article-share-link">Share</a>
       
       
     </footer>
@@ -348,7 +412,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/23/Search-in-Rotated-Sorted-Array/" data-id="cjrosaw8u000goov3dqpjh0s8" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/23/Search-in-Rotated-Sorted-Array/" data-id="cjs01kv5h000jl8v3lpia31a9" class="article-share-link">Share</a>
       
       
     </footer>
@@ -384,7 +448,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/23/读图解bert总结/" data-id="cjrosaw9i000woov39hixx5ny" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/23/读图解bert总结/" data-id="cjs01kv5q000ul8v33bkhrggo" class="article-share-link">Share</a>
       
       
     </footer>
@@ -426,43 +490,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/22/Rotate-List/" data-id="cjrosaw8t000foov3c8012wx2" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-读图解transformer总结" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/22/读图解transformer总结/" class="article-date">
-  <time datetime="2019-01-22T14:11:26.000Z" itemprop="datePublished">2019-01-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/22/读图解transformer总结/">读图解transformer总结</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/22/读图解transformer总结/" data-id="cjrosaw9j000xoov3tzhwe5xf" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/22/Rotate-List/" data-id="cjs01kv5f000hl8v3z28y36sm" class="article-share-link">Share</a>
       
       
     </footer>
@@ -508,6 +536,10 @@
       <ul>
         
           <li>
+            <a href="/2019/02/11/Binary-Tree-Maximum-Path-Sum/">Binary Tree Maximum Path Sum</a>
+          </li>
+        
+          <li>
             <a href="/2019/02/03/string-to-integer-atoi/">string to integer(atoi)</a>
           </li>
         
@@ -521,10 +553,6 @@
         
           <li>
             <a href="/2019/01/27/Linked-List-Cycle-1/">Linked List Cycle ||</a>
-          </li>
-        
-          <li>
-            <a href="/2019/01/24/大数据软件优化思路/">大数据软件优化思路</a>
           </li>
         
       </ul>
