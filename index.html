@@ -62,6 +62,50 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Longest-Substring-Without-Repeating-Characters" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/02/18/Longest-Substring-Without-Repeating-Characters/" class="article-date">
+  <time datetime="2019-02-18T14:25:16.000Z" itemprop="datePublished">2019-02-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/18/Longest-Substring-Without-Repeating-Characters/">Longest Substring Without Repeating Characters</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>无重复字符串最长字串</p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Given a string, find the length of the longest substring without repeating characters.</p>
+<p>Example 1:</p>
+<p>Input: “abcabcbb”<br>Output: 3<br>Explanation: The answer is “abc”, with the length of 3.<br>Example 2:</p>
+<p>Input: “bbbbb”<br>Output: 1<br>Explanation: The answer is “b”, with the length of 1.<br>Example 3:</p>
+<p>Input: “pwwkew”<br>Output: 3<br>Explanation: The answer is “wke”, with the length of 3.<br>             Note that the answer must be a substring, “pwke” is a subsequence and not a substring.</p>
+<h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.我们可以滑动窗口i、j，窗口覆盖的即为字串。当滑动到下一个字符时，如果当前字符出现过，1.当前字符在滑动窗口外，则无影响。2.当前字符出现在滑动窗口内，<br>则出现了重复，起始位置重置为当前字符前一次出现的位置+1，即s.charAt(j)+1</p>
+<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n=s.length(),nas=<span class="number">0</span>;</span><br><span class="line">        Map&lt;Character,Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>,i=<span class="number">0</span>;j&lt;n;j++)&#123;<span class="comment">//i-&gt;子串起始位置，j-&gt;子串结束位置</span></span><br><span class="line">            <span class="keyword">if</span>(map.containsKey(s.charAt(j)))&#123;<span class="comment">//判断当前字符是否出现过</span></span><br><span class="line">                i=Math.max(map.get(s.charAt(j))+<span class="number">1</span>,i);<span class="comment">//如果当前字符出现过，1.当前字符出现的位置在i前面，则i不变，</span></span><br><span class="line">                                                     <span class="comment">//2.当前字符出现的位置在i后面，则重置起始位置为s.charAt(j)+1</span></span><br><span class="line">            &#125;</span><br><span class="line">            nas=Math.max(nas,j-i+<span class="number">1</span>);<span class="comment">//比较历史字串和当前窗口串的大小</span></span><br><span class="line">            map.put(s.charAt(j),j);<span class="comment">//当前位置索引放入hashmap</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> nas;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riverzzz.github.io/2019/02/18/Longest-Substring-Without-Repeating-Characters/" data-id="cjsafz2if000am8v3d37599wt" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Median-of-Two-Sorted-Arrays" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/02/11/Median-of-Two-Sorted-Arrays/" class="article-date">
@@ -99,7 +143,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/02/11/Median-of-Two-Sorted-Arrays/" data-id="cjs0486t9000figv3sklqrfd0" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/02/11/Median-of-Two-Sorted-Arrays/" data-id="cjsafz2ii000dm8v3cy5hfxip" class="article-share-link">Share</a>
       
       
     </footer>
@@ -149,7 +193,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/02/11/Binary-Tree-Maximum-Path-Sum/" data-id="cjs0486sr0001igv3smew5htp" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/02/11/Binary-Tree-Maximum-Path-Sum/" data-id="cjsafz2ho0000m8v3brk12lkl" class="article-share-link">Share</a>
       
       
     </footer>
@@ -199,7 +243,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/02/03/string-to-integer-atoi/" data-id="cjs0486tx000sigv379r8iypc" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/02/03/string-to-integer-atoi/" data-id="cjsafz2j0000um8v39ruulvzj" class="article-share-link">Share</a>
       
       
     </footer>
@@ -243,7 +287,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/29/3Sum/" data-id="cjs0486sm0000igv3qi7hs2ed" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/29/3Sum/" data-id="cjsafz2i00003m8v3s12bdcf2" class="article-share-link">Share</a>
       
       
     </footer>
@@ -285,7 +329,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/28/Longest-Palindromic-Substring/" data-id="cjs0486t5000cigv3gnqxo4ej" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/28/Longest-Palindromic-Substring/" data-id="cjsafz2ih000cm8v3q2f94m2r" class="article-share-link">Share</a>
       
       
     </footer>
@@ -334,7 +378,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/27/Linked-List-Cycle-1/" data-id="cjs0486t2000aigv3r2hfpfa3" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/27/Linked-List-Cycle-1/" data-id="cjsafz2ie0009m8v38f6yrhj1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -371,7 +415,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/24/大数据软件优化思路/" data-id="cjs0486u0000vigv3vyvb0dgw" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/24/大数据软件优化思路/" data-id="cjsafz2iw000sm8v3wzzyfr2i" class="article-share-link">Share</a>
       
       
     </footer>
@@ -413,7 +457,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/23/Spiral-Matrix/" data-id="cjs0486ti000migv3f0sryy1t" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/23/Spiral-Matrix/" data-id="cjsafz2iq000mm8v3lxev22bc" class="article-share-link">Share</a>
       
       
     </footer>
@@ -459,43 +503,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/23/Search-in-Rotated-Sorted-Array/" data-id="cjs0486tf000kigv3xqd6l0z7" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-读图解bert总结" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/23/读图解bert总结/" class="article-date">
-  <time datetime="2019-01-23T13:34:44.000Z" itemprop="datePublished">2019-01-23</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/23/读图解bert总结/">读图解bert总结</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/23/读图解bert总结/" data-id="cjs0486u2000yigv3ob5s9knw" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/23/Search-in-Rotated-Sorted-Array/" data-id="cjsafz2io000jm8v33xrrtbi1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -541,6 +549,10 @@
       <ul>
         
           <li>
+            <a href="/2019/02/18/Longest-Substring-Without-Repeating-Characters/">Longest Substring Without Repeating Characters</a>
+          </li>
+        
+          <li>
             <a href="/2019/02/11/Median-of-Two-Sorted-Arrays/">Median of Two Sorted Arrays</a>
           </li>
         
@@ -554,10 +566,6 @@
         
           <li>
             <a href="/2019/01/29/3Sum/">3Sum</a>
-          </li>
-        
-          <li>
-            <a href="/2019/01/28/Longest-Palindromic-Substring/">Longest Palindromic Substring</a>
           </li>
         
       </ul>

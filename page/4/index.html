@@ -62,6 +62,46 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Longest-Common-Prefix" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/11/28/Longest-Common-Prefix/" class="article-date">
+  <time datetime="2018-11-28T15:45:31.000Z" itemprop="datePublished">2018-11-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/28/Longest-Common-Prefix/">Longest Common Prefix</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最大公共前缀</p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Write a function to find the longest common prefix string amongst an array of strings.</p>
+<p>If there is no common prefix, return an empty string “”.</p>
+<h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.大概思路，先找出字符串数组，第一个和第二个字符串公共前缀，然后拿这个公共前缀和第三个字符串比较找出公共部分，依此类推</p>
+<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">longestCommonPrefix</span><span class="params">(String[] strs)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(strs == <span class="keyword">null</span> || strs.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="string">""</span>;        </span><br><span class="line">        String prefix = strs[<span class="number">0</span>];        </span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; strs.length; i++) &#123;</span><br><span class="line">                <span class="keyword">while</span>(strs[i].indexOf(prefix) != <span class="number">0</span> &amp;&amp; prefix.length() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                    prefix = prefix.substring(<span class="number">0</span>, prefix.length() - <span class="number">1</span>);</span><br><span class="line">                &#125;                </span><br><span class="line">            &#125;</span><br><span class="line">        <span class="keyword">return</span> prefix;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riverzzz.github.io/2018/11/28/Longest-Common-Prefix/" data-id="cjsafz2ij000em8v3bvbyl4mu" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Intersection-of-Two-Linked-Lists" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/11/28/Intersection-of-Two-Linked-Lists/" class="article-date">
@@ -99,7 +139,7 @@ Your code should preferably run in O(n) time and use only O(1) memory.
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/11/28/Intersection-of-Two-Linked-Lists/" data-id="cjs0486sx0005igv3bvysk9dx" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/11/28/Intersection-of-Two-Linked-Lists/" data-id="cjsafz2ia0007m8v37w6c8sjo" class="article-share-link">Share</a>
       
       
     </footer>
@@ -139,7 +179,7 @@ Your code should preferably run in O(n) time and use only O(1) memory.
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/11/26/Linked-List-Cycle/" data-id="cjs0486t10009igv3jjoj83s5" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/11/26/Linked-List-Cycle/" data-id="cjsafz2ig000bm8v3pjxjz30z" class="article-share-link">Share</a>
       
       
     </footer>
@@ -193,7 +233,7 @@ Open brackets must be closed in the correct order.
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/11/26/Valid-Parentheses/" data-id="cjs0486tp000oigv3yvfks09m" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/11/26/Valid-Parentheses/" data-id="cjsafz2is000om8v3vrbm99q9" class="article-share-link">Share</a>
       
       
     </footer>
@@ -236,7 +276,7 @@ Open brackets must be closed in the correct order.
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/11/25/Maximum-Subarray/" data-id="cjs0486t8000eigv3qxf0xgub" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/11/25/Maximum-Subarray/" data-id="cjsafz2ik000fm8v3aw4z0z5y" class="article-share-link">Share</a>
       
       
     </footer>
@@ -278,7 +318,7 @@ Open brackets must be closed in the correct order.
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/11/04/windows10-docker-tensorflow-安装流程/" data-id="cjs0486ty000tigv3m5apd47d" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/11/04/windows10-docker-tensorflow-安装流程/" data-id="cjsafz2j3000ym8v37j51dcpy" class="article-share-link">Share</a>
       
       
     </footer>
@@ -318,7 +358,7 @@ Open brackets must be closed in the correct order.
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/10/28/hexo-github搭建总结/" data-id="cjs0486tw000qigv38l310ju5" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/10/28/hexo-github搭建总结/" data-id="cjsafz2iu000qm8v328ksvn47" class="article-share-link">Share</a>
       
       
     </footer>
@@ -363,7 +403,7 @@ Open brackets must be closed in the correct order.
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/10/28/hello-world/" data-id="cjs0486tv000pigv3z218r0e2" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/10/28/hello-world/" data-id="cjsafz2iy000tm8v30nkpik6m" class="article-share-link">Share</a>
       
       
     </footer>
@@ -409,6 +449,10 @@ Open brackets must be closed in the correct order.
       <ul>
         
           <li>
+            <a href="/2019/02/18/Longest-Substring-Without-Repeating-Characters/">Longest Substring Without Repeating Characters</a>
+          </li>
+        
+          <li>
             <a href="/2019/02/11/Median-of-Two-Sorted-Arrays/">Median of Two Sorted Arrays</a>
           </li>
         
@@ -422,10 +466,6 @@ Open brackets must be closed in the correct order.
         
           <li>
             <a href="/2019/01/29/3Sum/">3Sum</a>
-          </li>
-        
-          <li>
-            <a href="/2019/01/28/Longest-Palindromic-Substring/">Longest Palindromic Substring</a>
           </li>
         
       </ul>
