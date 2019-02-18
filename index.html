@@ -62,6 +62,48 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Reverse-Words-in-a-String" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/02/18/Reverse-Words-in-a-String/" class="article-date">
+  <time datetime="2019-02-18T15:10:58.000Z" itemprop="datePublished">2019-02-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/18/Reverse-Words-in-a-String/">Reverse Words in a String</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>翻转字符串里的单词</p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Given an input string, reverse the string word by word.</p>
+<p>Example:  </p>
+<p>Input: “the sky is blue”,<br>Output: “blue is sky the”.<br>Note:</p>
+<p>A word is defined as a sequence of non-space characters.<br>Input string may contain leading or trailing spaces. However, your reversed string should not contain leading or trailing spaces.<br>You need to reduce multiple spaces between two words to a single space in the reversed string.<br>Follow up: For C programmers, try to solve it in-place in O(1) space.</p>
+<h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.先出除多余的空格，然后根据空格切分字符串，将切分后的字符串数组翻转，然后连接即可。</p>
+<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">reverseWords</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">    String[] words = s.trim().split(<span class="string">" +"</span>);</span><br><span class="line">    Collections.reverse(Arrays.asList(words));</span><br><span class="line">    <span class="keyword">return</span> String.join(<span class="string">" "</span>, words);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riverzzz.github.io/2019/02/18/Reverse-Words-in-a-String/" data-id="cjsahe8w8000m9sv3rplmreph" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Permutation-in-String" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/02/18/Permutation-in-String/" class="article-date">
@@ -91,7 +133,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/02/18/Permutation-in-String/" data-id="cjsagui5y000irsv31i0qpvo4" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/02/18/Permutation-in-String/" data-id="cjsahe8w5000h9sv33mi58uoo" class="article-share-link">Share</a>
       
       
     </footer>
@@ -135,7 +177,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/02/18/Longest-Substring-Without-Repeating-Characters/" data-id="cjsagui5u000drsv32rqqhvl0" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/02/18/Longest-Substring-Without-Repeating-Characters/" data-id="cjsahe8w1000c9sv3lpp40ubx" class="article-share-link">Share</a>
       
       
     </footer>
@@ -182,7 +224,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/02/11/Median-of-Two-Sorted-Arrays/" data-id="cjsagui5x000hrsv3mt9aqv1b" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/02/11/Median-of-Two-Sorted-Arrays/" data-id="cjsahe8w3000f9sv316waz5zg" class="article-share-link">Share</a>
       
       
     </footer>
@@ -232,7 +274,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/02/11/Binary-Tree-Maximum-Path-Sum/" data-id="cjsagui5a0001rsv3y7w5609i" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/02/11/Binary-Tree-Maximum-Path-Sum/" data-id="cjsahe8wi000z9sv34qqjjn11" class="article-share-link">Share</a>
       
       
     </footer>
@@ -282,7 +324,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/02/03/string-to-integer-atoi/" data-id="cjsagui68000vrsv3ukrp6csa" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/02/03/string-to-integer-atoi/" data-id="cjsahe8we000u9sv3e7100cpf" class="article-share-link">Share</a>
       
       
     </footer>
@@ -326,7 +368,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/29/3Sum/" data-id="cjsagui5d0002rsv3vat4dovi" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/29/3Sum/" data-id="cjsahe8vi00019sv396cjabq1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -368,7 +410,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/28/Longest-Palindromic-Substring/" data-id="cjsagui5t000crsv3iblohpb4" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/28/Longest-Palindromic-Substring/" data-id="cjsahe8w0000b9sv3aisf7j3j" class="article-share-link">Share</a>
       
       
     </footer>
@@ -417,7 +459,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/27/Linked-List-Cycle-1/" data-id="cjsagui5p0009rsv3nvlprmg7" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/27/Linked-List-Cycle-1/" data-id="cjsahe8vw00089sv3c23vpvw1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -454,49 +496,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/24/大数据软件优化思路/" data-id="cjsagui69000xrsv3lqwelzfo" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Spiral-Matrix" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/23/Spiral-Matrix/" class="article-date">
-  <time datetime="2019-01-23T14:46:01.000Z" itemprop="datePublished">2019-01-23</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/23/Spiral-Matrix/">Spiral Matrix</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>旋转矩阵</p>
-<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Given a matrix of m x n elements (m rows, n columns), return all elements of the matrix in spiral order.</p>
-<p>Example 1:</p>
-<p>Input:<br>[<br> [ 1, 2, 3 ],<br> [ 4, 5, 6 ],<br> [ 7, 8, 9 ]<br>]<br>Output: [1,2,3,6,9,8,7,4,5]<br>Example 2:</p>
-<p>Input:<br>[<br>  [1, 2, 3, 4],<br>  [5, 6, 7, 8],<br>  [9,10,11,12]<br>]<br>Output: [1,2,3,4,8,12,11,10,9,5,6,7]</p>
-<h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.我们查看矩阵，旋转矩阵的时候会涉及到4个点，上top下bottom左left右right。当我们第一次旋转时，left-&gt;right，将这些点旋转完后，top将会受到影响，top+1<br>类似的，top-&gt;bottom，right-&gt;left,boottom-&gt;top，也会有同样的规律。那么我们什么时候终止呢，当top和bottom，left和right重合时我们就可以终止了。</p>
-<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">spiralOrder</span><span class="params">(<span class="keyword">int</span>[][] matrix)</span> </span>&#123;</span><br><span class="line">        List&lt;Integer&gt; res = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">        <span class="keyword">if</span>(matrix.length == <span class="number">0</span> || matrix[<span class="number">0</span>].length == <span class="number">0</span>) <span class="keyword">return</span> res;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> top = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> bottom = matrix.length-<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> right = matrix[<span class="number">0</span>].length-<span class="number">1</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = left; i &lt;= right; i++) res.add(matrix[top][i]);</span><br><span class="line">            top++;</span><br><span class="line">            <span class="keyword">if</span>(left &gt; right || top &gt; bottom) <span class="keyword">break</span>;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = top; i &lt;= bottom; i++) res.add(matrix[i][right]);</span><br><span class="line">            right--;</span><br><span class="line">            <span class="keyword">if</span>(left &gt; right || top &gt; bottom) <span class="keyword">break</span>;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = right; i &gt;= left; i--) res.add(matrix[bottom][i]);</span><br><span class="line">            bottom--;</span><br><span class="line">            <span class="keyword">if</span>(left &gt; right || top &gt; bottom) <span class="keyword">break</span>;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = bottom; i &gt;= top; i--) res.add(matrix[i][left]);</span><br><span class="line">            left++;</span><br><span class="line">            <span class="keyword">if</span>(left &gt; right || top &gt; bottom) <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/23/Spiral-Matrix/" data-id="cjsagui62000orsv35r3r7a2k" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/24/大数据软件优化思路/" data-id="cjsahe8wh000x9sv37msqrkmb" class="article-share-link">Share</a>
       
       
     </footer>
@@ -542,6 +542,10 @@
       <ul>
         
           <li>
+            <a href="/2019/02/18/Reverse-Words-in-a-String/">Reverse Words in a String</a>
+          </li>
+        
+          <li>
             <a href="/2019/02/18/Permutation-in-String/">Permutation in String</a>
           </li>
         
@@ -555,10 +559,6 @@
         
           <li>
             <a href="/2019/02/11/Binary-Tree-Maximum-Path-Sum/">Binary Tree Maximum Path Sum</a>
-          </li>
-        
-          <li>
-            <a href="/2019/02/03/string-to-integer-atoi/">string to integer(atoi)</a>
           </li>
         
       </ul>
