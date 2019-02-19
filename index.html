@@ -62,6 +62,49 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Max-Area-of-Island" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/02/19/Max-Area-of-Island/" class="article-date">
+  <time datetime="2019-02-19T15:01:25.000Z" itemprop="datePublished">2019-02-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/19/Max-Area-of-Island/">Max Area of Island</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最大岛屿面积</p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Given a non-empty 2D array grid of 0’s and 1’s, an island is a group of 1’s (representing land) connected 4-directionally (horizontal or vertical.) You may assume all four edges of the grid are surrounded by water.</p>
+<p>Find the maximum area of an island in the given 2D array. (If there is no island, the maximum area is 0.)</p>
+<p>Example 1:</p>
+<p>[[0,0,1,0,0,0,0,1,0,0,0,0,0],<br> [0,0,0,0,0,0,0,1,1,1,0,0,0],<br> [0,1,1,0,1,0,0,0,0,0,0,0,0],<br> [0,1,0,0,1,1,0,0,1,0,1,0,0],<br> [0,1,0,0,1,1,0,0,1,1,1,0,0],<br> [0,0,0,0,0,0,0,0,0,0,1,0,0],<br> [0,0,0,0,0,0,0,1,1,1,0,0,0],<br> [0,0,0,0,0,0,0,1,1,0,0,0,0]]<br>Given the above grid, return 6. Note the answer is not 11, because the island must be connected 4-directionally.<br>Example 2:</p>
+<p>[[0,0,0,0,0,0,0,0]]<br>Given the above grid, return 0.<br>Note: The length of each dimension in the given grid does not exceed 50.</p>
+<h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.当遇到岛屿时我们要怎么计算岛屿面积呢？递归从四个方向计算面积，当遇到0时终止递归。注意，当递归到地图边界时也需要终止递归计算。<br>2.当一个岛屿我们从不同位置开始计算时，会出现重复计算的情况，我们可以把搜索过的位置置为0，后续就不会再计算了。<br>3.多个岛屿求最大面积，我们只需要保存最大值，然后每次碰到岛屿与之比较即可。</p>
+<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxAreaOfIsland</span><span class="params">(<span class="keyword">int</span>[][] grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> max = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> rows = grid.length;</span><br><span class="line">        <span class="keyword">int</span> cols = grid[<span class="number">0</span>].length;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; rows; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; cols; j++) &#123;</span><br><span class="line">                <span class="keyword">int</span> maxAera = maxAera(i, j, rows, cols, grid);<span class="comment">//计算岛屿面积</span></span><br><span class="line">                max = Math.max(maxAera, max);<span class="comment">//计算最大岛屿</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> max;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">maxAera</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> j, <span class="keyword">int</span> rows, <span class="keyword">int</span> cols, <span class="keyword">int</span>[][] grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (i &lt; <span class="number">0</span> || i &gt;= rows || j &lt; <span class="number">0</span> || j &gt;= cols||grid[i][j] == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;<span class="comment">//当当前点等于0或者到达边界时，直接返回0</span></span><br><span class="line">        grid[i][j] = <span class="number">0</span>;<span class="comment">//搜索过的点置为0</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span> + maxAera(i - <span class="number">1</span>, j, rows, cols, grid) + maxAera(i + <span class="number">1</span>, j, rows, cols, grid) + maxAera(i, j - <span class="number">1</span>, rows, cols, grid) + maxAera(i, j + <span class="number">1</span>, rows, cols, grid);<span class="comment">//当前点是陆地时，从四个方向开始搜索</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riverzzz.github.io/2019/02/19/Max-Area-of-Island/" data-id="cjsbwpubx000cisv3ata7mcmw" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Reverse-Words-in-a-String" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/02/18/Reverse-Words-in-a-String/" class="article-date">
@@ -94,7 +137,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/02/18/Reverse-Words-in-a-String/" data-id="cjsahe8w8000m9sv3rplmreph" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/02/18/Reverse-Words-in-a-String/" data-id="cjsbwpuc6000misv3v3ihk8j4" class="article-share-link">Share</a>
       
       
     </footer>
@@ -133,7 +176,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/02/18/Permutation-in-String/" data-id="cjsahe8w5000h9sv33mi58uoo" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/02/18/Permutation-in-String/" data-id="cjsbwpuc3000jisv37l5or7yw" class="article-share-link">Share</a>
       
       
     </footer>
@@ -177,7 +220,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/02/18/Longest-Substring-Without-Repeating-Characters/" data-id="cjsahe8w1000c9sv3lpp40ubx" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/02/18/Longest-Substring-Without-Repeating-Characters/" data-id="cjsbwpuby000disv35sk0whr7" class="article-share-link">Share</a>
       
       
     </footer>
@@ -224,7 +267,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/02/11/Median-of-Two-Sorted-Arrays/" data-id="cjsahe8w3000f9sv316waz5zg" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/02/11/Median-of-Two-Sorted-Arrays/" data-id="cjsbwpuc2000iisv3fztxc4oo" class="article-share-link">Share</a>
       
       
     </footer>
@@ -274,7 +317,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/02/11/Binary-Tree-Maximum-Path-Sum/" data-id="cjsahe8wi000z9sv34qqjjn11" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/02/11/Binary-Tree-Maximum-Path-Sum/" data-id="cjsbwpubg0002isv3ej5saplr" class="article-share-link">Share</a>
       
       
     </footer>
@@ -324,7 +367,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/02/03/string-to-integer-atoi/" data-id="cjsahe8we000u9sv3e7100cpf" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/02/03/string-to-integer-atoi/" data-id="cjsbwpucf000xisv381x9miba" class="article-share-link">Share</a>
       
       
     </footer>
@@ -368,7 +411,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/29/3Sum/" data-id="cjsahe8vi00019sv396cjabq1" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/29/3Sum/" data-id="cjsbwpub90000isv3mmphs95c" class="article-share-link">Share</a>
       
       
     </footer>
@@ -410,7 +453,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/28/Longest-Palindromic-Substring/" data-id="cjsahe8w0000b9sv3aisf7j3j" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/28/Longest-Palindromic-Substring/" data-id="cjsbwpuby000eisv33mveb8of" class="article-share-link">Share</a>
       
       
     </footer>
@@ -459,44 +502,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/27/Linked-List-Cycle-1/" data-id="cjsahe8vw00089sv3c23vpvw1" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-大数据软件优化思路" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/24/大数据软件优化思路/" class="article-date">
-  <time datetime="2019-01-24T12:09:33.000Z" itemprop="datePublished">2019-01-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/24/大数据软件优化思路/">大数据软件优化思路</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="优化思路"><a href="#优化思路" class="headerlink" title="优化思路"></a>优化思路</h2><p>我们的程序运行会涉及到硬件（网络）、操作系统、大数据产品及配置、应用程序开发、数据这几个方面，当我们优化时，也可以从这几个方面着手。<br>当资源没有全面利用时，我们可以考虑优化配置、大数据应用程序、数据本身；当资源利用到极限，那就具体看是集群资源不足，还是对某项硬件、操作系统、<br>jvm，甚至是大数据产品源码进行调优。</p>
-<h3 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h3><h3 id="应用程序开发"><a href="#应用程序开发" class="headerlink" title="应用程序开发"></a>应用程序开发</h3><h3 id="大数据配置"><a href="#大数据配置" class="headerlink" title="大数据配置"></a>大数据配置</h3><h3 id="大数据产品"><a href="#大数据产品" class="headerlink" title="大数据产品"></a>大数据产品</h3><h3 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h3><h3 id="硬件（网络）"><a href="#硬件（网络）" class="headerlink" title="硬件（网络）"></a>硬件（网络）</h3>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/24/大数据软件优化思路/" data-id="cjsahe8wh000x9sv37msqrkmb" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/27/Linked-List-Cycle-1/" data-id="cjsbwpubu0009isv3d67gbl7n" class="article-share-link">Share</a>
       
       
     </footer>
@@ -510,7 +516,7 @@
 
   <nav id="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -542,6 +548,10 @@
       <ul>
         
           <li>
+            <a href="/2019/02/19/Max-Area-of-Island/">Max Area of Island</a>
+          </li>
+        
+          <li>
             <a href="/2019/02/18/Reverse-Words-in-a-String/">Reverse Words in a String</a>
           </li>
         
@@ -555,10 +565,6 @@
         
           <li>
             <a href="/2019/02/11/Median-of-Two-Sorted-Arrays/">Median of Two Sorted Arrays</a>
-          </li>
-        
-          <li>
-            <a href="/2019/02/11/Binary-Tree-Maximum-Path-Sum/">Binary Tree Maximum Path Sum</a>
           </li>
         
       </ul>
