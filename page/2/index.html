@@ -62,6 +62,55 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Linked-List-Cycle-1" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/27/Linked-List-Cycle-1/" class="article-date">
+  <time datetime="2019-01-27T15:39:44.000Z" itemprop="datePublished">2019-01-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/27/Linked-List-Cycle-1/">Linked List Cycle ||</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>循环链表||</p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Given a linked list, return the node where the cycle begins. If there is no cycle, return null.</p>
+<p>To represent a cycle in the given linked list, we use an integer pos which represents the position (0-indexed) in the linked list where tail connects to. If pos is -1, then there is no cycle in the linked list.</p>
+<p>Note: Do not modify the linked list.</p>
+<p>Example 1:</p>
+<p>Input: head = [3,2,0,-4], pos = 1<br>Output: tail connects to node index 1<br>Explanation: There is a cycle in the linked list, where tail connects to the second node.<br><img src="/2019/01/27/Linked-List-Cycle-1/circularlinkedlist.png" title="circularlinkedlist"></p>
+<p>Example 2:</p>
+<p>Input: head = [1,2], pos = 0<br>Output: tail connects to node index 0<br>Explanation: There is a cycle in the linked list, where tail connects to the first node.<br><img src="/2019/01/27/Linked-List-Cycle-1/circularlinkedlist_test2.png" title="circularlinkedlist_test2"></p>
+<p>Example 3:</p>
+<p>Input: head = [1], pos = -1<br>Output: no cycle<br>Explanation: There is no cycle in the linked list.<br><img src="/2019/01/27/Linked-List-Cycle-1/circularlinkedlist_test3.png" title="circularlinkedlist_test3"></p>
+<p>Follow up:<br>Can you solve it without using extra space?</p>
+<h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.为了知道是否有循环，我们使用通用的方式使用快慢指针。<br>2.这里重要的是快慢指针相交的点c，他到head点的距离和循环的距离是相等的，那么从head点和交点c出发，他们相等的点就是交点。</p>
+<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) &#123;</span></span><br><span class="line"><span class="comment"> *         val = x;</span></span><br><span class="line"><span class="comment"> *         next = null;</span></span><br><span class="line"><span class="comment"> *     &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">detectCycle</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">	ListNode slow = head, fast = head;</span><br><span class="line">	<span class="keyword">while</span>(fast != <span class="keyword">null</span> &amp;&amp; fast.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">		fast = fast.next.next;</span><br><span class="line">		slow = slow.next;</span><br><span class="line">		<span class="keyword">if</span> (slow == fast) &#123;</span><br><span class="line">			<span class="keyword">while</span> (head != slow) &#123;</span><br><span class="line">				head = head.next;</span><br><span class="line">				slow = slow.next;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> slow;				</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;			</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riverzzz.github.io/2019/01/27/Linked-List-Cycle-1/" data-id="cjsndvaq10009q4v3jvqbk1xo" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-大数据软件优化思路" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/01/24/大数据软件优化思路/" class="article-date">
@@ -89,7 +138,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/24/大数据软件优化思路/" data-id="cjsbwpuch000zisv3wrgrelhe" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/24/大数据软件优化思路/" data-id="cjsndvar9000zq4v3s7hwf5uo" class="article-share-link">Share</a>
       
       
     </footer>
@@ -131,7 +180,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/23/Spiral-Matrix/" data-id="cjsbwpuc9000qisv3ac8pp6ro" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/23/Spiral-Matrix/" data-id="cjsndvaqs000qq4v3py6mxdc2" class="article-share-link">Share</a>
       
       
     </footer>
@@ -177,7 +226,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/23/Search-in-Rotated-Sorted-Array/" data-id="cjsbwpuc7000oisv3z80egdup" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/23/Search-in-Rotated-Sorted-Array/" data-id="cjsndvaqj000nq4v351r1rt34" class="article-share-link">Share</a>
       
       
     </footer>
@@ -213,7 +262,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/23/读图解bert总结/" data-id="cjsbwpud10013isv3t5eru7x5" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/23/读图解bert总结/" data-id="cjsndvarc0013q4v3je2aihjo" class="article-share-link">Share</a>
       
       
     </footer>
@@ -255,7 +304,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/22/Rotate-List/" data-id="cjsbwpuc7000nisv3om9rt9xy" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/22/Rotate-List/" data-id="cjsndvaqk000oq4v3i174q58p" class="article-share-link">Share</a>
       
       
     </footer>
@@ -291,7 +340,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/22/读图解transformer总结/" data-id="cjsbwpucz0012isv33d93vxe2" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/22/读图解transformer总结/" data-id="cjsndvard0014q4v3ujq40oj2" class="article-share-link">Share</a>
       
       
     </footer>
@@ -349,7 +398,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/20/Multiply-Strings/" data-id="cjsbwpuc0000gisv3zk367sdl" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/20/Multiply-Strings/" data-id="cjsndvaqb000eq4v37zc84ift" class="article-share-link">Share</a>
       
       
     </footer>
@@ -391,7 +440,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/20/3Sum-Closest/" data-id="cjsbwpube0001isv3op4iqwqw" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/20/3Sum-Closest/" data-id="cjsndvapd0000q4v3cjk5io97" class="article-share-link">Share</a>
       
       
     </footer>
@@ -438,51 +487,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/16/Lowest-Common-Ancestor-of-a-Binary-Tree/" data-id="cjsbwpubz000fisv3agm9vcfb" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Container-With-Most-Water" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/16/Container-With-Most-Water/" class="article-date">
-  <time datetime="2019-01-16T13:53:34.000Z" itemprop="datePublished">2019-01-16</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/16/Container-With-Most-Water/">Container With Most Water</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>盛最多水的容器</p>
-<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Given n non-negative integers a1, a2, …, an , where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0). Find two lines, which together with x-axis forms a container, such that the container contains the most water.</p>
-<p>Note: You may not slant the container and n is at least 2.</p>
-
-<p>The above vertical lines are represented by array [1,8,6,2,5,4,8,3,7]. In this case, the max area of water (blue section) the container can contain is 49.</p>
-<p>Example:</p>
-<p>Input: [1,8,6,2,5,4,8,3,7]<br>Output: 49</p>
-<h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.暴力解法，穷举，两个for循环。这里我们考虑。<br>2.我们根据题目描述maxArea=min(a[i],a[j])*(j-i+1),i&lt;j&lt;a.length.根据公式，我们如果滑动a[i],a[j]中的较小值，那么maxArea肯定减小。那么我们每次只能滑动i和j中<br>较小的值。</p>
-<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxArea</span><span class="params">(<span class="keyword">int</span>[] a)</span> </span>&#123;</span><br><span class="line">		 <span class="keyword">int</span> max = <span class="number">0</span>;</span><br><span class="line">		 <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>, j = a.length - <span class="number">1</span>; i &lt; j ; )&#123;</span><br><span class="line">			 <span class="keyword">int</span> minHeight = a[i] &lt; a[j] ? a[i ++] : a[j --];<span class="comment">//比较i、j中较小的值，并滑动较小的值</span></span><br><span class="line">			 max = Math.max(max, (j - i + <span class="number">1</span>) * minHeight);</span><br><span class="line">		 &#125;</span><br><span class="line">		 <span class="keyword">return</span> max;</span><br><span class="line">	 &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/16/Container-With-Most-Water/" data-id="cjsbwpubh0003isv3y60rze48" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/16/Lowest-Common-Ancestor-of-a-Binary-Tree/" data-id="cjsndvaq2000aq4v383xptwq0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -528,6 +533,10 @@
       <ul>
         
           <li>
+            <a href="/2019/02/19/文本-用户画像/">文本-用户画像</a>
+          </li>
+        
+          <li>
             <a href="/2019/02/19/Max-Area-of-Island/">Max Area of Island</a>
           </li>
         
@@ -543,10 +552,6 @@
             <a href="/2019/02/18/Longest-Substring-Without-Repeating-Characters/">Longest Substring Without Repeating Characters</a>
           </li>
         
-          <li>
-            <a href="/2019/02/11/Median-of-Two-Sorted-Arrays/">Median of Two Sorted Arrays</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -559,7 +564,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2019 riverzzz<br>
+      &copy; 2019 https://github.com/riverzzz/riverzzz.github.io<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

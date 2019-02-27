@@ -5,19 +5,19 @@
   
 
   
-  <title>Reverse Words in a String | welcome，my github</title>
+  <title>文本-用户画像 | welcome，my github</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="翻转字符串里的单词 题目Given an input string, reverse the string word by word. Example:   Input: “the sky is blue”,Output: “blue is sky the”.Note: A word is defined as a sequence of non-space characters.Input st">
+  <meta name="description" content="文本如何提取用户画像内容从物品端的文本信息，我们可以利用成熟的NLP算法分析得到的信息有下面几种。1.关键词提取2.实体识别3.内容分类4.文本5.主题模型6.嵌入 常见的文本结构化算法1.TF-IDF算法 tf词频 idf逆文档频率2.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Reverse Words in a String">
-<meta property="og:url" content="https://riverzzz.github.io/2019/02/18/Reverse-Words-in-a-String/index.html">
+<meta property="og:title" content="文本-用户画像">
+<meta property="og:url" content="https://riverzzz.github.io/2019/02/19/文本-用户画像/index.html">
 <meta property="og:site_name" content="welcome，my github">
-<meta property="og:description" content="翻转字符串里的单词 题目Given an input string, reverse the string word by word. Example:   Input: “the sky is blue”,Output: “blue is sky the”.Note: A word is defined as a sequence of non-space characters.Input st">
+<meta property="og:description" content="文本如何提取用户画像内容从物品端的文本信息，我们可以利用成熟的NLP算法分析得到的信息有下面几种。1.关键词提取2.实体识别3.内容分类4.文本5.主题模型6.嵌入 常见的文本结构化算法1.TF-IDF算法 tf词频 idf逆文档频率2.">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-18T15:14:57.872Z">
+<meta property="og:updated_time" content="2019-02-19T15:34:29.810Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Reverse Words in a String">
-<meta name="twitter:description" content="翻转字符串里的单词 题目Given an input string, reverse the string word by word. Example:   Input: “the sky is blue”,Output: “blue is sky the”.Note: A word is defined as a sequence of non-space characters.Input st">
+<meta name="twitter:title" content="文本-用户画像">
+<meta name="twitter:description" content="文本如何提取用户画像内容从物品端的文本信息，我们可以利用成熟的NLP算法分析得到的信息有下面几种。1.关键词提取2.实体识别3.内容分类4.文本5.主题模型6.嵌入 常见的文本结构化算法1.TF-IDF算法 tf词频 idf逆文档频率2.">
   
     <link rel="alternate" href="/atom.xml" title="welcome，my github" type="application/atom+xml">
   
@@ -64,10 +64,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Reverse-Words-in-a-String" class="article article-type-post" itemscope="" itemprop="blogPost">
+        <section id="main"><article id="post-文本-用户画像" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/02/18/Reverse-Words-in-a-String/" class="article-date">
-  <time datetime="2019-02-18T15:10:58.000Z" itemprop="datePublished">2019-02-18</time>
+    <a href="/2019/02/19/文本-用户画像/" class="article-date">
+  <time datetime="2019-02-19T15:18:36.000Z" itemprop="datePublished">2019-02-19</time>
 </a>
     
   </div>
@@ -78,7 +78,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Reverse Words in a String
+      文本-用户画像
     </h1>
   
 
@@ -86,17 +86,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>翻转字符串里的单词</p>
-<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Given an input string, reverse the string word by word.</p>
-<p>Example:  </p>
-<p>Input: “the sky is blue”,<br>Output: “blue is sky the”.<br>Note:</p>
-<p>A word is defined as a sequence of non-space characters.<br>Input string may contain leading or trailing spaces. However, your reversed string should not contain leading or trailing spaces.<br>You need to reduce multiple spaces between two words to a single space in the reversed string.<br>Follow up: For C programmers, try to solve it in-place in O(1) space.</p>
-<h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.先出除多余的空格，然后根据空格切分字符串，将切分后的字符串数组翻转，然后连接即可。</p>
-<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">reverseWords</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">    String[] words = s.trim().split(<span class="string">" +"</span>);</span><br><span class="line">    Collections.reverse(Arrays.asList(words));</span><br><span class="line">    <span class="keyword">return</span> String.join(<span class="string">" "</span>, words);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h2 id="文本如何提取用户画像内容"><a href="#文本如何提取用户画像内容" class="headerlink" title="文本如何提取用户画像内容"></a>文本如何提取用户画像内容</h2><p>从物品端的文本信息，我们可以利用成熟的NLP算法分析得到的信息有下面几种。<br>1.关键词提取<br>2.实体识别<br>3.内容分类<br>4.文本<br>5.主题模型<br>6.嵌入</p>
+<h2 id="常见的文本结构化算法"><a href="#常见的文本结构化算法" class="headerlink" title="常见的文本结构化算法"></a>常见的文本结构化算法</h2><p>1.TF-IDF算法 tf词频 idf逆文档频率<br>2.</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/02/18/Reverse-Words-in-a-String/" data-id="cjsndvaqj000mq4v3zdotaqp9" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/02/19/文本-用户画像/" data-id="cjsndvara0010q4v3xvlqc4eb" class="article-share-link">Share</a>
       
       
     </footer>
@@ -105,19 +101,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2019/02/19/Max-Area-of-Island/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Max Area of Island
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/02/18/Permutation-in-String/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/02/19/Max-Area-of-Island/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Permutation in String</div>
+      <div class="article-nav-title">Max Area of Island</div>
     </a>
   
 </nav>

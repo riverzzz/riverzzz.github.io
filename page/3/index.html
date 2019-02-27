@@ -62,6 +62,50 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Container-With-Most-Water" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/16/Container-With-Most-Water/" class="article-date">
+  <time datetime="2019-01-16T13:53:34.000Z" itemprop="datePublished">2019-01-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/16/Container-With-Most-Water/">Container With Most Water</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>盛最多水的容器</p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Given n non-negative integers a1, a2, …, an , where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0). Find two lines, which together with x-axis forms a container, such that the container contains the most water.</p>
+<p>Note: You may not slant the container and n is at least 2.</p>
+
+<p>The above vertical lines are represented by array [1,8,6,2,5,4,8,3,7]. In this case, the max area of water (blue section) the container can contain is 49.</p>
+<p>Example:</p>
+<p>Input: [1,8,6,2,5,4,8,3,7]<br>Output: 49</p>
+<h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.暴力解法，穷举，两个for循环。这里我们考虑。<br>2.我们根据题目描述maxArea=min(a[i],a[j])*(j-i+1),i&lt;j&lt;a.length.根据公式，我们如果滑动a[i],a[j]中的较小值，那么maxArea肯定减小。那么我们每次只能滑动i和j中<br>较小的值。</p>
+<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxArea</span><span class="params">(<span class="keyword">int</span>[] a)</span> </span>&#123;</span><br><span class="line">		 <span class="keyword">int</span> max = <span class="number">0</span>;</span><br><span class="line">		 <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>, j = a.length - <span class="number">1</span>; i &lt; j ; )&#123;</span><br><span class="line">			 <span class="keyword">int</span> minHeight = a[i] &lt; a[j] ? a[i ++] : a[j --];<span class="comment">//比较i、j中较小的值，并滑动较小的值</span></span><br><span class="line">			 max = Math.max(max, (j - i + <span class="number">1</span>) * minHeight);</span><br><span class="line">		 &#125;</span><br><span class="line">		 <span class="keyword">return</span> max;</span><br><span class="line">	 &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://riverzzz.github.io/2019/01/16/Container-With-Most-Water/" data-id="cjsndvapm0002q4v353pvxu5n" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Unique-Paths" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/01/15/Unique-Paths/" class="article-date">
@@ -103,7 +147,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/15/Unique-Paths/" data-id="cjsbwpucd000uisv3ogydsb32" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/15/Unique-Paths/" data-id="cjsndvaqw000tq4v3h8jsx342" class="article-share-link">Share</a>
       
       
     </footer>
@@ -145,7 +189,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/14/Kth-Largest-Element-in-an-Array/" data-id="cjsbwpubs0007isv37tn1uh2f" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/14/Kth-Largest-Element-in-an-Array/" data-id="cjsndvapj0001q4v3uh598gqo" class="article-share-link">Share</a>
       
       
     </footer>
@@ -188,7 +232,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/10/Product-of-Array-Except-Self/" data-id="cjsbwpuc4000kisv3j92rw44d" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/10/Product-of-Array-Except-Self/" data-id="cjsndvaqh000kq4v3h2msljn7" class="article-share-link">Share</a>
       
       
     </footer>
@@ -232,7 +276,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/09/Sort-List/" data-id="cjsbwpuc8000pisv3u8pmyzu7" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/09/Sort-List/" data-id="cjsndvaqq000pq4v36a9v58zr" class="article-share-link">Share</a>
       
       
     </footer>
@@ -278,7 +322,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/06/Gray-Code/" data-id="cjsbwpubk0005isv3nc45moeo" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/06/Gray-Code/" data-id="cjsndvapv0005q4v333v39k2w" class="article-share-link">Share</a>
       
       
     </footer>
@@ -323,7 +367,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/06/Kth-Smallest-Element-in-a-BST/" data-id="cjsbwpubo0006isv3ol9ham6r" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/06/Kth-Smallest-Element-in-a-BST/" data-id="cjsndvaqe000hq4v3mn2wkl8x" class="article-share-link">Share</a>
       
       
     </footer>
@@ -386,7 +430,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/02/Permutations/" data-id="cjsbwpuc5000lisv3x3iyak7w" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/02/Permutations/" data-id="cjsndvaqi000lq4v3e7paq9gm" class="article-share-link">Share</a>
       
       
     </footer>
@@ -422,7 +466,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2019/01/01/tf-低阶api学习笔记/" data-id="cjsbwpucg000yisv3ep89cljd" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2019/01/01/tf-低阶api学习笔记/" data-id="cjsndvar6000yq4v3qpot7rea" class="article-share-link">Share</a>
       
       
     </footer>
@@ -467,48 +511,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/12/27/LRU-Cache/" data-id="cjsbwpubt0008isv3t3o7229m" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-spiral-Matrix-II" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/12/26/spiral-Matrix-II/" class="article-date">
-  <time datetime="2018-12-26T14:05:44.000Z" itemprop="datePublished">2018-12-26</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/26/spiral-Matrix-II/">spiral Matrix II</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>螺旋矩阵</p>
-<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Given a positive integer n, generate a square matrix filled with elements from 1 to n2 in spiral order.</p>
-<p>Example:</p>
-<p>Input: 3<br>Output:<br>[<br> [ 1, 2, 3 ],<br> [ 8, 9, 4 ],<br> [ 7, 6, 5 ]<br>]</p>
-<h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.这可以看作一道数学找规律的题目，上，右，下，左是为循环一圈，坐标循环一圈时有规律的变化。上时横坐标不变，<br>纵坐标不断增加，到最右边终止上边的循环，横坐标+1.其他位置依此类推。<br>2.终止条件，中心时终止，即左&lt;=右时终止。</p>
-<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[][] generateMatrix(<span class="keyword">int</span> n) &#123;</span><br><span class="line">	    <span class="keyword">int</span>[][] ret = <span class="keyword">new</span> <span class="keyword">int</span>[n][n];</span><br><span class="line">	    <span class="keyword">int</span> left = <span class="number">0</span>,top = <span class="number">0</span>;</span><br><span class="line">	    <span class="keyword">int</span> right = n -<span class="number">1</span>,down = n - <span class="number">1</span>;</span><br><span class="line">	    <span class="keyword">int</span> count = <span class="number">1</span>;</span><br><span class="line">	    <span class="keyword">while</span> (left &lt;= right) &#123;</span><br><span class="line">		    <span class="keyword">for</span> (<span class="keyword">int</span> j = left; j &lt;= right; j ++) &#123;</span><br><span class="line">			    ret[top][j] = count++;</span><br><span class="line">		    &#125;</span><br><span class="line">		    top ++;</span><br><span class="line">		    <span class="keyword">for</span> (<span class="keyword">int</span> i = top; i &lt;= down; i ++) &#123;</span><br><span class="line">			    ret[i][right] = count ++;</span><br><span class="line">		    &#125;</span><br><span class="line">		    right --;</span><br><span class="line">		    <span class="keyword">for</span> (<span class="keyword">int</span> j = right; j &gt;= left; j --) &#123;</span><br><span class="line">			    ret[down][j] = count ++;</span><br><span class="line">		    &#125;</span><br><span class="line">		    down --;</span><br><span class="line">		    <span class="keyword">for</span> (<span class="keyword">int</span> i = down; i &gt;= top; i --) &#123;</span><br><span class="line">			    ret[i][left] = count ++;</span><br><span class="line">		    &#125;</span><br><span class="line">		    left ++;</span><br><span class="line">	    &#125;</span><br><span class="line">	    <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://riverzzz.github.io/2018/12/26/spiral-Matrix-II/" data-id="cjsbwpuce000visv38vf9uvin" class="article-share-link">Share</a>
+      <a data-url="https://riverzzz.github.io/2018/12/27/LRU-Cache/" data-id="cjsndvaq00008q4v3xk6erln7" class="article-share-link">Share</a>
       
       
     </footer>
@@ -554,6 +557,10 @@
       <ul>
         
           <li>
+            <a href="/2019/02/19/文本-用户画像/">文本-用户画像</a>
+          </li>
+        
+          <li>
             <a href="/2019/02/19/Max-Area-of-Island/">Max Area of Island</a>
           </li>
         
@@ -569,10 +576,6 @@
             <a href="/2019/02/18/Longest-Substring-Without-Repeating-Characters/">Longest Substring Without Repeating Characters</a>
           </li>
         
-          <li>
-            <a href="/2019/02/11/Median-of-Two-Sorted-Arrays/">Median of Two Sorted Arrays</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -585,7 +588,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2019 riverzzz<br>
+      &copy; 2019 https://github.com/riverzzz/riverzzz.github.io<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
