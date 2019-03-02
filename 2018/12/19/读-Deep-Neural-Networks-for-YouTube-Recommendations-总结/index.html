@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="下面是DNN推荐的描述及我的理解 DNN推荐架构下图是youtube推荐系统的架构图，和其他推荐系统一样，包括召回和排序这两个阶段，主要使用了深度学习。 召回阶段召回问题建模youtube把召回阶段建模成了一个“超多大规模分类”问题。即在时刻t，为用户U（上下文信息C）在视频库V中精准的预测出视频i的类别（每个具体的视频视为一个类别，i即为一个类别），用数学公式表达如下：很显然上式为一个softm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="读 Deep Neural Networks for YouTube Recommendations  总结">
+<meta property="og:url" content="https://riverzzz.github.io/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/index.html">
+<meta property="og:site_name" content="welcome，Riverzzz&#39;s github">
+<meta property="og:description" content="下面是DNN推荐的描述及我的理解 DNN推荐架构下图是youtube推荐系统的架构图，和其他推荐系统一样，包括召回和排序这两个阶段，主要使用了深度学习。 召回阶段召回问题建模youtube把召回阶段建模成了一个“超多大规模分类”问题。即在时刻t，为用户U（上下文信息C）在视频库V中精准的预测出视频i的类别（每个具体的视频视为一个类别，i即为一个类别），用数学公式表达如下：很显然上式为一个softm">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://riverzzz.github.io/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/DNN推荐架构图.png">
+<meta property="og:image" content="https://riverzzz.github.io/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/召回分类公式.png">
+<meta property="og:image" content="https://riverzzz.github.io/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/召回模型架构图.png">
+<meta property="og:image" content="https://riverzzz.github.io/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/days-since-upload.png">
+<meta property="og:image" content="https://riverzzz.github.io/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/数据集划分.png">
+<meta property="og:image" content="https://riverzzz.github.io/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/特征和网络结构效果对比.png">
+<meta property="og:image" content="https://riverzzz.github.io/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/排序模型架构.png">
+<meta property="og:image" content="https://riverzzz.github.io/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/期望观看时长.png">
+<meta property="og:updated_time" content="2018-12-23T13:39:28.139Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="读 Deep Neural Networks for YouTube Recommendations  总结">
+<meta name="twitter:description" content="下面是DNN推荐的描述及我的理解 DNN推荐架构下图是youtube推荐系统的架构图，和其他推荐系统一样，包括召回和排序这两个阶段，主要使用了深度学习。 召回阶段召回问题建模youtube把召回阶段建模成了一个“超多大规模分类”问题。即在时刻t，为用户U（上下文信息C）在视频库V中精准的预测出视频i的类别（每个具体的视频视为一个类别，i即为一个类别），用数学公式表达如下：很显然上式为一个softm">
+<meta name="twitter:image" content="https://riverzzz.github.io/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/DNN推荐架构图.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://riverzzz.github.io/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/">
+
+
+
+
+
+  <title>读 Deep Neural Networks for YouTube Recommendations  总结 | welcome，Riverzzz's github</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	<!--GitHub-start-->
+	<a href="https://github.com/riverzzz/riverzzz.github.io" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#fff; color:#151513; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+	<!--GitHub-end-->
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">welcome，Riverzzz's github</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://riverzzz.github.io/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Riverzzz">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="welcome，Riverzzz's github">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">读 Deep Neural Networks for YouTube Recommendations  总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-19T23:04:18+08:00">
+                2018-12-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>下面是DNN推荐的描述及我的理解</p>
+<h2 id="DNN推荐架构"><a href="#DNN推荐架构" class="headerlink" title="DNN推荐架构"></a>DNN推荐架构</h2><p>下图是youtube推荐系统的架构图，和其他推荐系统一样，包括召回和排序这两个阶段，主要使用了深度学习。<br><img src="/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/DNN推荐架构图.png" title="DNN推荐架构图"></p>
+<h2 id="召回阶段"><a href="#召回阶段" class="headerlink" title="召回阶段"></a>召回阶段</h2><h3 id="召回问题建模"><a href="#召回问题建模" class="headerlink" title="召回问题建模"></a>召回问题建模</h3><p>youtube把召回阶段建模成了一个“超多大规模分类”问题。即在时刻t，为用户U（上下文信息C）在视频库V中精准的预测出视频i的<br>类别（每个具体的视频视为一个类别，i即为一个类别），用数学公式表达如下：<br><img src="/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/召回分类公式.png" title="分类公式"><br>很显然上式为一个softmax多分类器的形式。向量u\in R^N是&lt;user, context&gt;信息的高维“embedding”，而向量v_{j}\in R^N则是<br>视频 j 的embedding向量。所以DNN的目标就是在用户信息和上下文信息为输入条件下学习用户的embedding向量u和视频的embedding向<br>量v。用公式表达DNN就是在拟合函数u,v = f_{DNN}(user_info, context_info)。</p>
+<h3 id="模型架构"><a href="#模型架构" class="headerlink" title="模型架构"></a>模型架构</h3><img src="/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/召回模型架构图.png" title="召回模型架构图">
+<p>模型是一个三层的网络架构，主要输入是观看、搜索历史，样本时间，用户场景信息以及用户画像信息等。<br>主要分为离线训练及线上服务两个部分。离线输出为softmax层，计算公式为之前提到的公式。而线上将训练得到的视频embedding向量v<br>存储起来，实时根据模型计算出用户向量u，然后利用lsh技术找到内积最近的topN。</p>
+<h3 id="主要特征"><a href="#主要特征" class="headerlink" title="主要特征"></a>主要特征</h3><p>1.观看历史和搜索历史：类似于word2vec每个视频embedding到固定维度的向量中。最终通过加权平均（重要性和时间）得到固定维度的<br>watch vector作为DNN的输入。<br>2.人口统计学信息：性别、年龄、地域等<br>3.上下文信息：设备、登陆状态、位置等<br>4.Example Age： 样本时间，表示样本产生的时间。因为机器学习系统在训练阶段都是利用过去的行为预估未来，因此通常对过去的行为<br>有个隐式的bias。视频网站视频的分布是高度非静态（non-stationary）的，但我们的推荐系统产生的视频集合在视频的分布，基本上反<br>映的是训练所取时间段的平均的观看喜好的视频。因此我们我们把样本的 “age” 作为一个feature加入模型训练中。从下图可以很清楚的<br>看出，加入“example age” feature后和经验分布更为match。<br><img src="/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/days-since-upload.png" title="days-since-upload"></p>
+<h3 id="样本和上下文选择"><a href="#样本和上下文选择" class="headerlink" title="样本和上下文选择"></a>样本和上下文选择</h3><p>在有监督学习问题中，最重要的选择是label了，因为label决定了你做什么，决定了你的上限，而feature和model都是在逼近label。我们<br>做了如下几个设计：<br>1.使用更广的数据源：不仅仅使用推荐场景的数据，训练样本是从全部youtube观看记录中产生。防止对推荐者的观看记录过度利用，加入<br>对新视频的测试。<br>2.为用户生成固定数量的训练样本：每个用户在损失函数中的权重都是相等的，防止一小部分超级活跃用户影响到损失函数的公平性。<br>3.抛弃数据的序列信息：我们在实现时尝试的是去掉序列信息，对过去观看视频/历史搜索query的embedding向量进行加权平均。这点其实<br>违反直觉，可能原因是模型对负反馈没有很好的建模。<br>4.不对称的共同浏览问题：所谓asymmetric co-watch值的是用户在浏览视频时候，往往都是序列式的，开始看一些比较流行的，逐渐找到<br>细分的视频。下图(a)是hled-out方式，利用上下文信息预估中间的一个视频；图(b)是predicting next watch的方式，则是利用上文信息，<br>预估下一次浏览的视频。<br><img src="/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/数据集划分.png" title="数据集划分"></p>
+<h3 id="不同网络深度和特征的实验"><a href="#不同网络深度和特征的实验" class="headerlink" title="不同网络深度和特征的实验"></a>不同网络深度和特征的实验</h3><p>基本和前面图中所示的网络架构相同，所有的视频和search token都embedded到256维的向量中，开始input层直接全连接到256维的<br>softmax层，依次增加网络深度（+512–&gt;+1024–&gt;+2048–&gt; …）。<br><br>下图反映了不同网络深度（横坐标）下不同特征组合情况下的holdout-MAP（纵坐标）。可以很明显看出，增加了观看历史之外的特征很<br>明显的提升了预测得准确率；从网络深度看，随着网络深度加大，预测准确率在提升，但继续增加第四层网络已经收益不大了。<br><img src="/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/特征和网络结构效果对比.png" title="特征和网络结构效果对比"></p>
+<h3 id="离线训练及在线服务模块"><a href="#离线训练及在线服务模块" class="headerlink" title="离线训练及在线服务模块"></a>离线训练及在线服务模块</h3><p>激活函数使用relu，softmax层的输出是预测的视频分类结果，我们通过离线训练得到离线模型。同时得到用户向量u和视频向量v。得到视<br>频向量后我们可以将其保存起来，用于在线服务。实时计算用户向量u，然后与v做内积，得到topN。这里需要使用hashing算法加速查找<br>topN。</p>
+<h3 id="个人理解"><a href="#个人理解" class="headerlink" title="个人理解"></a>个人理解</h3><p>1.特征里面的example age指的是样本时间，而不是网上所说的视频上传时间。论文也详细解释了，他可以很好的表示视频上传时间和时间<br>段上受欢迎程度。<br>2.用户向量u指的是输出层的前一层，而视频向量v指的是前一层到输出层的参数。所以训练完模型我们可以得到两个表示u和v，只不过用户<br>u我们后面实时计算。<br>3.输出层多分类时，当视频数量较大时，使用了负采样，提高计算效率。<br>4.实时计算topN时，当数据量比较大时，我们需要近似近邻查找来提升计算效率，但是会有一定精度损失。</p>
+<h2 id="排序阶段"><a href="#排序阶段" class="headerlink" title="排序阶段"></a>排序阶段</h2><p>排序阶段的最重要任务就是精准的预估用户对视频的喜好程度。不同于召回阶段面临的是百万级候选视频集，排序阶段面对的只是百级别<br>的商品集，因此可以使用更多更精细的feature来刻画视频。此外，还可以和其他召回方式得来的数据进行ensemble。</p>
+<h3 id="模型架构-1"><a href="#模型架构-1" class="headerlink" title="模型架构"></a>模型架构</h3><p>排序阶段的模型和召回阶段的基本相似，不同的是训练的最后一层是一个weighted LR层，而serving阶段激励函数用的是e^{x}。另外，优<br>化目标换成了期望的观看时长。<br><img src="/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/排序模型架构.png" title="排序模型架构"></p>
+<h3 id="特征处理"><a href="#特征处理" class="headerlink" title="特征处理"></a>特征处理</h3><p>1.特征工程：在搜索和推荐场景，我们的很难把原始数据直接作为FNN的输入，特征工程仍然很重要。而特征工程中最难的是如何建模用户<br>时序行为（temporal sequence of user actions）并且将这些行为和要排序的物品关联起来。youtube发现最重要的信息是描述用户与商<br>品本身或相似商品之间交互的信息。我们要度量用户对视频的喜欢，可以考虑用户与视频所在频道间的关系：<br>    a.数量特征：浏览该频道的次数？<br>    b.时间特征：比如最近一次浏览该频道距离现在的时间？<br>这两个连续特征的最大好处是具备非常强的泛化能力。另外除了这两个偏正向的特征，用户对于视频所在频道的一些PV但不点击的行为，<br>即负反馈信息同样非常重要。此外，还有推荐来源、所在来源分数等。<br>2.类别特征embedding：NN更适合处理连续特征，因此稀疏的特别是高基数空间的离散特征需要embedding到稠密的向量中。实际并非为<br>所有的id进行embedding，比如视频id，只需要按照点击排序，选择top N视频进行embedding，其余置为0向量。有些可以复用召回阶<br>段的embedding。<br>3.连续特征归一化：NN对输入特征的尺度和分布都是非常敏感的，实际上基本上除了Tree-Based的模型（比如GBDT/RF），机器学习的大<br>多算法都如此。我们发现归一化方法对收敛很关键，推荐一种排序分位归一到[0,1]区间的方法，即\bar{x}=\int_{-\infty }^{x}df ，<br>累计分位点。除此之外，我们还把归一化后的\bar{x} 的根号\sqrt{x} 和平方x^{2} 作为网络输入，以期能使网络能够更容易得到特征<br>的次线性（sub-linear）和（super-linear）超线性函数。</p>
+<h3 id="建模期望观看时长"><a href="#建模期望观看时长" class="headerlink" title="建模期望观看时长"></a>建模期望观看时长</h3><p>youtube的目标是预测期望观看时长。有点击的为正样本，有PV无点击的为负样本，正样本需要根据观看时长进行加权。因此，我们训练阶<br>段网络最后一层用的是 weighted logistic regression。<br>正样本的权重为观看时长 T_{i}，负样本权重为1。这样的话，LR学到的odds为：<br><img src="/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/期望观看时长.png" title="期望观看时长"><br>其中N是总的样本数量，k是正样本数量，T_{i}是第i正样本的观看时长。一般来说，k相对N比较小，因此上式的odds可以转换成<br>E[T]/(1+P)，其中P是点击率，点击率一般很小，这样odds接近于E[T]，即期望观看时长。因此在线上serving的inference阶段，我们采用<br>e^{x}作为激励函数，就是近似的估计期望的观看时长。</p>
+<h3 id="不同隐层的实验"><a href="#不同隐层的实验" class="headerlink" title="不同隐层的实验"></a>不同隐层的实验</h3><p>隐层数的实验与召回阶段DNN的方法类似。</p>
+<h3 id="个人理解-1"><a href="#个人理解-1" class="headerlink" title="个人理解"></a>个人理解</h3><p>1.不同的优化目标会有不同的优化结果，这里使用了期望观看时长，避免了ctr指标的情况下，标题的欺骗性，实际上没有观看。然而这样<br>会导致模型偏向于短视频，所以，可以根据自己实际需要选取。<br>2.特征工程处理的时候，可以采用常用的方案，分类数目多的时候，将排序靠后的数据处理成其他。归一化处理特征，增加非线性特征。<br>3.预测时使用了带权重的lr，让模型可以拟合期望时长。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/11/读-Deep-contextualized-word-representations-总结/" rel="next" title="读 Deep contextualized word representations 总结">
+                <i class="fa fa-chevron-left"></i> 读 Deep contextualized word representations 总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/26/spiral-Matrix-II/" rel="prev" title="spiral Matrix II">
+                spiral Matrix II <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Riverzzz</p>
+              <p class="site-description motion-element" itemprop="description">执中守正；折中致和；时中行权。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/riverzzz/riverzzz.github.io" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#DNN推荐架构"><span class="nav-number">1.</span> <span class="nav-text">DNN推荐架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#召回阶段"><span class="nav-number">2.</span> <span class="nav-text">召回阶段</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#召回问题建模"><span class="nav-number">2.1.</span> <span class="nav-text">召回问题建模</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模型架构"><span class="nav-number">2.2.</span> <span class="nav-text">模型架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主要特征"><span class="nav-number">2.3.</span> <span class="nav-text">主要特征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样本和上下文选择"><span class="nav-number">2.4.</span> <span class="nav-text">样本和上下文选择</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不同网络深度和特征的实验"><span class="nav-number">2.5.</span> <span class="nav-text">不同网络深度和特征的实验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#离线训练及在线服务模块"><span class="nav-number">2.6.</span> <span class="nav-text">离线训练及在线服务模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#个人理解"><span class="nav-number">2.7.</span> <span class="nav-text">个人理解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#排序阶段"><span class="nav-number">3.</span> <span class="nav-text">排序阶段</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模型架构-1"><span class="nav-number">3.1.</span> <span class="nav-text">模型架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特征处理"><span class="nav-number">3.2.</span> <span class="nav-text">特征处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#建模期望观看时长"><span class="nav-number">3.3.</span> <span class="nav-text">建模期望观看时长</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不同隐层的实验"><span class="nav-number">3.4.</span> <span class="nav-text">不同隐层的实验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#个人理解-1"><span class="nav-number">3.5.</span> <span class="nav-text">个人理解</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Riverzzz</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  undefined
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
