@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="格雷编码 题目The gray code is a binary numeral system where two successive values differ in only one bit. Given a non-negative integer n representing the total number of bits in the code, print the sequence">
+<meta name="description" content="执中守正；折中致和；时中行权。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Gray Code">
-<meta property="og:url" content="https://riverzzz.github.io/2019/01/06/Gray-Code/index.html">
+<meta property="og:title" content="题目画像构建方案">
+<meta property="og:url" content="https://riverzzz.github.io/2019/03/03/题目画像构建方案/index.html">
 <meta property="og:site_name" content="welcome，Riverzzz&#39;s github">
-<meta property="og:description" content="格雷编码 题目The gray code is a binary numeral system where two successive values differ in only one bit. Given a non-negative integer n representing the total number of bits in the code, print the sequence">
+<meta property="og:description" content="执中守正；折中致和；时中行权。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-06T13:43:28.177Z">
+<meta property="og:updated_time" content="2019-03-03T13:56:23.400Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Gray Code">
-<meta name="twitter:description" content="格雷编码 题目The gray code is a binary numeral system where two successive values differ in only one bit. Given a non-negative integer n representing the total number of bits in the code, print the sequence">
+<meta name="twitter:title" content="题目画像构建方案">
+<meta name="twitter:description" content="执中守正；折中致和；时中行权。">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="https://riverzzz.github.io/2019/01/06/Gray-Code/">
+  <link rel="canonical" href="https://riverzzz.github.io/2019/03/03/题目画像构建方案/">
 
 
 
 
 
-  <title>Gray Code | welcome，Riverzzz's github</title>
+  <title>题目画像构建方案 | welcome，Riverzzz's github</title>
   
 
 
@@ -255,7 +255,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://riverzzz.github.io/2019/01/06/Gray-Code/">
+    <link itemprop="mainEntityOfPage" href="https://riverzzz.github.io/2019/03/03/题目画像构建方案/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Riverzzz">
@@ -272,7 +272,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Gray Code</h1>
+          <h1 class="post-title" itemprop="name headline">题目画像构建方案</h1>
         
 
         <div class="post-meta">
@@ -284,8 +284,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-06T21:39:18+08:00">
-                2019-01-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-03T21:56:23+08:00">
+                2019-03-03
               </time>
             
 
@@ -322,17 +322,7 @@
       
 
       
-        <p>格雷编码</p>
-<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>The gray code is a binary numeral system where two successive values differ in only one bit.</p>
-<p>Given a non-negative integer n representing the total number of bits in the code, print the sequence of gray code. A gray code sequence must begin with 0.</p>
-<p>Example 1:</p>
-<p>Input: 2<br>Output: [0,1,3,2]<br>Explanation:<br>00 - 0<br>01 - 1<br>11 - 3<br>10 - 2</p>
-<p>For a given n, a gray code sequence may not be uniquely defined.<br>For example, [0,2,3,1] is also a valid gray code sequence.</p>
-<p>00 - 0<br>10 - 2<br>11 - 3<br>01 - 1</p>
-<p>Example 2:</p>
-<p>Input: 0<br>Output: [0]<br>Explanation: We define the gray code sequence to begin with 0.<br>             A gray code sequence of n has size = 2n, which for n = 0 the size is 20 = 1.<br>             Therefore, for n = 0 the gray code sequence is [0].</p>
-<h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.这一题不是很复杂，我们只需要知道格雷编码是怎么产生就可以了，G(i) = i ^ (i/2)，依照公式我们就可以计算出来所有的值。</p>
-<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">grayCode</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">        关键是搞清楚格雷编码的生成过程, G(i) = i ^ (i/2);</span></span><br><span class="line"><span class="comment">        如 n = 3: </span></span><br><span class="line"><span class="comment">        G(0) = 000, </span></span><br><span class="line"><span class="comment">        G(1) = 1 ^ 0 = 001 ^ 000 = 001</span></span><br><span class="line"><span class="comment">        G(2) = 2 ^ 1 = 010 ^ 001 = 011 </span></span><br><span class="line"><span class="comment">        G(3) = 3 ^ 1 = 011 ^ 001 = 010</span></span><br><span class="line"><span class="comment">        G(4) = 4 ^ 2 = 100 ^ 010 = 110</span></span><br><span class="line"><span class="comment">        G(5) = 5 ^ 2 = 101 ^ 010 = 111</span></span><br><span class="line"><span class="comment">        G(6) = 6 ^ 3 = 110 ^ 011 = 101</span></span><br><span class="line"><span class="comment">        G(7) = 7 ^ 3 = 111 ^ 011 = 100</span></span><br><span class="line"><span class="comment">        **/</span></span><br><span class="line">        List&lt;Integer&gt; ret = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1</span>&lt;&lt;n; ++i)</span><br><span class="line">            ret.add(i ^ i&gt;&gt;<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
       
     </div>
     
@@ -356,8 +346,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/06/Kth-Smallest-Element-in-a-BST/" rel="next" title="Kth Smallest Element in a BST">
-                <i class="fa fa-chevron-left"></i> Kth Smallest Element in a BST
+              <a href="/2019/02/19/文本-用户画像/" rel="next" title="文本-用户画像">
+                <i class="fa fa-chevron-left"></i> 文本-用户画像
               </a>
             
           </div>
@@ -365,10 +355,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/09/Sort-List/" rel="prev" title="Sort List">
-                Sort List <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -446,17 +432,8 @@ var jiathis_config={
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -526,22 +503,6 @@ var jiathis_config={
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解析重点"><span class="nav-number">2.</span> <span class="nav-text">解析重点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#java代码"><span class="nav-number">3.</span> <span class="nav-text">java代码</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
