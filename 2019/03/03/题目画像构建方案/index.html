@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="##什么是题目画像题目画像是我们对题目打上各种各样的标签，让我们对题目有更精准的认识。但是，这对我们进行挖掘没有什么用，因为我们要给机器看，而不是给人看。所以我们要对题目进行向量化，最后得到的就是题目画像。题目画像不是我们的目的，而是在各种算法模型和业务功能中产生的一个关键的副产品。 ##题目画像的关键因素第一个是维度，第二个是量化。 ##题目画像的构建方法1.直接使用原始数据。直接使用原始数据作">
+<meta name="description" content="什么是题目画像题目画像是我们对题目打上各种各样的标签，让我们对题目有更精准的认识。但是，这对我们进行挖掘没有什么用，因为我们要给机器看，而不是给人看。所以我们要对题目进行向量化，最后得到的就是题目画像。题目画像不是我们的目的，而是在各种算法模型和业务功能中产生的一个关键的副产品。 题目画像的关键因素第一个是维度，第二个是量化。 题目画像的构建方法1.直接使用原始数据。直接使用原始数据作为题目画像的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="题目画像构建方案">
 <meta property="og:url" content="https://riverzzz.github.io/2019/03/03/题目画像构建方案/index.html">
 <meta property="og:site_name" content="welcome，Riverzzz&#39;s github">
-<meta property="og:description" content="##什么是题目画像题目画像是我们对题目打上各种各样的标签，让我们对题目有更精准的认识。但是，这对我们进行挖掘没有什么用，因为我们要给机器看，而不是给人看。所以我们要对题目进行向量化，最后得到的就是题目画像。题目画像不是我们的目的，而是在各种算法模型和业务功能中产生的一个关键的副产品。 ##题目画像的关键因素第一个是维度，第二个是量化。 ##题目画像的构建方法1.直接使用原始数据。直接使用原始数据作">
+<meta property="og:description" content="什么是题目画像题目画像是我们对题目打上各种各样的标签，让我们对题目有更精准的认识。但是，这对我们进行挖掘没有什么用，因为我们要给机器看，而不是给人看。所以我们要对题目进行向量化，最后得到的就是题目画像。题目画像不是我们的目的，而是在各种算法模型和业务功能中产生的一个关键的副产品。 题目画像的关键因素第一个是维度，第二个是量化。 题目画像的构建方法1.直接使用原始数据。直接使用原始数据作为题目画像的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-07T15:07:45.381Z">
+<meta property="og:updated_time" content="2019-03-07T15:18:10.827Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="题目画像构建方案">
-<meta name="twitter:description" content="##什么是题目画像题目画像是我们对题目打上各种各样的标签，让我们对题目有更精准的认识。但是，这对我们进行挖掘没有什么用，因为我们要给机器看，而不是给人看。所以我们要对题目进行向量化，最后得到的就是题目画像。题目画像不是我们的目的，而是在各种算法模型和业务功能中产生的一个关键的副产品。 ##题目画像的关键因素第一个是维度，第二个是量化。 ##题目画像的构建方法1.直接使用原始数据。直接使用原始数据作">
+<meta name="twitter:description" content="什么是题目画像题目画像是我们对题目打上各种各样的标签，让我们对题目有更精准的认识。但是，这对我们进行挖掘没有什么用，因为我们要给机器看，而不是给人看。所以我们要对题目进行向量化，最后得到的就是题目画像。题目画像不是我们的目的，而是在各种算法模型和业务功能中产生的一个关键的副产品。 题目画像的关键因素第一个是维度，第二个是量化。 题目画像的构建方法1.直接使用原始数据。直接使用原始数据作为题目画像的">
 
 
 
@@ -322,10 +322,10 @@
       
 
       
-        <p>##什么是题目画像<br>题目画像是我们对题目打上各种各样的标签，让我们对题目有更精准的认识。但是，这对我们进行挖掘没有什么用，因为我们要给机器看，而不是给人看。所以我们要对题目进行向量化，最后得到的就是题目画像。题目画像不是我们的目的，而是在各种算法模型和业务功能中产生的一个关键的副产品。</p>
-<p>##题目画像的关键因素<br>第一个是维度，第二个是量化。</p>
-<p>##题目画像的构建方法<br>1.直接使用原始数据。<br>直接使用原始数据作为题目画像的内容，像录入资料，学科、题干、答案、题干图片数、学段等，除了清洗工作本身并没有任何抽象和归纳。但是对于初期非常比较有用。<br>2.堆积历史数据。<br>从历史数据中，做统计工作，像根据历史做题记录计算难度、区分度等。再或者根据统计为题目打上各种标签，然后用统计结果作为量化结果。不过我们现在历史数据并不充分，可以暂时不考虑这一部分。<br>3.使用机器学习方法。<br>使用各种机器学习的方法，学习出人类无法直接理解的稠密向量，这一部分是我们最重要的，因为题目很多都是非结构化的信息，知识图谱、文字、公式、图片等，这都需要我们结构化，然后向量化。</p>
-<p>##结构化文本<br>成熟NLP算法分析得到的信息种类<br>1.关键词提取<br>2.实体识别<br>3.内容分类<br>4.主题模型<br>5.嵌入(我们当前模型主要使用的方式，也是我们初期工作部分)</p>
+        <h2 id="什么是题目画像"><a href="#什么是题目画像" class="headerlink" title="什么是题目画像"></a>什么是题目画像</h2><p>题目画像是我们对题目打上各种各样的标签，让我们对题目有更精准的认识。但是，这对我们进行挖掘没有什么用，因为我们要给机器看，而不是给人看。所以我们要对题目进行向量化，最后得到的就是题目画像。题目画像不是我们的目的，而是在各种算法模型和业务功能中产生的一个关键的副产品。</p>
+<h2 id="题目画像的关键因素"><a href="#题目画像的关键因素" class="headerlink" title="题目画像的关键因素"></a>题目画像的关键因素</h2><p>第一个是维度，第二个是量化。</p>
+<h2 id="题目画像的构建方法"><a href="#题目画像的构建方法" class="headerlink" title="题目画像的构建方法"></a>题目画像的构建方法</h2><p>1.直接使用原始数据。<br>直接使用原始数据作为题目画像的内容，像录入资料，学科、题干、答案、题干图片数、学段等，除了清洗工作本身并没有任何抽象和归纳。但是对于初期非常比较有用。<br>2.堆积历史数据。<br>从历史数据中，做统计工作，像根据历史做题记录计算难度、区分度等。再或者根据统计为题目打上各种标签，然后用统计结果作为量化结果。不过我们现在历史数据并不充分，可以暂时不考虑这一部分。<br>3.使用机器学习方法。<br>使用各种机器学习的方法，学习出人类无法直接理解的稠密向量，这一部分是我们最重要的，因为题目很多都是非结构化的信息，知识图谱、文字、公式、图片等，这都需要我们结构化，然后向量化。</p>
+<h2 id="结构化文本"><a href="#结构化文本" class="headerlink" title="结构化文本"></a>结构化文本</h2><p>成熟NLP算法分析得到的信息种类<br>1.关键词提取<br>2.实体识别<br>3.内容分类<br>4.主题模型<br>5.嵌入(我们当前模型主要使用的方式，也是我们初期工作部分)</p>
 
       
     </div>
@@ -359,6 +359,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/07/Trapping-Rain-Water/" rel="prev" title="Trapping Rain Water">
+                Trapping Rain Water <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -436,8 +440,17 @@ var jiathis_config={
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -452,7 +465,7 @@ var jiathis_config={
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-count">44</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -507,6 +520,22 @@ var jiathis_config={
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是题目画像"><span class="nav-number">1.</span> <span class="nav-text">什么是题目画像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题目画像的关键因素"><span class="nav-number">2.</span> <span class="nav-text">题目画像的关键因素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题目画像的构建方法"><span class="nav-number">3.</span> <span class="nav-text">题目画像的构建方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结构化文本"><span class="nav-number">4.</span> <span class="nav-text">结构化文本</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
