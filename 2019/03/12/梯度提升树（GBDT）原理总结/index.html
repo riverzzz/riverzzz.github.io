@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="执中守正；折中致和；时中行权。">
+<meta name="description" content="什么是GBDTGBDT是集成学习Boosting家族的成员。每一轮都依赖于前一轮迭代学习器的误差来更新权重。假设，前一轮得到的学习器是ft−1(x), 损失函数是L(y,ft−1(x)), 我们本轮迭代的目标是找到一个CART回归树模型的弱学习器ht(x)，让本轮的损失函数L(y,ft(x)=L(y,ft−1(x)+ht(x))最小。 GBDT的负梯度拟合">
 <meta property="og:type" content="article">
 <meta property="og:title" content="梯度提升树（GBDT）原理总结">
 <meta property="og:url" content="https://riverzzz.github.io/2019/03/12/梯度提升树（GBDT）原理总结/index.html">
 <meta property="og:site_name" content="welcome，Riverzzz&#39;s github">
-<meta property="og:description" content="执中守正；折中致和；时中行权。">
+<meta property="og:description" content="什么是GBDTGBDT是集成学习Boosting家族的成员。每一轮都依赖于前一轮迭代学习器的误差来更新权重。假设，前一轮得到的学习器是ft−1(x), 损失函数是L(y,ft−1(x)), 我们本轮迭代的目标是找到一个CART回归树模型的弱学习器ht(x)，让本轮的损失函数L(y,ft(x)=L(y,ft−1(x)+ht(x))最小。 GBDT的负梯度拟合">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-12T14:46:48.801Z">
+<meta property="og:updated_time" content="2019-03-17T15:14:31.929Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="梯度提升树（GBDT）原理总结">
-<meta name="twitter:description" content="执中守正；折中致和；时中行权。">
+<meta name="twitter:description" content="什么是GBDTGBDT是集成学习Boosting家族的成员。每一轮都依赖于前一轮迭代学习器的误差来更新权重。假设，前一轮得到的学习器是ft−1(x), 损失函数是L(y,ft−1(x)), 我们本轮迭代的目标是找到一个CART回归树模型的弱学习器ht(x)，让本轮的损失函数L(y,ft(x)=L(y,ft−1(x)+ht(x))最小。 GBDT的负梯度拟合">
 
 
 
@@ -322,7 +322,8 @@
       
 
       
-        
+        <h2 id="什么是GBDT"><a href="#什么是GBDT" class="headerlink" title="什么是GBDT"></a>什么是GBDT</h2><p>GBDT是集成学习Boosting家族的成员。每一轮都依赖于前一轮迭代学习器的误差来更新权重。假设，前一轮得到的学习器是ft−1(x), 损失函数<br>是L(y,ft−1(x)), 我们本轮迭代的目标是找到一个CART回归树模型的弱学习器ht(x)，让本轮的损失函数L(y,ft(x)=L(y,ft−1(x)+ht(x))最小。</p>
+<h2 id="GBDT的负梯度拟合"><a href="#GBDT的负梯度拟合" class="headerlink" title="GBDT的负梯度拟合"></a>GBDT的负梯度拟合</h2>
       
     </div>
     
@@ -436,8 +437,17 @@ var jiathis_config={
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -463,7 +473,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -474,7 +484,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -507,6 +517,22 @@ var jiathis_config={
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是GBDT"><span class="nav-number">1.</span> <span class="nav-text">什么是GBDT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GBDT的负梯度拟合"><span class="nav-number">2.</span> <span class="nav-text">GBDT的负梯度拟合</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
