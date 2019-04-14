@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="推荐,FTRL,">
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="title: FTRL在线机器学习date: 2019-04-13 20:17:31categories:  机器学习算法tags: 推荐 FTRL   逻辑回归线性回归模型产生的预测值$$z=\boldsymbol{w}^{T}\boldsymbol{x}&amp;plus;b$$是实值，如果我们要做二分类任务，该怎么办？我们需要将实值z转换为0/1值。我们可以借助于Sigmoid函数（对数几率函数），">
+<meta name="description" content="逻辑回归线性回归模型产生的预测值$$z=\boldsymbol{w}^{T}\boldsymbol{x}&amp;plus;b$$是实值，如果我们要做二分类任务，该怎么办？我们需要将实值z转换为0/1值。我们可以借助于Sigmoid函数（对数几率函数），将Sigmoid函数作为g-(.)进行转换，得到 FTRL本质上是逻辑回归的一个变种，是一个在线学习的优化器。 FOBOS与RDAFTRL工程实现中的">
+<meta name="keywords" content="推荐,FTRL">
 <meta property="og:type" content="article">
-<meta property="og:title" content="welcome，Riverzzz&#39;s github">
+<meta property="og:title" content="FTRL在线机器学习">
 <meta property="og:url" content="https://riverzzz.github.io/2019/04/13/FTRL在线机器学习/index.html">
 <meta property="og:site_name" content="welcome，Riverzzz&#39;s github">
-<meta property="og:description" content="title: FTRL在线机器学习date: 2019-04-13 20:17:31categories:  机器学习算法tags: 推荐 FTRL   逻辑回归线性回归模型产生的预测值$$z=\boldsymbol{w}^{T}\boldsymbol{x}&amp;plus;b$$是实值，如果我们要做二分类任务，该怎么办？我们需要将实值z转换为0/1值。我们可以借助于Sigmoid函数（对数几率函数），">
+<meta property="og:description" content="逻辑回归线性回归模型产生的预测值$$z=\boldsymbol{w}^{T}\boldsymbol{x}&amp;plus;b$$是实值，如果我们要做二分类任务，该怎么办？我们需要将实值z转换为0/1值。我们可以借助于Sigmoid函数（对数几率函数），将Sigmoid函数作为g-(.)进行转换，得到 FTRL本质上是逻辑回归的一个变种，是一个在线学习的优化器。 FOBOS与RDAFTRL工程实现中的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-14T15:35:12.498Z">
+<meta property="og:updated_time" content="2019-04-14T15:51:20.971Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="welcome，Riverzzz&#39;s github">
-<meta name="twitter:description" content="title: FTRL在线机器学习date: 2019-04-13 20:17:31categories:  机器学习算法tags: 推荐 FTRL   逻辑回归线性回归模型产生的预测值$$z=\boldsymbol{w}^{T}\boldsymbol{x}&amp;plus;b$$是实值，如果我们要做二分类任务，该怎么办？我们需要将实值z转换为0/1值。我们可以借助于Sigmoid函数（对数几率函数），">
+<meta name="twitter:title" content="FTRL在线机器学习">
+<meta name="twitter:description" content="逻辑回归线性回归模型产生的预测值$$z=\boldsymbol{w}^{T}\boldsymbol{x}&amp;plus;b$$是实值，如果我们要做二分类任务，该怎么办？我们需要将实值z转换为0/1值。我们可以借助于Sigmoid函数（对数几率函数），将Sigmoid函数作为g-(.)进行转换，得到 FTRL本质上是逻辑回归的一个变种，是一个在线学习的优化器。 FOBOS与RDAFTRL工程实现中的">
 
 
 
@@ -125,7 +126,7 @@
 
 
 
-  <title> | welcome，Riverzzz's github</title>
+  <title>FTRL在线机器学习 | welcome，Riverzzz's github</title>
   
 
 
@@ -272,7 +273,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">FTRL在线机器学习</h1>
         
 
         <div class="post-meta">
@@ -294,6 +295,28 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习算法/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -322,13 +345,8 @@
       
 
       
-        <h2 id=""><a href="#" class="headerlink" title=""></a><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></h2><p>title: FTRL在线机器学习<br>date: 2019-04-13 20:17:31<br>categories:</p>
-<ul>
-<li>机器学习算法<br>tags:</li>
-<li>推荐</li>
-<li>FTRL</li>
-</ul>
-<hr>
+        <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
 <h2 id="逻辑回归"><a href="#逻辑回归" class="headerlink" title="逻辑回归"></a>逻辑回归</h2><p>线性回归模型产生的预测值$$z=\boldsymbol{w}^{T}\boldsymbol{x}&plus;b$$是实值，如果我们要做二分类任务，该怎么办？我们需要将实值z转换为0/1值。<br>我们可以借助于Sigmoid函数（对数几率函数），将Sigmoid函数作为g-(.)进行转换，得到</p>
 <p>FTRL本质上是逻辑回归的一个变种，是一个在线学习的优化器。</p>
 <h2 id="FOBOS与RDA"><a href="#FOBOS与RDA" class="headerlink" title="FOBOS与RDA"></a>FOBOS与RDA</h2><h2 id="FTRL"><a href="#FTRL" class="headerlink" title="FTRL"></a>FTRL</h2><h2 id="工程实现中的memory-saving策略"><a href="#工程实现中的memory-saving策略" class="headerlink" title="工程实现中的memory saving策略"></a>工程实现中的memory saving策略</h2>
@@ -345,6 +363,14 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/推荐/" rel="tag"># 推荐</a>
+          
+            <a href="/tags/FTRL/" rel="tag"># FTRL</a>
+          
+        </div>
       
 
       
@@ -492,7 +518,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -535,7 +561,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑回归"><span class="nav-number">2.</span> <span class="nav-text">逻辑回归</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FOBOS与RDA"><span class="nav-number">3.</span> <span class="nav-text">FOBOS与RDA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FTRL"><span class="nav-number">4.</span> <span class="nav-text">FTRL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工程实现中的memory-saving策略"><span class="nav-number">5.</span> <span class="nav-text">工程实现中的memory saving策略</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑回归"><span class="nav-number">1.</span> <span class="nav-text">逻辑回归</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FOBOS与RDA"><span class="nav-number">2.</span> <span class="nav-text">FOBOS与RDA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FTRL"><span class="nav-number">3.</span> <span class="nav-text">FTRL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工程实现中的memory-saving策略"><span class="nav-number">4.</span> <span class="nav-text">工程实现中的memory saving策略</span></a></li></ol></div>
             
 
           </div>
