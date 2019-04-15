@@ -326,8 +326,15 @@
       
         
           
-            
           
+          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/04/14/推荐系统评估/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -467,12 +474,18 @@
       
         
           
-            <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
-
-<h2 id="逻辑回归"><a href="#逻辑回归" class="headerlink" title="逻辑回归"></a>逻辑回归</h2><p>线性回归模型产生的预测值$$z=\boldsymbol{w}^{T}\boldsymbol{x}&plus;b$$是实值，如果我们要做二分类任务，该怎么办？我们需要将实值z转换为0/1值。<br>我们可以借助于Sigmoid函数（对数几率函数），将Sigmoid函数作为g-(.)进行转换，得到</p>
-<p>FTRL本质上是逻辑回归的一个变种，是一个在线学习的优化器。</p>
-<h2 id="FOBOS与RDA"><a href="#FOBOS与RDA" class="headerlink" title="FOBOS与RDA"></a>FOBOS与RDA</h2><h2 id="FTRL"><a href="#FTRL" class="headerlink" title="FTRL"></a>FTRL</h2><h2 id="工程实现中的memory-saving策略"><a href="#工程实现中的memory-saving策略" class="headerlink" title="工程实现中的memory saving策略"></a>工程实现中的memory saving策略</h2>
           
+
+逻辑回归线性回归模型产生的预测值$$z=\boldsymbol{w}^{T}\boldsymbol{x}&plus;b$$是实值，如果我们要做二分类任务，该怎么办？我们需要将实值z转换为0/1值。我们可以借助于Sigmoid函数（对数几率函数），将Sigmoid函数作为g-(.)进行转换，得到
+
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/04/13/FTRL在线机器学习/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -612,14 +625,16 @@
       
         
           
-            <p>推荐系统介绍</p>
-<h2 id="什么是推荐系统"><a href="#什么是推荐系统" class="headerlink" title="什么是推荐系统"></a>什么是推荐系统</h2><p>这里先说一下“连接”这个词，凡是能够产生关系的都是连接，像用户对物品的行为，用户的属性和物品的属性一样等等。随着各种物品智能化，<br>万物互联的时代到来，会倾向于建立越来越多的连接。人和人有更多连接，于是有了各种社交产品；人和物品有越来越多消费连接，于是有了<br>各种电商产品等。<br>推荐做的事就是连接，也就是将用户和物品连接起来。推荐系统通过背后算法和技术，用已有的连接去预测未来用户和物品之间会出现的连接。<br>从本质上来讲，他提高了信息分发和信息获取的效率。</p>
-<h2 id="你需要推荐系统吗？"><a href="#你需要推荐系统吗？" class="headerlink" title="你需要推荐系统吗？"></a>你需要推荐系统吗？</h2><p>现在我们很多时候盲目跟风个性化，但是我们需要推荐系统吗，这是我们经常忽略的问题。我觉得可以考虑下面几点：<br>1.要有足够多的物品。物品少的话其实没有必要个性化，编辑下热门就够了。当物品丰富后，根本无法人工编辑，才有推荐系统的土壤。<br>2.要有足够的用户，并且用户有明显的区分度。用户少的话和物品少一样，人工编辑下就可以了。用户区分度不够的话，可能只需要根据用户<br>几个大分类处理下就好了。<br>3.要有足够的连接数据。连接很少的话是无法建立很精准的推荐的，这时应该考虑的是怎么提高用户连接数据。<br>否则，在不成熟的情况下，我们可能投入了大量的资源，却看不到收益。</p>
-<h2 id="推荐系统的阻碍和挑战"><a href="#推荐系统的阻碍和挑战" class="headerlink" title="推荐系统的阻碍和挑战"></a>推荐系统的阻碍和挑战</h2><p>推荐系统解决的问题看起来很朴素，但是要搭建一个高效有价值的推荐系统是很困难的。推荐系统是一个比较大的系统工程，要落地到业务上<br>需要大量的工程开发。涉及到日志埋点，日志收集，ETL，分布式计算，特征工程，推荐算法建模，数据存储，提供接口服务，UI展示与交互，<br>推荐效果评估，实验平台，推荐系统安全，监控等各个方面。<br>我这里从技术工程角度上讲一下构建推荐系统面临的挑战：<br>1.推荐系统精准度问题。首先得需要足够的数据，然后全面的特征工程，构建好的推荐算法来实现，才会有好的效果。<br>2.数据问题。噪声数据、缺失数据怎么处理，他们可以对推荐系统可以产生很大干扰，怎么保证数据质量，这是很重要的问题；非结构化数据<br>怎么高效的利用，提供更多的信息输入，我们可以借助深度学习解决。<br>3.冷启动问题。推荐系统是数据贪婪型的。新用户、新物品是没有相关行为的，这个时候怎么给用户推荐，把物品给推出去，需要结合实际的<br>业务场景处理才可能有好的体验。<br>4.探索与利用问题。如果我们知道用户的喜好，那该怎么推荐呢？最好是，大部分推荐他喜欢的，小部分试探他感兴趣的，怎么定大部分和小<br>部分，这就是探索与利用。<br>5.推荐系统评估问题。怎么服务于业务目标，怎么评估推荐效果的好坏，怎么衡量推荐系统的价值产出，这些都是需要我们考虑的。量化相关<br>指标，才能更好的优化推荐系统，发挥推荐系统的价值。<br>6.实时推荐问题。实时推荐需要我们实时的收集用户的反馈，从而做到更及时精准的推荐。大规模用户实时响应，他对我们算法，计算，处理<br>都是很大的考验。<br>7.大量用户问题。这是一个互联网常见的问题，当有大量用户后，他对我们服务，存储，计算会有很大压力，怎样构建一个能处理大规模用户<br>的系统，也是一个很大的挑战。<br>8.安全问题。恶意攻击会收到很多垃圾数据，更严重会影响推荐结果，损失产品的商业利益。所以，推荐系统对于恶意攻击的防御也很重要。<br>9.UI 和 UE设计问题。略</p>
-<h2 id="推荐系统的作用"><a href="#推荐系统的作用" class="headerlink" title="推荐系统的作用"></a>推荐系统的作用</h2><p>对于大部分互联网产品，推荐系统很好的解决了用户方，物品提供方，平台方三方的需求。<br>从用户角度看，推荐系统可以让用户在纷繁芜杂的海量信息中快速找到自己感兴趣的东西，节约了用户的时间。并且当不经意推荐到用户喜欢<br>的东西，极大地提高了用户体验。<br>从物品提供方看，可以将提供方的物品推荐给喜欢的用户，提高有效的曝光率、转化率，从而带来收益。<br>从平台角度来讲，精准的推荐，能增加用户对平台的粘性，让用户喜欢上你的平台。并且它主要在信息生产方和信息消费方搭建起桥梁，用投<br>其所好的方式存储用户的注意力。平台可以将注意力作为商品与人交换产生价值，像广告、电商销售、其他增值服务，这些都是存储了注意力，<br>并对其进行了变现。<br>最后，推荐系统减少了物品的周转周期，提高了信息流通的效率，对弈社会资源的节省和有效利用也是大有益处的。</p>
-<h2 id="推荐系统的应用领域"><a href="#推荐系统的应用领域" class="headerlink" title="推荐系统的应用领域"></a>推荐系统的应用领域</h2><p>推荐系统广泛用于各类互联网公司，基于上面的介绍，只要存在大量的“供用户消费的商品”的互联网产品，推荐系统就有用武之地。具体来说<br>推荐系统的应用领域主要有如下几类：<br>电商网站：如淘宝，京东，亚马逊等<br>视频：Netflix，优酷，抖音，快手等<br>音乐：网易云音乐，qq音乐等<br>资讯类：今日头条，浏览器等<br>生活服务类：美团，携程等<br>交友类：陌陌，珍爱网等<br>下图展示了几类常见的互联网推荐产品，大家应该都不陌生。<br><img src="/2019/04/10/推荐系统介绍/淘宝.jpg" title="淘宝">  <img src="/2019/04/10/推荐系统介绍/网易云音乐.jpg" title="网易云音乐"></p>
-
-          
+          推荐系统介绍
+什么是推荐系统这里先说一下“连接”这个词，凡是能够产生关系的都是连接，像用户对物品的行为，用户的属性和物品的属性一样等等。随着各种物品智能化，万物互联的时代到来，会倾向于建立越来越多的连接。人和人有更多连接，于是有了各种社交产品；人和物品有越来越多消费连接，于是有了各种电商产品等。推荐
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/04/10/推荐系统介绍/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -759,12 +774,16 @@
       
         
           
-            <h2 id="必要条件"><a href="#必要条件" class="headerlink" title="必要条件"></a>必要条件</h2><p>1.互斥<br>每个资源要么是可用，要么是被进程占用<br>2.占有和等待<br>得到某个资源的进程可以再请求新的资源<br>3.不可抢占<br>已分配给一个进程的资源不能强制性地被抢占，只能被占有的进程显式的释放<br>4.环路等待<br>有两个或者两个以上的进程组成一条环路，让环路中的每个进程都在等待下一个进程</p>
-<h2 id="处理方法"><a href="#处理方法" class="headerlink" title="处理方法"></a>处理方法</h2><p>1.鸵鸟策略<br>2.死锁检测与死锁恢复<br>3.死锁预防<br>4.死锁避免</p>
-<h2 id="鸵鸟策略"><a href="#鸵鸟策略" class="headerlink" title="鸵鸟策略"></a>鸵鸟策略</h2><p>假装问题没有发生，忽略他。</p>
-<h2 id="死锁检测与死锁恢复"><a href="#死锁检测与死锁恢复" class="headerlink" title="死锁检测与死锁恢复"></a>死锁检测与死锁恢复</h2><p>当死锁时，采取恢复措施。</p>
-<h3 id="每种类型一个资源的死锁检测"><a href="#每种类型一个资源的死锁检测" class="headerlink" title="每种类型一个资源的死锁检测"></a>每种类型一个资源的死锁检测</h3>
-          
+          必要条件1.互斥每个资源要么是可用，要么是被进程占用2.占有和等待得到某个资源的进程可以再请求新的资源3.不可抢占已分配给一个进程的资源不能强制性地被抢占，只能被占有的进程显式的释放4.环路等待有两个或者两个以上的进程组成一条环路，让环路中的每个进程都在等待下一个进程
+处理方法1.鸵鸟策略2.死锁检
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/04/09/死锁/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -904,13 +923,16 @@
       
         
           
-            <h2 id="进程与线程"><a href="#进程与线程" class="headerlink" title="进程与线程"></a>进程与线程</h2><p>1.进程是资源分配的基本单位<br>2.线程是独立调度的基本单位<br>3.区别：<br>拥有资源<br>调度<br>系统开销<br>通信方面<br>编程复杂性</p>
-<h2 id="进程的状态切换"><a href="#进程的状态切换" class="headerlink" title="进程的状态切换"></a>进程的状态切换</h2><h2 id="进程调度算法"><a href="#进程调度算法" class="headerlink" title="进程调度算法"></a>进程调度算法</h2><p>1.批处理系统：<br>先来先到服务（fcfs）<br>短作业优先（sjf）<br>最短剩于时间（srtn）<br>2.交互式系统：<br>时间片轮转<br>优先级调度<br>多级反馈队列<br>3.实时系统：<br>请求在一个确定时间内得到响应</p>
-<h2 id="进程同步"><a href="#进程同步" class="headerlink" title="进程同步"></a>进程同步</h2><p>1.临界区<br>2.同步与互斥<br>3.信号量<br>4.管程</p>
-<h2 id="经典同步问题"><a href="#经典同步问题" class="headerlink" title="经典同步问题"></a>经典同步问题</h2><p>1.读者-写者问题<br>2.哲学家进餐问题</p>
-<h2 id="进程通信"><a href="#进程通信" class="headerlink" title="进程通信"></a>进程通信</h2><p>1.管道<br>只支持父子进程中通信<br>2.FIFO（命名管道）<br>去除了管道只能在父子进程中使用的限制<br>3.消息队列<br>消息队列可以独立于读写进程，避免了FIFO的同步阻塞问题，读进程可以根据消息队列有选择的接受<br>4.信号量<br>是一个计数器，控制多进程对共享数据的访问<br>5.共享存储<br>允许多个进程共享一个给定的存储区，结合信号量使用<br>6.套接字<br>用于不同机器之间的通信</p>
-
-          
+          进程与线程1.进程是资源分配的基本单位2.线程是独立调度的基本单位3.区别：拥有资源调度系统开销通信方面编程复杂性
+进程的状态切换进程调度算法1.批处理系统：先来先到服务（fcfs）短作业优先（sjf）最短剩于时间（srtn）2.交互式系统：时间片轮转优先级调度多级反馈队列3.实时系统：请求在一个确
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/04/08/进程管理/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1050,15 +1072,16 @@
       
         
           
-            <p>俄罗斯套娃</p>
-<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>You have a number of envelopes with widths and heights given as a pair of integers (w, h). One envelope can fit into another if and only if both the width and height of one envelope is greater than the width and height of the other envelope.</p>
-<p>What is the maximum number of envelopes can you Russian doll? (put one inside other)</p>
-<p>Note:<br>Rotation is not allowed.</p>
-<p>Example:</p>
-<p>Input: [[5,4],[6,4],[6,7],[2,3]]<br>Output: 3<br>Explanation: The maximum number of envelopes you can Russian doll is 3 ([2,3] =&gt; [5,4] =&gt; [6,7]).</p>
-<h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.依题我们可以把寻找过程分为两步，第一步先对长进行排序，这样可以进行初步的嵌套，注意，这里对于相同的长度要按宽度反序排列，以便下一步使用。<br>2.第二步寻找最深的套娃，也就是寻找最长的升子序列，具体依赖于arr自带的二分查找。</p>
-<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxEnvelopes</span><span class="params">(<span class="keyword">int</span>[][] envelopes)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (envelopes == <span class="keyword">null</span> || envelopes.length == <span class="number">0</span></span><br><span class="line">                || envelopes[<span class="number">0</span>] == <span class="keyword">null</span> || envelopes[<span class="number">0</span>].length != <span class="number">2</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        Arrays.sort(envelopes, <span class="keyword">new</span> Comparator&lt;<span class="keyword">int</span>[]&gt;() &#123;<span class="comment">//数组按照长度排序，不过，需要注意的是当长度相同时，按照宽度的反序排序</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(<span class="keyword">int</span>[] arr1, <span class="keyword">int</span>[] arr2)</span> </span>&#123;<span class="comment">//这么做的原因是确保下一步寻找最长上升子序列的时候，不会出现[3,3],[3,4]的情况</span></span><br><span class="line">                <span class="keyword">if</span> (arr1[<span class="number">0</span>] == arr2[<span class="number">0</span>])</span><br><span class="line">                    <span class="keyword">return</span> arr2[<span class="number">1</span>] - arr1[<span class="number">1</span>];</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    <span class="keyword">return</span> arr1[<span class="number">0</span>] - arr2[<span class="number">0</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">int</span> dp[] = <span class="keyword">new</span> <span class="keyword">int</span>[envelopes.length];</span><br><span class="line">        <span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span>[] envelope : envelopes) &#123;<span class="comment">//遍历查找最长上升子序列</span></span><br><span class="line">            <span class="keyword">int</span> index = Arrays.binarySearch(dp, <span class="number">0</span>, len, envelope[<span class="number">1</span>]);<span class="comment">//查看当前值在序列的位置，注意，这里用到arr自带的二分查找方法</span></span><br><span class="line">            <span class="keyword">if</span> (index &lt; <span class="number">0</span>)                                                     <span class="comment">//当查找的数据不在数组里时，会返回一个index=-第一个大于该键的元</span></span><br><span class="line">                index = -(index + <span class="number">1</span>);                                           <span class="comment">//素的位置,当查找的数据超过数组时返回len+1,这样就可以找到最长递</span></span><br><span class="line">            dp[index] = envelope[<span class="number">1</span>];                                            <span class="comment">//增子序列</span></span><br><span class="line">            <span class="keyword">if</span> (index == len)</span><br><span class="line">                len++;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> len;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
+          俄罗斯套娃
+题目You have a number of envelopes with widths and heights given as a pair of integers (w, h). One envelope can fit into another if and only if bo
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/04/05/Russian-Doll-Envelopes/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1198,16 +1221,15 @@
       
         
           
-            <h2 id="MAB问题"><a href="#MAB问题" class="headerlink" title="MAB问题"></a>MAB问题</h2><p>bandit算法来源于大家熟悉的赌博学。一个赌徒，要去摇老虎机，而每个老虎机吐钱的概率不一样，他不知道老虎<br>机吐钱的概率分布，怎样才能收益最大化呢？这就是多臂老虎机赌博问题，简称MAB问题。<br>1.当推荐系统有新用户时，怎么快速地知道他对每类内容的感兴趣程度？即推荐系统冷启动问题。<br>2.系统中有若干广告库存物料，怎样展示，才能点击收益最大呢，是不是每次都挑最好的那个？<br>3.设计了新的策略或者模型，如何知道他和旧模型谁更靠谱又对风险可控呢？<br>这些关于选择的问题，我们都可以简化成一个MAB问题。<br>对于推荐系统里的两个顽疾，一个冷启动，一个探索利用，bandit算法都可以提供帮助。</p>
-<h2 id="bandit算法"><a href="#bandit算法" class="headerlink" title="bandit算法"></a>bandit算法</h2><p>思想：看看选择会带来多少遗憾，遗憾越少越好。在 MAB 问题里，用来量化选择好坏的指标就是累计遗憾，计算公<br>式如图。<br><img src="/2019/03/31/bandit算法/bandit-累计遗憾.png" title="bandit-累计遗憾"><br>公式由两部分构成：一个是遗憾，一个是累积。求和符号内部就表示每次选择的遗憾多少。<br>Wopt表示选择了最好的选择获得收益，WB(i)表示实际选择得到的收益，两者之差就是遗憾的量化，T次之后，就有了<br>累计遗憾。<br>他的套路就是：小心翼翼地试，越确定某个选择好，就多选择它，越确定某个选择差，就越来越少选择它。简单说就<br>是，把选择的机会给“确定好的”和“还不确定的”。<br>bandit算法有几个关键元素：臂，回报，环境。<br>1.臂：每次选择的候选项，好比老虎机，有几个选项就有几个臂；<br>2.回报：就是选择一个臂之后得到的奖励，好比选择一个老虎机后突出的金币；<br>3.环境：决定每个臂不同的那些因素，统称环境。<br>类比推荐系统：<br>1.臂：每次推荐的候选池，可以是具体物品，也可以是推荐策略，也可能是物品类别；<br>2.回报：用户是否对推荐结果喜欢，喜欢就是正面回报，没有就是负面回报或者零回报；<br>3.环境：用户就是不可捉摸的环境。</p>
-<h2 id="汤普森采样算法"><a href="#汤普森采样算法" class="headerlink" title="汤普森采样算法"></a>汤普森采样算法</h2><p>原理：假设每个臂是否产生收益，是由一个概率分布决定的，这个概率分布是贝塔分布。每次选择时，每个臂产生一<br>随机数，按这个数排序，产生最大随机数的那个物品为输出。<br><img src="/2019/03/31/bandit算法/贝塔分布.png" title="贝塔分布"><br>贝塔分布由两个参数a和b决定，他们决定了分布的形状和位置：<br>1.当a+b值越大，分布曲线越窄，分布就越集中，这样产生的随机数容易靠近中心位置；<br>2.当a/a+b的值越大，分布中心位置越靠近1，反之越靠近0，这样产生的随机数也相应更容易靠近1或者0.<br>我们可以简化成3种情况：<br>1.曲线很窄，而且靠近1；<br>2.曲线很窄，而且靠近0；<br>3.曲线很宽。<br>我们把贝塔分布的a参数看成推荐后得到用户点击的次数，把分布的b参数看成是没有得到用户点击的次数，这样就和<br>推荐系统联系上了。<br>实际使用时，要为每个用户保存一套参数，候选集有m个，用户有n个，那么就要保存2mn个参数。</p>
-<h2 id="UCB算法"><a href="#UCB算法" class="headerlink" title="UCB算法"></a>UCB算法</h2><p>UCB 算法全称是 Upper Confidence Bound，即置信区间上界。每次选择评分最高的候选臂输出，每次输出后观察用户<br>反馈，回来更新候选臂的参数。公式为<br><img src="/2019/03/31/bandit算法/UCB算法.png" title="UCB算法"><br>公式有两部分，加号前面是这个候选臂到目前的平均收益，后面叫做Bonus，本质上是均值的标准差，反应了候选臂效<br>果的不确定性，即置信区间的上边界。t是目前的总选择次数，Tjt是每个臂被选择次数。<br>由公式我们可知，平均收益很大，bonus大，被选择时有优势。<br>他的思想和汤普森采样一样：<br>1.以每个候选的平均收益为基准线进行选择；<br>2.对于被选择次数不足的给与照顾；<br>3.选择倾向的是那些确定收益较好的候选。</p>
-<h2 id="Epsilon贪婪算法"><a href="#Epsilon贪婪算法" class="headerlink" title="Epsilon贪婪算法"></a>Epsilon贪婪算法</h2><p>略</p>
-<h2 id="效果对比"><a href="#效果对比" class="headerlink" title="效果对比"></a>效果对比</h2><img src="/2019/03/31/bandit算法/效果对比.png" title="效果对比">
-<p>汤普森采样&gt;UCB&gt;Epsilon贪婪算法&gt;朴素选择&gt;完全随机</p>
-<h2 id="冷启动"><a href="#冷启动" class="headerlink" title="冷启动"></a>冷启动</h2><p>冷启动问题，我们很容易想到利用Bandit算法来帮忙解决。<br>针对每个新用户维护k个topic，使用Bandit方式。</p>
-
-          
+          MAB问题bandit算法来源于大家熟悉的赌博学。一个赌徒，要去摇老虎机，而每个老虎机吐钱的概率不一样，他不知道老虎机吐钱的概率分布，怎样才能收益最大化呢？这就是多臂老虎机赌博问题，简称MAB问题。1.当推荐系统有新用户时，怎么快速地知道他对每类内容的感兴趣程度？即推荐系统冷启动问题。2.系统中有若
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/31/bandit算法/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1347,12 +1369,17 @@
       
         
           
-            <h2 id="lightGBM的优化"><a href="#lightGBM的优化" class="headerlink" title="lightGBM的优化"></a>lightGBM的优化</h2><p>1.直方图算法<br>2.按叶子生长（leaf-wise）<br>3.直方图加速<br>4.直接支持类别特征<br>5.特征并行和数据并行</p>
-<h2 id="使用注意"><a href="#使用注意" class="headerlink" title="使用注意"></a>使用注意</h2><p>1.设置提前停止<br>2.自动处理类别特征<br>3.缺失值处理</p>
-<p>spark 重点相关<br>1.spark job 提交流程，及dag有向无环图生成流程<br>2.spark shuffle 原理（shuffle read，shuffle write）<br>3.spark 内存区域管理（2.0以前，2.0后）</p>
-<p>col存储的特点（优势）<br>1.块遍历<br>2.压缩<br>3.延迟物化</p>
-
-          
+          lightGBM的优化1.直方图算法2.按叶子生长（leaf-wise）3.直方图加速4.直接支持类别特征5.特征并行和数据并行
+使用注意1.设置提前停止2.自动处理类别特征3.缺失值处理
+spark 重点相关1.spark job 提交流程，及dag有向无环图生成流程2.spark shuffle
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/27/lightGBM总结/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1492,12 +1519,16 @@
       
         
           
-            <p>二叉树锯齿形层次遍历</p>
-<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Given a binary tree, return the zigzag level order traversal of its nodes’ values. (ie, from left to right, then right to left for the next level and alternate between).</p>
-<p>For example:<br>Given binary tree [3,9,20,null,null,15,7],<br>    3<br>   / \<br>  9  20<br>    /  \<br>   15   7<br>return its zigzag level order traversal as:<br>[<br>  [3],<br>  [20,9],<br>  [15,7]<br>]</p>
-<h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.类似与广度优先遍历，我们需要把一层的数据放一起，那么我们怎么把一层的数据放一起呢，我们可以使用一个标志，当递归每加一层时，标志加一，标志相同点放在同一层list里面。<br>2.我们需要锯齿形的遍历，那么对于偶数层的数据我们添加list的时候可以反向添加，这样就保证了偶数层的数据从右边开始。</p>
-<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * public class TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode left;</span></span><br><span class="line"><span class="comment"> *     TreeNode right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; zigzagLevelOrder(TreeNode root) </span><br><span class="line">    &#123;</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; sol = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        travel(root, sol, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> sol;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//curr当前节点，sol每层的list，level当前所处的层次</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">travel</span><span class="params">(TreeNode curr, List&lt;List&lt;Integer&gt;&gt; sol, <span class="keyword">int</span> level)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(curr == <span class="keyword">null</span>) <span class="keyword">return</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(sol.size() &lt;= level)<span class="comment">//如果第level层没有创建list，则创建list</span></span><br><span class="line">        &#123;</span><br><span class="line">            List&lt;Integer&gt; newLevel = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">            sol.add(newLevel);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        List&lt;Integer&gt; collection  = sol.get(level);</span><br><span class="line">        <span class="keyword">if</span>(level % <span class="number">2</span> == <span class="number">0</span>) collection.add(curr.val);<span class="comment">//奇数层正常遍历</span></span><br><span class="line">        <span class="keyword">else</span> collection.add(<span class="number">0</span>, curr.val);<span class="comment">//偶数层反向遍历</span></span><br><span class="line">        </span><br><span class="line">        travel(curr.left, sol, level + <span class="number">1</span>);<span class="comment">//递归计算</span></span><br><span class="line">        travel(curr.right, sol, level + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
+          二叉树锯齿形层次遍历
+题目Given a binary tree, return the zigzag level order traversal of its nodes’ values. (ie, from left to right, then right to left for the ne
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/17/Binary-Tree-Zigzag-Level-Order-Traversal/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1615,13 +1646,15 @@
       
         
           
-            <h2 id="OSI与TCP-IP各层的结构与功能，都有哪些协议"><a href="#OSI与TCP-IP各层的结构与功能，都有哪些协议" class="headerlink" title="OSI与TCP/IP各层的结构与功能，都有哪些协议"></a>OSI与TCP/IP各层的结构与功能，都有哪些协议</h2><h3 id="五层协议体系结构"><a href="#五层协议体系结构" class="headerlink" title="五层协议体系结构"></a>五层协议体系结构</h3><h3 id="应用层-重点"><a href="#应用层-重点" class="headerlink" title="应用层(重点)"></a>应用层(重点)</h3><h3 id="运输层-重点"><a href="#运输层-重点" class="headerlink" title="运输层(重点)"></a>运输层(重点)</h3><h3 id="网络层-重点"><a href="#网络层-重点" class="headerlink" title="网络层(重点)"></a>网络层(重点)</h3><h3 id="数据链路层"><a href="#数据链路层" class="headerlink" title="数据链路层"></a>数据链路层</h3><h3 id="物理层"><a href="#物理层" class="headerlink" title="物理层"></a>物理层</h3><h2 id="TCP-三次握手和四次挥手-重点"><a href="#TCP-三次握手和四次挥手-重点" class="headerlink" title="TCP 三次握手和四次挥手(重点)"></a>TCP 三次握手和四次挥手(重点)</h2><h3 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h3><h3 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a>四次挥手</h3><h2 id="TCP、UDP协议的区别"><a href="#TCP、UDP协议的区别" class="headerlink" title="TCP、UDP协议的区别"></a>TCP、UDP协议的区别</h2><h2 id="TCP协议如何保证可靠传输"><a href="#TCP协议如何保证可靠传输" class="headerlink" title="TCP协议如何保证可靠传输"></a>TCP协议如何保证可靠传输</h2><h3 id="应用数据被分割成TCP认为最合适发送的数据块，TCP给发送的每一个包进行编号，接收方对数据包进行排序，把有序数据传送给应用层。"><a href="#应用数据被分割成TCP认为最合适发送的数据块，TCP给发送的每一个包进行编号，接收方对数据包进行排序，把有序数据传送给应用层。" class="headerlink" title="应用数据被分割成TCP认为最合适发送的数据块，TCP给发送的每一个包进行编号，接收方对数据包进行排序，把有序数据传送给应用层。"></a>应用数据被分割成TCP认为最合适发送的数据块，TCP给发送的每一个包进行编号，接收方对数据包进行排序，把有序数据传送给应用层。</h3><h3 id="校验和"><a href="#校验和" class="headerlink" title="校验和"></a>校验和</h3><h3 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h3><h3 id="流量控制-和滑动窗口联合使用"><a href="#流量控制-和滑动窗口联合使用" class="headerlink" title="流量控制(和滑动窗口联合使用)"></a>流量控制(和滑动窗口联合使用)</h3><h3 id="拥塞控制"><a href="#拥塞控制" class="headerlink" title="拥塞控制"></a>拥塞控制</h3><p>拥塞窗口(cwnd)<br>慢开始 由小到大逐渐增大拥塞窗口数值<br>拥塞避免 让拥塞窗口cwnd缓慢增大<br>快重传与快恢复 如果接收机接收到一个不按顺序的数据段，它会立即给发送机发送一个重复确认。如果发送机接收到三个重复确认，它会假<br>定确认件指出的数据段丢失了，并立即重传这些丢失的数据段。</p>
-<h3 id="停止等待协议"><a href="#停止等待协议" class="headerlink" title="停止等待协议"></a>停止等待协议</h3><p>停止等待协议是为了实现可靠传输的，它的基本原理就是每发完一个分组就停止发送，等待对方确认。在收到确认后再发下一个分组；<br>在停止等待协议中，若接收方收到重复分组，就丢弃该分组，但同时还要发送确认；<br>停止等待协议中超时重传是指只要超过一段时间仍然没有收到确认，就重传前面发送过的分组，这种自动重传方式常称为自动重传请求 ARQ 。<br>连续 ARQ 协议 可提高信道利用率。发送维持一个发送窗口，凡位于发送窗口内的分组可连续发送出去，而不需要等待对方确认。</p>
-<h2 id="在浏览器中输入url地址-gt-gt-显示主页的过程"><a href="#在浏览器中输入url地址-gt-gt-显示主页的过程" class="headerlink" title="在浏览器中输入url地址 -&gt;&gt; 显示主页的过程"></a>在浏览器中输入url地址 -&gt;&gt; 显示主页的过程</h2><p>总体来说分为以下几个过程:<br>DNS解析<br>TCP连接<br>发送HTTP请求<br>服务器处理请求并返回HTTP报文<br>浏览器解析渲染页面<br>连接结束</p>
-<h2 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a>状态码</h2><p>1xx<br>2xx<br>3xx<br>4xx<br>5xx</p>
-<h2 id="各种协议与HTTP协议之间的关系"><a href="#各种协议与HTTP协议之间的关系" class="headerlink" title="各种协议与HTTP协议之间的关系"></a>各种协议与HTTP协议之间的关系</h2><h2 id="HTTP长连接、短连接"><a href="#HTTP长连接、短连接" class="headerlink" title="HTTP长连接、短连接"></a>HTTP长连接、短连接</h2><p>HTTP协议的长连接和短连接，实质上是TCP协议的长连接和短连接。</p>
-
-          
+          OSI与TCP/IP各层的结构与功能，都有哪些协议五层协议体系结构应用层(重点)运输层(重点)网络层(重点)数据链路层物理层TCP 三次握手和四次挥手(重点)三次握手四次挥手TCP、UDP协议的区别TCP协议如何保证可靠传输应用数据被分割成TCP认为最合适发送的数据块，TCP给发送的每一个包进行编号
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/16/计算机网络/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

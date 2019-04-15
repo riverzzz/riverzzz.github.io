@@ -326,17 +326,17 @@
       
         
           
-            <p>二叉搜索树中第k个最小的数</p>
-<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Given a binary search tree, write a function kthSmallest to find the kth smallest element in it.</p>
-<p>Note:<br>You may assume k is always valid, 1 ≤ k ≤ BST’s total elements.</p>
-<p>Example 1:</p>
-<p>Input: root = [3,1,4,null,2], k = 1<br>   3<br>  / \<br> 1   4<br>  \<br>   2<br>Output: 1</p>
-<p>Example 2:</p>
-<p>Input: root = [5,3,6,2,4,null,null,1], k = 3<br>       5<br>      / \<br>     3   6<br>    / \<br>   2   4<br>  /<br> 1<br>Output: 3</p>
-<p>Follow up:<br>What if the BST is modified (insert/delete operations) often and you need to find the kth smallest frequently? How would you optimize the kthSmallest routine?</p>
-<h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.看图中的树，我们以中序遍历就可以得到从小到大的排列。<br>2.然后，我们要找到第k个数，那么我们中序遍历的时候，记录下自己当前遍历到的位置，当当前位置等于k时，即为我们需要的值。</p>
-<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * public class TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode left;</span></span><br><span class="line"><span class="comment"> *     TreeNode right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> number = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">kthSmallest</span><span class="params">(TreeNode root, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        count=k;</span><br><span class="line">        kSmallest(root);</span><br><span class="line">        <span class="keyword">return</span> number;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">kSmallest</span><span class="params">(TreeNode root)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root.left!=<span class="keyword">null</span>) kSmallest(root.left);</span><br><span class="line">        count--;</span><br><span class="line">        <span class="keyword">if</span>(count==<span class="number">0</span>)&#123;</span><br><span class="line">            number=root.val;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(root.right!=<span class="keyword">null</span>) kSmallest(root.right);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
+          二叉搜索树中第k个最小的数
+题目Given a binary search tree, write a function kthSmallest to find the kth smallest element in it.
+Note:You may assume k is always valid
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/01/06/Kth-Smallest-Element-in-a-BST/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -454,35 +454,18 @@
       
         
           
-            <p>全排列</p>
-<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Given a collection of distinct integers, return all possible permutations.</p>
-<p>Example:</p>
-<p>Input: [1,2,3]<br>Output:<br>[<br>  [1,2,3],<br>  [1,3,2],<br>  [2,1,3],<br>  [2,3,1],<br>  [3,1,2],<br>  [3,2,1]<br>]</p>
-<h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.这本质上一道数学题，只是需要用代码合适的表示出来。全排列的话，等于数据个数的阶层n！。那么我们可以用递归来实现，<br>第一层递归循环数组所有的数，第二层循环n-1个数，一直到最后一层，这样就把所有的都找出来了。<br>2.但是，这么做会产生很多小对象，所以改为每层递归都循环所有的数n，然后如果零时数组包含的相关数，则跳出此次循环，这<br>样就不会出现重复的。<br>3.可以把原始数组转换成hashMap的结构，这样检查临时数组是否包含相关数时可以减少复杂度。</p>
-<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><p>原始数组转换成hashMap的结构就交给大家了，我这里没写。。。</p>
-<pre><code class="java"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>{
-    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; permute(<span class="keyword">int</span>[] nums) {
-        List&lt;List&lt;Integer&gt;&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();
-        recPermute(list,nums,<span class="keyword">new</span> ArrayList&lt;&gt;());
-        <span class="keyword">return</span> list;
-    }
-
-    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">recPermute</span><span class="params">(List&lt;List&lt;Integer&gt;&gt; list,<span class="keyword">int</span>[] nums,List&lt;Integer&gt; tempList)</span></span>{
-        <span class="keyword">if</span>(tempList.size() == nums.length){
-            list.add(<span class="keyword">new</span> ArrayList&lt;&gt;(tempList));
-        }<span class="keyword">else</span>{
-            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++){
-                <span class="keyword">if</span>(tempList.contains(nums[i])) <span class="keyword">continue</span>; <span class="comment">// element already exists, skip</span>
-                tempList.add(nums[i]);
-                recPermute(list, nums, tempList);
-                tempList.remove(tempList.size() - <span class="number">1</span>);
-            }
-        } 
-    }
-}
-</code></pre>
-
-          
+          全排列
+题目Given a collection of distinct integers, return all possible permutations.
+Example:
+Input: [1,2,3]Output:[  [1,2,3],  [1,3,2],  [2,1,3],  [2,3,1
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/01/02/Permutations/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -600,8 +583,15 @@
       
         
           
-            
           
+          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/01/01/tf-低阶api学习笔记/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -719,17 +709,17 @@
       
         
           
-            <p>最近最少缓存</p>
-<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Design and implement a data structure for Least Recently Used (LRU) cache. It should support the following operations:<br>get and put.</p>
-<p>get(key) - Get the value (will always be positive) of the key if the key exists in the cache, otherwise return -1.<br>put(key, value) - Set or insert the value if the key is not already present. When the cache reached its capacity, it<br>should invalidate the least recently used item before inserting a new item.</p>
-<p>Follow up:<br>Could you do both operations in O(1) time complexity?</p>
-<p>Example:</p>
-<p>LRUCache cache = new LRUCache( 2 /<em> capacity </em>/ );</p>
-<p>cache.put(1, 1);<br>cache.put(2, 2);<br>cache.get(1);       // returns 1<br>cache.put(3, 3);    // evicts key 2<br>cache.get(2);       // returns -1 (not found)<br>cache.put(4, 4);    // evicts key 1<br>cache.get(1);       // returns -1 (not found)<br>cache.get(3);       // returns 3<br>cache.get(4);       // returns 4</p>
-<h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.我们需要对缓存的数据根据时间排序，所以我们可以使用数组或者链表。当put数据时，我们按顺序存储数据即可，不过缓存空间有<br>大小，这时如果空间满了，需要删除第一条数据。当get数据时，可以看作把数据重新put了一次，这时需要把数据重原位置移除，put<br>到最后。综上，我们使用链表更合适。<br>2.我们需要以O(1)的时间get和put，所以我们需要同时维护一组hash表。</p>
-<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><p>因为java里面有了LinkedHashMap，所以我们这里直接使用了。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LRUCache</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Map&lt;Integer, Integer&gt; map;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> capacity;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LRUCache</span><span class="params">(<span class="keyword">int</span> capacity)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.capacity = capacity;</span><br><span class="line">        <span class="comment">// 注意，需要开启 ordering mode，此时若元素被访问（put、get）就会被移到链表尾</span></span><br><span class="line">        map = <span class="keyword">new</span> LinkedHashMap&lt;Integer, Integer&gt;(capacity, <span class="number">0.75f</span>, <span class="keyword">true</span>) &#123;</span><br><span class="line">            <span class="comment">/**</span></span><br><span class="line"><span class="comment">             * removeEldestEntry 方法会在插入元素之后调用，用以判断是否需要移除链表表头元素（最近最少访问元素）</span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">removeEldestEntry</span><span class="params">(Map.Entry eldest)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> size() &gt; capacity;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> map.getOrDefault(key, -<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">        map.put(key, value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-          
+          最近最少缓存
+题目Design and implement a data structure for Least Recently Used (LRU) cache. It should support the following operations:get and put.
+get(key) -
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/12/27/LRU-Cache/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -847,13 +837,18 @@
       
         
           
-            <p>螺旋矩阵</p>
-<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Given a positive integer n, generate a square matrix filled with elements from 1 to n2 in spiral order.</p>
-<p>Example:</p>
-<p>Input: 3<br>Output:<br>[<br> [ 1, 2, 3 ],<br> [ 8, 9, 4 ],<br> [ 7, 6, 5 ]<br>]</p>
-<h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.这可以看作一道数学找规律的题目，上，右，下，左是为循环一圈，坐标循环一圈时有规律的变化。上时横坐标不变，<br>纵坐标不断增加，到最右边终止上边的循环，横坐标+1.其他位置依此类推。<br>2.终止条件，中心时终止，即左&lt;=右时终止。</p>
-<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[][] generateMatrix(<span class="keyword">int</span> n) &#123;</span><br><span class="line">	    <span class="keyword">int</span>[][] ret = <span class="keyword">new</span> <span class="keyword">int</span>[n][n];</span><br><span class="line">	    <span class="keyword">int</span> left = <span class="number">0</span>,top = <span class="number">0</span>;</span><br><span class="line">	    <span class="keyword">int</span> right = n -<span class="number">1</span>,down = n - <span class="number">1</span>;</span><br><span class="line">	    <span class="keyword">int</span> count = <span class="number">1</span>;</span><br><span class="line">	    <span class="keyword">while</span> (left &lt;= right) &#123;</span><br><span class="line">		    <span class="keyword">for</span> (<span class="keyword">int</span> j = left; j &lt;= right; j ++) &#123;</span><br><span class="line">			    ret[top][j] = count++;</span><br><span class="line">		    &#125;</span><br><span class="line">		    top ++;</span><br><span class="line">		    <span class="keyword">for</span> (<span class="keyword">int</span> i = top; i &lt;= down; i ++) &#123;</span><br><span class="line">			    ret[i][right] = count ++;</span><br><span class="line">		    &#125;</span><br><span class="line">		    right --;</span><br><span class="line">		    <span class="keyword">for</span> (<span class="keyword">int</span> j = right; j &gt;= left; j --) &#123;</span><br><span class="line">			    ret[down][j] = count ++;</span><br><span class="line">		    &#125;</span><br><span class="line">		    down --;</span><br><span class="line">		    <span class="keyword">for</span> (<span class="keyword">int</span> i = down; i &gt;= top; i --) &#123;</span><br><span class="line">			    ret[i][left] = count ++;</span><br><span class="line">		    &#125;</span><br><span class="line">		    left ++;</span><br><span class="line">	    &#125;</span><br><span class="line">	    <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
+          螺旋矩阵
+题目Given a positive integer n, generate a square matrix filled with elements from 1 to n2 in spiral order.
+Example:
+Input: 3Output:[ [ 1, 2, 3 ], 
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/12/26/spiral-Matrix-II/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -971,24 +966,17 @@
       
         
           
-            <p>下面是DNN推荐的描述及我的理解</p>
-<h2 id="DNN推荐架构"><a href="#DNN推荐架构" class="headerlink" title="DNN推荐架构"></a>DNN推荐架构</h2><p>下图是youtube推荐系统的架构图，和其他推荐系统一样，包括召回和排序这两个阶段，主要使用了深度学习。<br><img src="/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/DNN推荐架构图.png" title="DNN推荐架构图"></p>
-<h2 id="召回阶段"><a href="#召回阶段" class="headerlink" title="召回阶段"></a>召回阶段</h2><h3 id="召回问题建模"><a href="#召回问题建模" class="headerlink" title="召回问题建模"></a>召回问题建模</h3><p>youtube把召回阶段建模成了一个“超多大规模分类”问题。即在时刻t，为用户U（上下文信息C）在视频库V中精准的预测出视频i的<br>类别（每个具体的视频视为一个类别，i即为一个类别），用数学公式表达如下：<br><img src="/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/召回分类公式.png" title="分类公式"><br>很显然上式为一个softmax多分类器的形式。向量u\in R^N是&lt;user, context&gt;信息的高维“embedding”，而向量v_{j}\in R^N则是<br>视频 j 的embedding向量。所以DNN的目标就是在用户信息和上下文信息为输入条件下学习用户的embedding向量u和视频的embedding向<br>量v。用公式表达DNN就是在拟合函数u,v = f_{DNN}(user_info, context_info)。</p>
-<h3 id="模型架构"><a href="#模型架构" class="headerlink" title="模型架构"></a>模型架构</h3><img src="/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/召回模型架构图.png" title="召回模型架构图">
-<p>模型是一个三层的网络架构，主要输入是观看、搜索历史，样本时间，用户场景信息以及用户画像信息等。<br>主要分为离线训练及线上服务两个部分。离线输出为softmax层，计算公式为之前提到的公式。而线上将训练得到的视频embedding向量v<br>存储起来，实时根据模型计算出用户向量u，然后利用lsh技术找到内积最近的topN。</p>
-<h3 id="主要特征"><a href="#主要特征" class="headerlink" title="主要特征"></a>主要特征</h3><p>1.观看历史和搜索历史：类似于word2vec每个视频embedding到固定维度的向量中。最终通过加权平均（重要性和时间）得到固定维度的<br>watch vector作为DNN的输入。<br>2.人口统计学信息：性别、年龄、地域等<br>3.上下文信息：设备、登陆状态、位置等<br>4.Example Age： 样本时间，表示样本产生的时间。因为机器学习系统在训练阶段都是利用过去的行为预估未来，因此通常对过去的行为<br>有个隐式的bias。视频网站视频的分布是高度非静态（non-stationary）的，但我们的推荐系统产生的视频集合在视频的分布，基本上反<br>映的是训练所取时间段的平均的观看喜好的视频。因此我们我们把样本的 “age” 作为一个feature加入模型训练中。从下图可以很清楚的<br>看出，加入“example age” feature后和经验分布更为match。<br><img src="/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/days-since-upload.png" title="days-since-upload"></p>
-<h3 id="样本和上下文选择"><a href="#样本和上下文选择" class="headerlink" title="样本和上下文选择"></a>样本和上下文选择</h3><p>在有监督学习问题中，最重要的选择是label了，因为label决定了你做什么，决定了你的上限，而feature和model都是在逼近label。我们<br>做了如下几个设计：<br>1.使用更广的数据源：不仅仅使用推荐场景的数据，训练样本是从全部youtube观看记录中产生。防止对推荐者的观看记录过度利用，加入<br>对新视频的测试。<br>2.为用户生成固定数量的训练样本：每个用户在损失函数中的权重都是相等的，防止一小部分超级活跃用户影响到损失函数的公平性。<br>3.抛弃数据的序列信息：我们在实现时尝试的是去掉序列信息，对过去观看视频/历史搜索query的embedding向量进行加权平均。这点其实<br>违反直觉，可能原因是模型对负反馈没有很好的建模。<br>4.不对称的共同浏览问题：所谓asymmetric co-watch值的是用户在浏览视频时候，往往都是序列式的，开始看一些比较流行的，逐渐找到<br>细分的视频。下图(a)是hled-out方式，利用上下文信息预估中间的一个视频；图(b)是predicting next watch的方式，则是利用上文信息，<br>预估下一次浏览的视频。<br><img src="/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/数据集划分.png" title="数据集划分"></p>
-<h3 id="不同网络深度和特征的实验"><a href="#不同网络深度和特征的实验" class="headerlink" title="不同网络深度和特征的实验"></a>不同网络深度和特征的实验</h3><p>基本和前面图中所示的网络架构相同，所有的视频和search token都embedded到256维的向量中，开始input层直接全连接到256维的<br>softmax层，依次增加网络深度（+512–&gt;+1024–&gt;+2048–&gt; …）。<br><br>下图反映了不同网络深度（横坐标）下不同特征组合情况下的holdout-MAP（纵坐标）。可以很明显看出，增加了观看历史之外的特征很<br>明显的提升了预测得准确率；从网络深度看，随着网络深度加大，预测准确率在提升，但继续增加第四层网络已经收益不大了。<br><img src="/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/特征和网络结构效果对比.png" title="特征和网络结构效果对比"></p>
-<h3 id="离线训练及在线服务模块"><a href="#离线训练及在线服务模块" class="headerlink" title="离线训练及在线服务模块"></a>离线训练及在线服务模块</h3><p>激活函数使用relu，softmax层的输出是预测的视频分类结果，我们通过离线训练得到离线模型。同时得到用户向量u和视频向量v。得到视<br>频向量后我们可以将其保存起来，用于在线服务。实时计算用户向量u，然后与v做内积，得到topN。这里需要使用hashing算法加速查找<br>topN。</p>
-<h3 id="个人理解"><a href="#个人理解" class="headerlink" title="个人理解"></a>个人理解</h3><p>1.特征里面的example age指的是样本时间，而不是网上所说的视频上传时间。论文也详细解释了，他可以很好的表示视频上传时间和时间<br>段上受欢迎程度。<br>2.用户向量u指的是输出层的前一层，而视频向量v指的是前一层到输出层的参数。所以训练完模型我们可以得到两个表示u和v，只不过用户<br>u我们后面实时计算。<br>3.输出层多分类时，当视频数量较大时，使用了负采样，提高计算效率。<br>4.实时计算topN时，当数据量比较大时，我们需要近似近邻查找来提升计算效率，但是会有一定精度损失。</p>
-<h2 id="排序阶段"><a href="#排序阶段" class="headerlink" title="排序阶段"></a>排序阶段</h2><p>排序阶段的最重要任务就是精准的预估用户对视频的喜好程度。不同于召回阶段面临的是百万级候选视频集，排序阶段面对的只是百级别<br>的商品集，因此可以使用更多更精细的feature来刻画视频。此外，还可以和其他召回方式得来的数据进行ensemble。</p>
-<h3 id="模型架构-1"><a href="#模型架构-1" class="headerlink" title="模型架构"></a>模型架构</h3><p>排序阶段的模型和召回阶段的基本相似，不同的是训练的最后一层是一个weighted LR层，而serving阶段激励函数用的是e^{x}。另外，优<br>化目标换成了期望的观看时长。<br><img src="/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/排序模型架构.png" title="排序模型架构"></p>
-<h3 id="特征处理"><a href="#特征处理" class="headerlink" title="特征处理"></a>特征处理</h3><p>1.特征工程：在搜索和推荐场景，我们的很难把原始数据直接作为FNN的输入，特征工程仍然很重要。而特征工程中最难的是如何建模用户<br>时序行为（temporal sequence of user actions）并且将这些行为和要排序的物品关联起来。youtube发现最重要的信息是描述用户与商<br>品本身或相似商品之间交互的信息。我们要度量用户对视频的喜欢，可以考虑用户与视频所在频道间的关系：<br>    a.数量特征：浏览该频道的次数？<br>    b.时间特征：比如最近一次浏览该频道距离现在的时间？<br>这两个连续特征的最大好处是具备非常强的泛化能力。另外除了这两个偏正向的特征，用户对于视频所在频道的一些PV但不点击的行为，<br>即负反馈信息同样非常重要。此外，还有推荐来源、所在来源分数等。<br>2.类别特征embedding：NN更适合处理连续特征，因此稀疏的特别是高基数空间的离散特征需要embedding到稠密的向量中。实际并非为<br>所有的id进行embedding，比如视频id，只需要按照点击排序，选择top N视频进行embedding，其余置为0向量。有些可以复用召回阶<br>段的embedding。<br>3.连续特征归一化：NN对输入特征的尺度和分布都是非常敏感的，实际上基本上除了Tree-Based的模型（比如GBDT/RF），机器学习的大<br>多算法都如此。我们发现归一化方法对收敛很关键，推荐一种排序分位归一到[0,1]区间的方法，即\bar{x}=\int_{-\infty }^{x}df ，<br>累计分位点。除此之外，我们还把归一化后的\bar{x} 的根号\sqrt{x} 和平方x^{2} 作为网络输入，以期能使网络能够更容易得到特征<br>的次线性（sub-linear）和（super-linear）超线性函数。</p>
-<h3 id="建模期望观看时长"><a href="#建模期望观看时长" class="headerlink" title="建模期望观看时长"></a>建模期望观看时长</h3><p>youtube的目标是预测期望观看时长。有点击的为正样本，有PV无点击的为负样本，正样本需要根据观看时长进行加权。因此，我们训练阶<br>段网络最后一层用的是 weighted logistic regression。<br>正样本的权重为观看时长 T_{i}，负样本权重为1。这样的话，LR学到的odds为：<br><img src="/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/期望观看时长.png" title="期望观看时长"><br>其中N是总的样本数量，k是正样本数量，T_{i}是第i正样本的观看时长。一般来说，k相对N比较小，因此上式的odds可以转换成<br>E[T]/(1+P)，其中P是点击率，点击率一般很小，这样odds接近于E[T]，即期望观看时长。因此在线上serving的inference阶段，我们采用<br>e^{x}作为激励函数，就是近似的估计期望的观看时长。</p>
-<h3 id="不同隐层的实验"><a href="#不同隐层的实验" class="headerlink" title="不同隐层的实验"></a>不同隐层的实验</h3><p>隐层数的实验与召回阶段DNN的方法类似。</p>
-<h3 id="个人理解-1"><a href="#个人理解-1" class="headerlink" title="个人理解"></a>个人理解</h3><p>1.不同的优化目标会有不同的优化结果，这里使用了期望观看时长，避免了ctr指标的情况下，标题的欺骗性，实际上没有观看。然而这样<br>会导致模型偏向于短视频，所以，可以根据自己实际需要选取。<br>2.特征工程处理的时候，可以采用常用的方案，分类数目多的时候，将排序靠后的数据处理成其他。归一化处理特征，增加非线性特征。<br>3.预测时使用了带权重的lr，让模型可以拟合期望时长。</p>
-
-          
+          下面是DNN推荐的描述及我的理解
+DNN推荐架构下图是youtube推荐系统的架构图，和其他推荐系统一样，包括召回和排序这两个阶段，主要使用了深度学习。
+召回阶段召回问题建模youtube把召回阶段建模成了一个“超多大规模分类”问题。即在时刻t，为用户U（上下文信息C）在视频库V中精准的预测出视频i
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1106,8 +1094,15 @@
       
         
           
-            
           
+          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/12/11/读-Deep-contextualized-word-representations-总结/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1225,18 +1220,17 @@
       
         
           
-            <p>下面是我面试问到题目的总结</p>
-<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>1.spark计算任务划分，宽窄依赖，小文件处理<br>2.partition过多如何处理<br>3.java为什么使用iterator<br>4.多线程和多进程<br>5.hive结构图<br>6.hbase结构图<br>7.zookeeper<br>8.垃圾回收算法（7个，8个）</p>
-<p>1.机器学习偏差，方差<br>2.算法选取数据量<br>3.最近做了什么算法</p>
-<p>1.spark shuffle节点丢失，如何恢复<br>2.共享内存，存在竞争，如何处理（乐观锁）<br>3.jvm动态替换掉加载好的类<br>4.推荐系统协同过滤相关（倒排，近似近邻查找）<br>5.L1,L2正则</p>
-<p>1.L1，L2正则<br>2.逻辑回归与决策树的差异<br>3.什么是集成学习<br>4.map比较慢是为什么<br>5.spark任务有问题怎么定位<br>6.hadoop跑的比较慢的原因<br>7.hive原理<br>8.hbase原理，与hive的差异<br>9.hive存储格式</p>
-<p>1.spark分区算子<br>2.java锁（静态锁，对象锁）<br>3.线程池相关<br>4.垃圾回收（root，七种垃圾回收算法）</p>
-<p>1.acid（原子性，一致性，隔离性，持久性）<br>2.后序遍历二叉树<br>3.n个拍好序的数组全排（堆排）<br>4.两个拍好序的数组求交集（一个循环，一个二分查找）</p>
-<p>1.spark sql ，rdd df的差异<br>2.hbase为什么比mysql写的快<br>3.rowkey如何设计</p>
-<p>1.kafka原理特性<br>2.多线程，锁<br>3.dubbo框架原理<br>4.抽奖系统设计<br>5.spark任务优化</p>
-<p>1.tf-idf为什么取log<br>2.lr可以用来做什么<br>3.决策树和lr对比<br>4.java生产者和消费者</p>
-
-          
+          下面是我面试问到题目的总结
+题目1.spark计算任务划分，宽窄依赖，小文件处理2.partition过多如何处理3.java为什么使用iterator4.多线程和多进程5.hive结构图6.hbase结构图7.zookeeper8.垃圾回收算法（7个，8个）
+1.机器学习偏差，方差2.算法选取数据
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/12/04/面试题总结/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1354,12 +1348,17 @@
       
         
           
-            <p>最大公共前缀</p>
-<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Write a function to find the longest common prefix string amongst an array of strings.</p>
-<p>If there is no common prefix, return an empty string “”.</p>
-<h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.大概思路，先找出字符串数组，第一个和第二个字符串公共前缀，然后拿这个公共前缀和第三个字符串比较找出公共部分，依此类推</p>
-<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">longestCommonPrefix</span><span class="params">(String[] strs)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(strs == <span class="keyword">null</span> || strs.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="string">""</span>;        </span><br><span class="line">        String prefix = strs[<span class="number">0</span>];        </span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; strs.length; i++) &#123;</span><br><span class="line">                <span class="keyword">while</span>(strs[i].indexOf(prefix) != <span class="number">0</span> &amp;&amp; prefix.length() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                    prefix = prefix.substring(<span class="number">0</span>, prefix.length() - <span class="number">1</span>);</span><br><span class="line">                &#125;                </span><br><span class="line">            &#125;</span><br><span class="line">        <span class="keyword">return</span> prefix;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
+          最大公共前缀
+题目Write a function to find the longest common prefix string amongst an array of strings.
+If there is no common prefix, return an empty string “
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/11/28/Longest-Common-Prefix/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1477,19 +1476,18 @@
       
         
           
-            <p>两个链表的交集</p>
-<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Write a program to find the node at which the intersection of two singly linked lists begins.</p>
-<p>For example, the following two linked lists:</p>
-<p>A:          a1 → a2<br>                   ↘<br>                     c1 → c2 → c3<br>                   ↗<br>B:     b1 → b2 → b3</p>
-<p>begin to intersect at node c1.</p>
-<p>Notes:</p>
-<pre><code>If the two linked lists have no intersection at all, return null.
-The linked lists must retain their original structure after the function returns.
-You may assume there are no cycles anywhere in the entire linked structure.
-Your code should preferably run in O(n) time and use only O(1) memory.
-</code></pre><h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.我们注意到两个链表如果有交集，那么相交之后的的node都是相交的，因此，我们只需要找出相交的node即可<br>2.如果两个链表长度相同，我们只需要一起迭代即可，但是两个链表长度不同呢，怎么办？可以用A+B=B+A的形式，<br>即两个链表一起迭代，a迭代完后迭代b，同时b迭代完后a，第二轮就可以知道相交的点了。</p>
-<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) &#123;</span></span><br><span class="line"><span class="comment"> *         val = x;</span></span><br><span class="line"><span class="comment"> *         next = null;</span></span><br><span class="line"><span class="comment"> *     &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> ListNode <span class="title">getIntersectionNode</span><span class="params">(ListNode headA, ListNode headB)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//boundary check</span></span><br><span class="line">    <span class="keyword">if</span>(headA == <span class="keyword">null</span> || headB == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    </span><br><span class="line">    ListNode a = headA;</span><br><span class="line">    ListNode b = headB;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//if a &amp; b have different len, then we will stop the loop after second iteration</span></span><br><span class="line">    <span class="keyword">while</span>( a != b)&#123;</span><br><span class="line">    	<span class="comment">//for the end of first iteration, we just reset the pointer to the head of another linkedlist</span></span><br><span class="line">        a = a == <span class="keyword">null</span>? headB : a.next;</span><br><span class="line">        b = b == <span class="keyword">null</span>? headA : b.next;    </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
+          两个链表的交集
+题目Write a program to find the node at which the intersection of two singly linked lists begins.
+For example, the following two linked lists:
+A
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/11/28/Intersection-of-Two-Linked-Lists/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
