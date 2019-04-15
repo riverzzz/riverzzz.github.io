@@ -326,18 +326,12 @@
       
         
           
-          循环链表
-题目Given a linked list, determine if it has a cycle in it.
-Follow up:Can you solve it without using extra space? 
-解析重点1.一开始只想到了hash table 的解决方案2.后
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/26/Linked-List-Cycle/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>循环链表</p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Given a linked list, determine if it has a cycle in it.</p>
+<p>Follow up:<br>Can you solve it without using extra space? </p>
+<h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.一开始只想到了hash table 的解决方案<br>2.后面参考官方，使用了双指针的方式，一个快指针，一个慢指针，如果是环形快指针一定可以追上慢指针</p>
+<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment">  * class ListNode &#123;</span></span><br><span class="line"><span class="comment">  *     int val;</span></span><br><span class="line"><span class="comment">  *     ListNode next;</span></span><br><span class="line"><span class="comment">  *     ListNode(int x) &#123;</span></span><br><span class="line"><span class="comment">  *         val = x;</span></span><br><span class="line"><span class="comment">  *         next = null;</span></span><br><span class="line"><span class="comment">  *     &#125;</span></span><br><span class="line"><span class="comment">  * &#125;</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasCycle</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    ListNode slow = head;</span><br><span class="line">    ListNode fast = head.next;</span><br><span class="line">    <span class="keyword">while</span> (slow != fast) &#123;</span><br><span class="line">      <span class="keyword">if</span> (fast == <span class="keyword">null</span> || fast.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      slow = slow.next;</span><br><span class="line">      fast = fast.next.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
         
       
     </div>
@@ -455,17 +449,26 @@ Follow up:Can you solve it without using extra space?
       
         
           
-          有效的括号
-题目Given a string containing just the characters ‘(‘, ‘)’, ‘{‘, ‘}’, ‘[‘ and ‘]’, determine if the input string is valid.
-An input string is vali
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/26/Valid-Parentheses/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>有效的括号</p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Given a string containing just the characters ‘(‘, ‘)’, ‘{‘, ‘}’, ‘[‘ and ‘]’, determine if the input string is valid.</p>
+<p>An input string is valid if:</p>
+<pre><code>Open brackets must be closed by the same type of brackets.
+Open brackets must be closed in the correct order.
+</code></pre><p>Note that an empty string is also considered valid.</p>
+<p>Example 1:</p>
+<p>Input: “()”<br>Output: true</p>
+<p>Example 2:</p>
+<p>Input: “()[]{}”<br>Output: true</p>
+<p>Example 3:</p>
+<p>Input: “(]”<br>Output: false</p>
+<p>Example 4:</p>
+<p>Input: “([)]”<br>Output: false</p>
+<p>Example 5:</p>
+<p>Input: “{[]}”<br>Output: true</p>
+<h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.这道题最重要是找出括号之间的规律，当有左括号的时候不用管，出现右括号的时候要检查左边是否有对应的括号，<br>有的话将其消除掉，不断重复这个过程。但是，这需要我们从内到外处理数据，我们可以借助栈来处理这种情况。<br>2.循环处理表达式的每个括号，当遇到左括号时，我们将其推入栈。<br>3.当遇到右括号时，弹出栈顶元素，看是否匹配，如果无法消除，则表达式无效，如果匹配，则消除这对数据。<br>4.如果最后站内任有元素，表达式无效。</p>
+<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><p>具体java代码参考官方<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Hash table that takes care of the mappings.</span></span><br><span class="line">  <span class="keyword">private</span> HashMap&lt;Character, Character&gt; mappings;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Initialize hash map with mappings. This simply makes the code easier to read.</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Solution</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.mappings = <span class="keyword">new</span> HashMap&lt;Character, Character&gt;();</span><br><span class="line">    <span class="keyword">this</span>.mappings.put(<span class="string">')'</span>, <span class="string">'('</span>);</span><br><span class="line">    <span class="keyword">this</span>.mappings.put(<span class="string">'&#125;'</span>, <span class="string">'&#123;'</span>);</span><br><span class="line">    <span class="keyword">this</span>.mappings.put(<span class="string">']'</span>, <span class="string">'['</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isValid</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Initialize a stack to be used in the algorithm.</span></span><br><span class="line">    Stack&lt;Character&gt; stack = <span class="keyword">new</span> Stack&lt;Character&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++) &#123;</span><br><span class="line">      <span class="keyword">char</span> c = s.charAt(i);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// If the current character is a closing bracket.</span></span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">this</span>.mappings.containsKey(c)) &#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Get the top element of the stack. If the stack is empty, set a dummy value of '#'</span></span><br><span class="line">        <span class="keyword">char</span> topElement = stack.empty() ? <span class="string">'#'</span> : stack.pop();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// If the mapping for this bracket doesn't match the stack's top element, return false.</span></span><br><span class="line">        <span class="keyword">if</span> (topElement != <span class="keyword">this</span>.mappings.get(c)) &#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// If it was an opening bracket, push to the stack.</span></span><br><span class="line">        stack.push(c);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// If the stack still contains elements, then it is an invalid expression.</span></span><br><span class="line">    <span class="keyword">return</span> stack.isEmpty();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+          
         
       
     </div>
@@ -583,17 +586,15 @@ An input string is vali
       
         
           
-          最大和的子序列
-题目Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum.
-Exa
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/25/Maximum-Subarray/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>最大和的子序列</p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum.</p>
+<p>Example:</p>
+<p>Input: [-2,1,-3,4,-1,2,1,-5,4],<br>Output: 6<br>Explanation: [4,-1,2,1] has the largest sum = 6.</p>
+<p>Follow up:</p>
+<p>If you have figured out the O(n) solution, try coding another solution using the divide and conquer approach, which is more subtle.</p>
+<h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.子序列的和图像是类似股票图的，有波峰波谷<br>2.那我们需要记录最高点（max），及当前值（sum），当前值小于0的时候，我们需要重新开始计算sum</p>
+<h2 id="scala代码"><a href="#scala代码" class="headerlink" title="scala代码"></a>scala代码</h2><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">object</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">maxSubArray</span></span>(nums: <span class="type">Array</span>[<span class="type">Int</span>]): <span class="type">Int</span> = &#123;</span><br><span class="line">    <span class="keyword">var</span> sum = <span class="type">Integer</span>.<span class="type">MIN_VALUE</span></span><br><span class="line">    <span class="keyword">var</span> max = sum</span><br><span class="line">    <span class="keyword">for</span>(num &lt;- nums)&#123;</span><br><span class="line">      sum = <span class="keyword">if</span> (sum&lt;<span class="number">0</span>) num <span class="keyword">else</span> sum+num<span class="comment">//计算当前和值，当sum小于0时重新计算</span></span><br><span class="line">      max=<span class="type">Math</span>.max(max,sum)<span class="comment">//计算全局最大值</span></span><br><span class="line">    &#125;</span><br><span class="line">    max</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
         
       
     </div>
@@ -711,18 +712,14 @@ Exa
       
         
           
-          下面是windows10专业版docker安装tensorflow流程
-搭建步骤1.windows10上docker安装2.设置docker镜像代理3.docker安装tensorflow4.测试tensorflow5.安装总结
-1.windows10上安装docker略略略
-docker安装完后可
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/04/windows10-docker-tensorflow-安装流程/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>下面是windows10专业版docker安装tensorflow流程</p>
+<h2 id="搭建步骤"><a href="#搭建步骤" class="headerlink" title="搭建步骤"></a>搭建步骤</h2><p>1.windows10上docker安装<br>2.设置docker镜像代理<br>3.docker安装tensorflow<br>4.测试tensorflow<br>5.安装总结</p>
+<h3 id="1-windows10上安装docker"><a href="#1-windows10上安装docker" class="headerlink" title="1.windows10上安装docker"></a>1.windows10上安装docker</h3><p>略略略</p>
+<p>docker安装完后可以使用以下命令测试<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run hello-world</span><br></pre></td></tr></table></figure></p>
+<p>命令正常运行得到想要的结果即安装正常</p>
+<h3 id="5-搭建问题总结"><a href="#5-搭建问题总结" class="headerlink" title="5.搭建问题总结"></a>5.搭建问题总结</h3><p>1.windows10安装docker最好升级到专业版，激活可以去淘宝买激活码<br>2.docker最好设置镜像代理，否则会很慢</p>
+
+          
         
       
     </div>
@@ -840,18 +837,12 @@ docker安装完后可
       
         
           
-          下面是我搭建博客的一些总结
-搭建步骤1.安装git2.设置git免密登陆3.安装node.js4.安装hexo5.关联git和hexo6.测试关联结果7.搭建问题总结
-1.git安装、测试git安装完后可以使用以下命令测试1$ git --version
-7.搭建问题总结1.node.js安装后先执
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/10/28/hexo-github搭建总结/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>下面是我搭建博客的一些总结</p>
+<h2 id="搭建步骤"><a href="#搭建步骤" class="headerlink" title="搭建步骤"></a>搭建步骤</h2><p>1.安装git<br>2.设置git免密登陆<br>3.安装node.js<br>4.安装hexo<br>5.关联git和hexo<br>6.测试关联结果<br>7.搭建问题总结</p>
+<h3 id="1-git安装、测试"><a href="#1-git安装、测试" class="headerlink" title="1.git安装、测试"></a>1.git安装、测试</h3><p>git安装完后可以使用以下命令测试<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git --version</span><br></pre></td></tr></table></figure></p>
+<h3 id="7-搭建问题总结"><a href="#7-搭建问题总结" class="headerlink" title="7.搭建问题总结"></a>7.搭建问题总结</h3><p>1.node.js安装后先执行npm install -g cnpm –registry=<a href="https://registry.npm.taobao.org" target="_blank" rel="noopener">https://registry.npm.taobao.org</a> ，安装阿里的镜像，以后都使用cnpm代替npm安装模块<br>2.hexo关联git的时候，配置_config.yml文件冒号后面记得留空格，否则会关联失败，并且不报错，很难找到问题</p>
+
+          
         
       
     </div>
@@ -969,15 +960,17 @@ docker安装完后可
       
         
           
-          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in 
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/10/28/hello-world/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+
+          
         
       
     </div>
