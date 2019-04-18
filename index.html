@@ -466,13 +466,15 @@
 
       
         
-          
-            <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
-
-<h2 id="逻辑回归"><a href="#逻辑回归" class="headerlink" title="逻辑回归"></a>逻辑回归</h2><p>线性回归模型产生的预测值$$z=\boldsymbol{w}^{T}\boldsymbol{x}&plus;b$$是实值，如果我们要做二分类任务，该怎么办？我们需要将实值z转换为0/1值。<br>我们可以借助于Sigmoid函数（对数几率函数），将Sigmoid函数作为g-(.)进行转换，得到</p>
+          <h2 id="逻辑回归"><a href="#逻辑回归" class="headerlink" title="逻辑回归"></a>逻辑回归</h2><p>线性回归模型产生的预测值[z=\boldsymbol{w}^{T}\boldsymbol{x}+b]是实值，如果我们要做二分类任务，该怎么办？我们需要将实值z转换为0/1值。<br>我们可以借助于Sigmoid函数（对数几率函数），将Sigmoid函数作为g-(.)进行转换，得到</p>
 <p>FTRL本质上是逻辑回归的一个变种，是一个在线学习的优化器。</p>
-<h2 id="FOBOS与RDA"><a href="#FOBOS与RDA" class="headerlink" title="FOBOS与RDA"></a>FOBOS与RDA</h2><h2 id="FTRL"><a href="#FTRL" class="headerlink" title="FTRL"></a>FTRL</h2><h2 id="工程实现中的memory-saving策略"><a href="#工程实现中的memory-saving策略" class="headerlink" title="工程实现中的memory saving策略"></a>工程实现中的memory saving策略</h2>
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/04/13/FTRL在线机器学习/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1970,6 +1972,28 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
 
   
 
