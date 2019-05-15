@@ -255,6 +255,152 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://riverzzz.github.io/2019/05/13/spark-streaming-join-维度表解决方案/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Riverzzz">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="welcome，Riverzzz's github">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/13/spark-streaming-join-维度表解决方案/" itemprop="url">spark streaming join 维度表解决方案 </a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-13T21:43:34+08:00">
+                2019-05-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/大数据/" itemprop="url" rel="index">
+                    <span itemprop="name">大数据</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="多数据源Join维度表思路"><a href="#多数据源Join维度表思路" class="headerlink" title="多数据源Join维度表思路"></a>多数据源Join维度表思路</h2><p>很多时候流上报过来的数据只有id，这时需要我们join维度表，这里有三种思路：<br>1.在数据源端进行join，如在kafka写入时进行join，不过这需要数据源端配合。<br>2.在计算引擎上join，如spark streaming/flink。<br>3.在结果端，如结果写入es/mysql，可在此时根据key join。<br>这三种方式大家按实际情况进行取舍，各自有自己的适用场景。我这里主要介绍在<br>计算引擎端进行join。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/05/13/spark-streaming-join-维度表解决方案/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </p></div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://riverzzz.github.io/2019/04/14/推荐系统评估/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1496,140 +1642,19 @@
 
       
         
-          
-            <p>二叉树锯齿形层次遍历</p>
+          <p>二叉树锯齿形层次遍历</p>
 <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Given a binary tree, return the zigzag level order traversal of its nodes’ values. (ie, from left to right, then right to left for the next level and alternate between).</p>
-<p>For example:<br>Given binary tree [3,9,20,null,null,15,7],<br>    3<br>   / \<br>  9  20<br>    /  \<br>   15   7<br>return its zigzag level order traversal as:<br>[<br>  [3],<br>  [20,9],<br>  [15,7]<br>]</p>
-<h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.类似与广度优先遍历，我们需要把一层的数据放一起，那么我们怎么把一层的数据放一起呢，我们可以使用一个标志，当递归每加一层时，标志加一，标志相同点放在同一层list里面。<br>2.我们需要锯齿形的遍历，那么对于偶数层的数据我们添加list的时候可以反向添加，这样就保证了偶数层的数据从右边开始。</p>
-<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * public class TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode left;</span></span><br><span class="line"><span class="comment"> *     TreeNode right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; zigzagLevelOrder(TreeNode root) </span><br><span class="line">    &#123;</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; sol = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        travel(root, sol, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> sol;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//curr当前节点，sol每层的list，level当前所处的层次</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">travel</span><span class="params">(TreeNode curr, List&lt;List&lt;Integer&gt;&gt; sol, <span class="keyword">int</span> level)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(curr == <span class="keyword">null</span>) <span class="keyword">return</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(sol.size() &lt;= level)<span class="comment">//如果第level层没有创建list，则创建list</span></span><br><span class="line">        &#123;</span><br><span class="line">            List&lt;Integer&gt; newLevel = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">            sol.add(newLevel);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        List&lt;Integer&gt; collection  = sol.get(level);</span><br><span class="line">        <span class="keyword">if</span>(level % <span class="number">2</span> == <span class="number">0</span>) collection.add(curr.val);<span class="comment">//奇数层正常遍历</span></span><br><span class="line">        <span class="keyword">else</span> collection.add(<span class="number">0</span>, curr.val);<span class="comment">//偶数层反向遍历</span></span><br><span class="line">        </span><br><span class="line">        travel(curr.left, sol, level + <span class="number">1</span>);<span class="comment">//递归计算</span></span><br><span class="line">        travel(curr.right, sol, level + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
+<p>For example:<br>Given binary tree [3,9,20,null,null,15,7],<br>    3<br>   / \<br>  9  20<br>    /  \<br>   15   7<br>return its zigzag level order traversal as:<br>[<br>  [3],<br>  [20,9],<br>  [15,7]<br>]<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/17/Binary-Tree-Zigzag-Level-Order-Traversal/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://riverzzz.github.io/2019/03/16/计算机网络/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Riverzzz">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="welcome，Riverzzz's github">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/16/计算机网络/" itemprop="url">计算机网络</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-16T20:37:27+08:00">
-                2019-03-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="OSI与TCP-IP各层的结构与功能，都有哪些协议"><a href="#OSI与TCP-IP各层的结构与功能，都有哪些协议" class="headerlink" title="OSI与TCP/IP各层的结构与功能，都有哪些协议"></a>OSI与TCP/IP各层的结构与功能，都有哪些协议</h2><h3 id="五层协议体系结构"><a href="#五层协议体系结构" class="headerlink" title="五层协议体系结构"></a>五层协议体系结构</h3><h3 id="应用层-重点"><a href="#应用层-重点" class="headerlink" title="应用层(重点)"></a>应用层(重点)</h3><h3 id="运输层-重点"><a href="#运输层-重点" class="headerlink" title="运输层(重点)"></a>运输层(重点)</h3><h3 id="网络层-重点"><a href="#网络层-重点" class="headerlink" title="网络层(重点)"></a>网络层(重点)</h3><h3 id="数据链路层"><a href="#数据链路层" class="headerlink" title="数据链路层"></a>数据链路层</h3><h3 id="物理层"><a href="#物理层" class="headerlink" title="物理层"></a>物理层</h3><h2 id="TCP-三次握手和四次挥手-重点"><a href="#TCP-三次握手和四次挥手-重点" class="headerlink" title="TCP 三次握手和四次挥手(重点)"></a>TCP 三次握手和四次挥手(重点)</h2><h3 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h3><h3 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a>四次挥手</h3><h2 id="TCP、UDP协议的区别"><a href="#TCP、UDP协议的区别" class="headerlink" title="TCP、UDP协议的区别"></a>TCP、UDP协议的区别</h2><h2 id="TCP协议如何保证可靠传输"><a href="#TCP协议如何保证可靠传输" class="headerlink" title="TCP协议如何保证可靠传输"></a>TCP协议如何保证可靠传输</h2><h3 id="应用数据被分割成TCP认为最合适发送的数据块，TCP给发送的每一个包进行编号，接收方对数据包进行排序，把有序数据传送给应用层。"><a href="#应用数据被分割成TCP认为最合适发送的数据块，TCP给发送的每一个包进行编号，接收方对数据包进行排序，把有序数据传送给应用层。" class="headerlink" title="应用数据被分割成TCP认为最合适发送的数据块，TCP给发送的每一个包进行编号，接收方对数据包进行排序，把有序数据传送给应用层。"></a>应用数据被分割成TCP认为最合适发送的数据块，TCP给发送的每一个包进行编号，接收方对数据包进行排序，把有序数据传送给应用层。</h3><h3 id="校验和"><a href="#校验和" class="headerlink" title="校验和"></a>校验和</h3><h3 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h3><h3 id="流量控制-和滑动窗口联合使用"><a href="#流量控制-和滑动窗口联合使用" class="headerlink" title="流量控制(和滑动窗口联合使用)"></a>流量控制(和滑动窗口联合使用)</h3><h3 id="拥塞控制"><a href="#拥塞控制" class="headerlink" title="拥塞控制"></a>拥塞控制</h3><p>拥塞窗口(cwnd)<br>慢开始 由小到大逐渐增大拥塞窗口数值<br>拥塞避免 让拥塞窗口cwnd缓慢增大<br>快重传与快恢复 如果接收机接收到一个不按顺序的数据段，它会立即给发送机发送一个重复确认。如果发送机接收到三个重复确认，它会假<br>定确认件指出的数据段丢失了，并立即重传这些丢失的数据段。</p>
-<h3 id="停止等待协议"><a href="#停止等待协议" class="headerlink" title="停止等待协议"></a>停止等待协议</h3><p>停止等待协议是为了实现可靠传输的，它的基本原理就是每发完一个分组就停止发送，等待对方确认。在收到确认后再发下一个分组；<br>在停止等待协议中，若接收方收到重复分组，就丢弃该分组，但同时还要发送确认；<br>停止等待协议中超时重传是指只要超过一段时间仍然没有收到确认，就重传前面发送过的分组，这种自动重传方式常称为自动重传请求 ARQ 。<br>连续 ARQ 协议 可提高信道利用率。发送维持一个发送窗口，凡位于发送窗口内的分组可连续发送出去，而不需要等待对方确认。</p>
-<h2 id="在浏览器中输入url地址-gt-gt-显示主页的过程"><a href="#在浏览器中输入url地址-gt-gt-显示主页的过程" class="headerlink" title="在浏览器中输入url地址 -&gt;&gt; 显示主页的过程"></a>在浏览器中输入url地址 -&gt;&gt; 显示主页的过程</h2><p>总体来说分为以下几个过程:<br>DNS解析<br>TCP连接<br>发送HTTP请求<br>服务器处理请求并返回HTTP报文<br>浏览器解析渲染页面<br>连接结束</p>
-<h2 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a>状态码</h2><p>1xx<br>2xx<br>3xx<br>4xx<br>5xx</p>
-<h2 id="各种协议与HTTP协议之间的关系"><a href="#各种协议与HTTP协议之间的关系" class="headerlink" title="各种协议与HTTP协议之间的关系"></a>各种协议与HTTP协议之间的关系</h2><h2 id="HTTP长连接、短连接"><a href="#HTTP长连接、短连接" class="headerlink" title="HTTP长连接、短连接"></a>HTTP长连接、短连接</h2><p>HTTP协议的长连接和短连接，实质上是TCP协议的长连接和短连接。</p>
-
-          
-        
-      
-    </div>
+    </p></div>
     
     
     
@@ -1710,7 +1735,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">56</span>
+                  <span class="site-state-item-count">57</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1721,7 +1746,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1732,7 +1757,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

@@ -255,6 +255,130 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://riverzzz.github.io/2019/03/16/计算机网络/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Riverzzz">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="welcome，Riverzzz's github">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/16/计算机网络/" itemprop="url">计算机网络</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-16T20:37:27+08:00">
+                2019-03-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="OSI与TCP-IP各层的结构与功能，都有哪些协议"><a href="#OSI与TCP-IP各层的结构与功能，都有哪些协议" class="headerlink" title="OSI与TCP/IP各层的结构与功能，都有哪些协议"></a>OSI与TCP/IP各层的结构与功能，都有哪些协议</h2><h3 id="五层协议体系结构"><a href="#五层协议体系结构" class="headerlink" title="五层协议体系结构"></a>五层协议体系结构</h3><h3 id="应用层-重点"><a href="#应用层-重点" class="headerlink" title="应用层(重点)"></a>应用层(重点)</h3><h3 id="运输层-重点"><a href="#运输层-重点" class="headerlink" title="运输层(重点)"></a>运输层(重点)</h3><h3 id="网络层-重点"><a href="#网络层-重点" class="headerlink" title="网络层(重点)"></a>网络层(重点)</h3><h3 id="数据链路层"><a href="#数据链路层" class="headerlink" title="数据链路层"></a>数据链路层</h3><h3 id="物理层"><a href="#物理层" class="headerlink" title="物理层"></a>物理层</h3><h2 id="TCP-三次握手和四次挥手-重点"><a href="#TCP-三次握手和四次挥手-重点" class="headerlink" title="TCP 三次握手和四次挥手(重点)"></a>TCP 三次握手和四次挥手(重点)</h2><h3 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h3><h3 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a>四次挥手</h3><h2 id="TCP、UDP协议的区别"><a href="#TCP、UDP协议的区别" class="headerlink" title="TCP、UDP协议的区别"></a>TCP、UDP协议的区别</h2><h2 id="TCP协议如何保证可靠传输"><a href="#TCP协议如何保证可靠传输" class="headerlink" title="TCP协议如何保证可靠传输"></a>TCP协议如何保证可靠传输</h2><h3 id="应用数据被分割成TCP认为最合适发送的数据块，TCP给发送的每一个包进行编号，接收方对数据包进行排序，把有序数据传送给应用层。"><a href="#应用数据被分割成TCP认为最合适发送的数据块，TCP给发送的每一个包进行编号，接收方对数据包进行排序，把有序数据传送给应用层。" class="headerlink" title="应用数据被分割成TCP认为最合适发送的数据块，TCP给发送的每一个包进行编号，接收方对数据包进行排序，把有序数据传送给应用层。"></a>应用数据被分割成TCP认为最合适发送的数据块，TCP给发送的每一个包进行编号，接收方对数据包进行排序，把有序数据传送给应用层。</h3><h3 id="校验和"><a href="#校验和" class="headerlink" title="校验和"></a>校验和</h3><h3 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h3><h3 id="流量控制-和滑动窗口联合使用"><a href="#流量控制-和滑动窗口联合使用" class="headerlink" title="流量控制(和滑动窗口联合使用)"></a>流量控制(和滑动窗口联合使用)</h3><h3 id="拥塞控制"><a href="#拥塞控制" class="headerlink" title="拥塞控制"></a>拥塞控制</h3><p>拥塞窗口(cwnd)<br>慢开始 由小到大逐渐增大拥塞窗口数值<br>拥塞避免 让拥塞窗口cwnd缓慢增大<br>快重传与快恢复 如果接收机接收到一个不按顺序的数据段，它会立即给发送机发送一个重复确认。如果发送机接收到三个重复确认，它会假<br>定确认件指出的数据段丢失了，并立即重传这些丢失的数据段。</p>
+<h3 id="停止等待协议"><a href="#停止等待协议" class="headerlink" title="停止等待协议"></a>停止等待协议</h3><p>停止等待协议是为了实现可靠传输的，它的基本原理就是每发完一个分组就停止发送，等待对方确认。在收到确认后再发下一个分组；<br>在停止等待协议中，若接收方收到重复分组，就丢弃该分组，但同时还要发送确认；<br>停止等待协议中超时重传是指只要超过一段时间仍然没有收到确认，就重传前面发送过的分组，这种自动重传方式常称为自动重传请求 ARQ 。<br>连续 ARQ 协议 可提高信道利用率。发送维持一个发送窗口，凡位于发送窗口内的分组可连续发送出去，而不需要等待对方确认。</p>
+<h2 id="在浏览器中输入url地址-gt-gt-显示主页的过程"><a href="#在浏览器中输入url地址-gt-gt-显示主页的过程" class="headerlink" title="在浏览器中输入url地址 -&gt;&gt; 显示主页的过程"></a>在浏览器中输入url地址 -&gt;&gt; 显示主页的过程</h2><p>总体来说分为以下几个过程:<br>DNS解析<br>TCP连接<br>发送HTTP请求<br>服务器处理请求并返回HTTP报文<br>浏览器解析渲染页面<br>连接结束</p>
+<h2 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a>状态码</h2><p>1xx<br>2xx<br>3xx<br>4xx<br>5xx</p>
+<h2 id="各种协议与HTTP协议之间的关系"><a href="#各种协议与HTTP协议之间的关系" class="headerlink" title="各种协议与HTTP协议之间的关系"></a>各种协议与HTTP协议之间的关系</h2><h2 id="HTTP长连接、短连接"><a href="#HTTP长连接、短连接" class="headerlink" title="HTTP长连接、短连接"></a>HTTP长连接、短连接</h2><p>HTTP协议的长连接和短连接，实质上是TCP协议的长连接和短连接。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://riverzzz.github.io/2019/03/13/数据仓库理论/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1373,136 +1497,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://riverzzz.github.io/2019/02/11/Median-of-Two-Sorted-Arrays/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Riverzzz">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="welcome，Riverzzz's github">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/02/11/Median-of-Two-Sorted-Arrays/" itemprop="url">Median of Two Sorted Arrays</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-11T16:42:44+08:00">
-                2019-02-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>两个排序数组的中位数</p>
-<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>There are two sorted arrays nums1 and nums2 of size m and n respectively.</p>
-<p>Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).</p>
-<p>You may assume nums1 and nums2 cannot be both empty.</p>
-<p>Example 1:</p>
-<p>nums1 = [1, 3]<br>nums2 = [2]</p>
-<p>The median is 2.0<br>Example 2:</p>
-<p>nums1 = [1, 2]<br>nums2 = [3, 4]</p>
-<p>The median is (2 + 3)/2 = 2.5</p>
-<h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.什么是中位数，中位数就是把数组分为相等两份的数，且左边比右边小。假设m&lt;n,那么对数组a[m]我们有m+1中切分方式。当我们从a[i]个位置切分数组时，b[j]要从哪里切分<br>才合适呢？j=m+n+1/2−i时，两个数组两边正好划分为相等的两部分。<br>2.划分为相等两份后，我们还要保证左边比右边小，这时我们需要移动i。<br>当B[j−1]≤A[i] 且 A[i−1]≤B[j]：这意味着我们找到了目标对象 i，所以可以停止搜索。<br>B[j−1]&gt;A[i]：这意味着 A[i] 太小，我们必须调整 i 以使 B[j−1]≤A[i]。我们可以增大 i，因为当 i 被增大的时候，j 就会被减小。因此 B[j−1] 会减小，而 A[i] 会增大，<br>那么 B[j−1]≤A[i] 就可能被满足。所以我们必须增大 i。也就是说，我们必须将搜索范围调整为 [i+1,imax]。 因此，设 imin=i+1。<br>A[i−1]&gt;B[j]： 这意味着 A[i−1] 太大，我们必须减小 i 以使 A[i−1]≤B[j]。 也就是说，我们必须将搜索范围调整为 [imin,i−1]。因此，设 imax=i−1。<br>也就是我们以二分法来搜索i的值。<br>3.目标值，max(A[i−1],B[j−1]), 当 m+n 为奇数时；<br>max(A[i−1],B[j−1])+min(A[i],B[j])/2, 当 m+n 为偶数时。</p>
-<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">findMedianSortedArrays</span><span class="params">(<span class="keyword">int</span>[] A, <span class="keyword">int</span>[] B)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> m = A.length;</span><br><span class="line">        <span class="keyword">int</span> n = B.length;</span><br><span class="line">        <span class="keyword">if</span> (m &gt; n) &#123; <span class="comment">// to ensure m&lt;=n</span></span><br><span class="line">            <span class="keyword">int</span>[] temp = A; A = B; B = temp;</span><br><span class="line">            <span class="keyword">int</span> tmp = m; m = n; n = tmp;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> iMin = <span class="number">0</span>, iMax = m, halfLen = (m + n + <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">while</span> (iMin &lt;= iMax) &#123;</span><br><span class="line">            <span class="keyword">int</span> i = (iMin + iMax) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">int</span> j = halfLen - i;</span><br><span class="line">            <span class="keyword">if</span> (i &lt; iMax &amp;&amp; B[j-<span class="number">1</span>] &gt; A[i])&#123;</span><br><span class="line">                iMin = i + <span class="number">1</span>; <span class="comment">// i is too small</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (i &gt; iMin &amp;&amp; A[i-<span class="number">1</span>] &gt; B[j]) &#123;</span><br><span class="line">                iMax = i - <span class="number">1</span>; <span class="comment">// i is too big</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123; <span class="comment">// i is perfect</span></span><br><span class="line">                <span class="keyword">int</span> maxLeft = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">if</span> (i == <span class="number">0</span>) &#123; maxLeft = B[j-<span class="number">1</span>]; &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (j == <span class="number">0</span>) &#123; maxLeft = A[i-<span class="number">1</span>]; &#125;</span><br><span class="line">                <span class="keyword">else</span> &#123; maxLeft = Math.max(A[i-<span class="number">1</span>], B[j-<span class="number">1</span>]); &#125;</span><br><span class="line">                <span class="keyword">if</span> ( (m + n) % <span class="number">2</span> == <span class="number">1</span> ) &#123; <span class="keyword">return</span> maxLeft; &#125;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">int</span> minRight = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">if</span> (i == m) &#123; minRight = B[j]; &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (j == n) &#123; minRight = A[i]; &#125;</span><br><span class="line">                <span class="keyword">else</span> &#123; minRight = Math.min(B[j], A[i]); &#125;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">return</span> (maxLeft + minRight) / <span class="number">2.0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0.0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1553,7 +1547,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">56</span>
+                  <span class="site-state-item-count">57</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1564,7 +1558,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1575,7 +1569,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
