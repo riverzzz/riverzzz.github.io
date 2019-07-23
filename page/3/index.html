@@ -255,6 +255,133 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://riverzzz.github.io/2019/02/18/Longest-Substring-Without-Repeating-Characters/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Riverzzz">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="welcome，Riverzzz's github">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/02/18/Longest-Substring-Without-Repeating-Characters/" itemprop="url">Longest Substring Without Repeating Characters</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-18T22:25:16+08:00">
+                2019-02-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>无重复字符串最长字串</p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Given a string, find the length of the longest substring without repeating characters.</p>
+<p>Example 1:</p>
+<p>Input: “abcabcbb”<br>Output: 3<br>Explanation: The answer is “abc”, with the length of 3.<br>Example 2:</p>
+<p>Input: “bbbbb”<br>Output: 1<br>Explanation: The answer is “b”, with the length of 1.<br>Example 3:</p>
+<p>Input: “pwwkew”<br>Output: 3<br>Explanation: The answer is “wke”, with the length of 3.<br>             Note that the answer must be a substring, “pwke” is a subsequence and not a substring.</p>
+<h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.我们可以滑动窗口i、j，窗口覆盖的即为字串。当滑动到下一个字符时，如果当前字符出现过，1.当前字符在滑动窗口外，则无影响。2.当前字符出现在滑动窗口内，<br>则出现了重复，起始位置重置为当前字符前一次出现的位置+1，即s.charAt(j)+1</p>
+<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n=s.length(),nas=<span class="number">0</span>;</span><br><span class="line">        Map&lt;Character,Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>,i=<span class="number">0</span>;j&lt;n;j++)&#123;<span class="comment">//i-&gt;子串起始位置，j-&gt;子串结束位置</span></span><br><span class="line">            <span class="keyword">if</span>(map.containsKey(s.charAt(j)))&#123;<span class="comment">//判断当前字符是否出现过</span></span><br><span class="line">                i=Math.max(map.get(s.charAt(j))+<span class="number">1</span>,i);<span class="comment">//如果当前字符出现过，1.当前字符出现的位置在i前面，则i不变，</span></span><br><span class="line">                                                     <span class="comment">//2.当前字符出现的位置在i后面，则重置起始位置为s.charAt(j)+1</span></span><br><span class="line">            &#125;</span><br><span class="line">            nas=Math.max(nas,j-i+<span class="number">1</span>);<span class="comment">//比较历史字串和当前窗口串的大小</span></span><br><span class="line">            map.put(s.charAt(j),j);<span class="comment">//当前位置索引放入hashmap</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> nas;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://riverzzz.github.io/2019/02/11/Median-of-Two-Sorted-Arrays/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -335,7 +462,7 @@
 <p>The median is 2.0<br>Example 2:</p>
 <p>nums1 = [1, 2]<br>nums2 = [3, 4]</p>
 <p>The median is (2 + 3)/2 = 2.5</p>
-<h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.什么是中位数，中位数就是把数组分为相等两份的数，且左边比右边小。假设m&lt;n,那么对数组a[m]我们有m+1中切分方式。当我们从a[i]个位置切分数组时，b[j]要从哪里切分<br>才合适呢？j=m+n+1/2−i时，两个数组两边正好划分为相等的两部分。<br>2.划分为相等两份后，我们还要保证左边比右边小，这时我们需要移动i。<br>当B[j−1]≤A[i] 且 A[i−1]≤B[j]：这意味着我们找到了目标对象 i，所以可以停止搜索。<br>B[j−1]&gt;A[i]：这意味着 A[i] 太小，我们必须调整 i 以使 B[j−1]≤A[i]。我们可以增大 i，因为当 i 被增大的时候，j 就会被减小。因此 B[j−1] 会减小，而 A[i] 会增大，<br>那么 B[j−1]≤A[i] 就可能被满足。所以我们必须增大 i。也就是说，我们必须将搜索范围调整为 [i+1,imax]。 因此，设 imin=i+1。<br>A[i−1]&gt;B[j]： 这意味着 A[i−1] 太大，我们必须减小 i 以使 A[i−1]≤B[j]。 也就是说，我们必须将搜索范围调整为 [imin,i−1]。因此，设 imax=i−1。<br>也就是我们以二分法来搜索i的值。<br>3.目标值，max(A[i−1],B[j−1]), 当 m+n 为奇数时；<br>max(A[i−1],B[j−1])+min(A[i],B[j])/2, 当 m+n 为偶数时。</p>
+<h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.什么是中位数，中位数就是把数组分为相等两份的数，且左边比右边小。假设m<n,那么对数组a[m]我们有m+1中切分方式。当我们从a[i]个位置切分数组时，b[j]要从哪里切分 才合适呢？j="m+n+1/2−i时，两个数组两边正好划分为相等的两部分。" 2.划分为相等两份后，我们还要保证左边比右边小，这时我们需要移动i。="" 当b[j−1]≤a[i]="" 且="" a[i−1]≤b[j]：这意味着我们找到了目标对象="" i，所以可以停止搜索。="" b[j−1]="">A[i]：这意味着 A[i] 太小，我们必须调整 i 以使 B[j−1]≤A[i]。我们可以增大 i，因为当 i 被增大的时候，j 就会被减小。因此 B[j−1] 会减小，而 A[i] 会增大，<br>那么 B[j−1]≤A[i] 就可能被满足。所以我们必须增大 i。也就是说，我们必须将搜索范围调整为 [i+1,imax]。 因此，设 imin=i+1。<br>A[i−1]&gt;B[j]： 这意味着 A[i−1] 太大，我们必须减小 i 以使 A[i−1]≤B[j]。 也就是说，我们必须将搜索范围调整为 [imin,i−1]。因此，设 imax=i−1。<br>也就是我们以二分法来搜索i的值。<br>3.目标值，max(A[i−1],B[j−1]), 当 m+n 为奇数时；<br>max(A[i−1],B[j−1])+min(A[i],B[j])/2, 当 m+n 为偶数时。</n,那么对数组a[m]我们有m+1中切分方式。当我们从a[i]个位置切分数组时，b[j]要从哪里切分></p>
 <h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">findMedianSortedArrays</span><span class="params">(<span class="keyword">int</span>[] A, <span class="keyword">int</span>[] B)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> m = A.length;</span><br><span class="line">        <span class="keyword">int</span> n = B.length;</span><br><span class="line">        <span class="keyword">if</span> (m &gt; n) &#123; <span class="comment">// to ensure m&lt;=n</span></span><br><span class="line">            <span class="keyword">int</span>[] temp = A; A = B; B = temp;</span><br><span class="line">            <span class="keyword">int</span> tmp = m; m = n; n = tmp;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> iMin = <span class="number">0</span>, iMax = m, halfLen = (m + n + <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">while</span> (iMin &lt;= iMax) &#123;</span><br><span class="line">            <span class="keyword">int</span> i = (iMin + iMax) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">int</span> j = halfLen - i;</span><br><span class="line">            <span class="keyword">if</span> (i &lt; iMax &amp;&amp; B[j-<span class="number">1</span>] &gt; A[i])&#123;</span><br><span class="line">                iMin = i + <span class="number">1</span>; <span class="comment">// i is too small</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (i &gt; iMin &amp;&amp; A[i-<span class="number">1</span>] &gt; B[j]) &#123;</span><br><span class="line">                iMax = i - <span class="number">1</span>; <span class="comment">// i is too big</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123; <span class="comment">// i is perfect</span></span><br><span class="line">                <span class="keyword">int</span> maxLeft = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">if</span> (i == <span class="number">0</span>) &#123; maxLeft = B[j-<span class="number">1</span>]; &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (j == <span class="number">0</span>) &#123; maxLeft = A[i-<span class="number">1</span>]; &#125;</span><br><span class="line">                <span class="keyword">else</span> &#123; maxLeft = Math.max(A[i-<span class="number">1</span>], B[j-<span class="number">1</span>]); &#125;</span><br><span class="line">                <span class="keyword">if</span> ( (m + n) % <span class="number">2</span> == <span class="number">1</span> ) &#123; <span class="keyword">return</span> maxLeft; &#125;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">int</span> minRight = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">if</span> (i == m) &#123; minRight = B[j]; &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (j == n) &#123; minRight = A[i]; &#125;</span><br><span class="line">                <span class="keyword">else</span> &#123; minRight = Math.min(B[j], A[i]); &#125;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">return</span> (maxLeft + minRight) / <span class="number">2.0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0.0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
           
@@ -461,9 +588,9 @@
 <p>For this problem, a path is defined as any sequence of nodes from some starting node to any node in the tree along the parent-child connections. The path must contain at least one node and does not need to go through the root.</p>
 <p>Example 1:</p>
 <p>Input: [1,2,3]</p>
-<pre><code>  1
- / \
-2   3
+<pre><code>   1
+  / \
+ 2   3
 </code></pre><p>Output: 6<br>Example 2:</p>
 <p>Input: [-10,9,20,null,null,15,7]</p>
 <p>   -10<br>   / \<br>  9  20<br>    /  \<br>   15   7</p>
@@ -1396,125 +1523,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://riverzzz.github.io/2019/01/23/读图解bert总结/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Riverzzz">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="welcome，Riverzzz's github">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/23/读图解bert总结/" itemprop="url">读图解bert总结</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-23T21:34:44+08:00">
-                2019-01-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1565,7 +1573,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-count">58</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

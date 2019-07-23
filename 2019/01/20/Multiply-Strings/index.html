@@ -329,19 +329,19 @@
 <p>Input: num1 = “123”, num2 = “456”<br>Output: “56088”<br>Note:</p>
 <p>The length of both num1 and num2 is &lt; 110.<br>Both num1 and num2 contain only digits 0-9.<br>Both num1 and num2 do not contain any leading zero, except the number 0 itself.<br>You must not use any built-in BigInteger library or convert the inputs to integer directly.</p>
 <h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>num1的第i位(高位从0开始)和num2的第j位相乘的结果在乘积中的位置是[i+j, i+j+1]<br>例: 123 * 45,  123的第1位 2 和45的第0位 4 乘积 08 存放在结果的第[1, 2]位中<br>  index:    0 1 2 3 4  </p>
-<pre><code>    1 2 3
-*     4 5
----------
-      1 5
-    1 0
-  0 5
----------
-  0 6 1 5
-    1 2
-  0 8
-0 4
----------
-0 5 5 3 5
+<pre><code>            1 2 3
+        *     4 5
+        ---------
+              1 5
+            1 0
+          0 5
+        ---------
+          0 6 1 5
+            1 2
+          0 8
+        0 4
+        ---------
+        0 5 5 3 5
 </code></pre><p>这样我们就可以单独都对每一位进行相乘计算把结果存入相应的index中        </p>
 <h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">multiply</span><span class="params">(String num1, String num2)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> m = num1.length(), n = num2.length();</span><br><span class="line">    <span class="keyword">int</span>[] pos = <span class="keyword">new</span> <span class="keyword">int</span>[m + n];</span><br><span class="line">   </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = m - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = n - <span class="number">1</span>; j &gt;= <span class="number">0</span>; j--) &#123;</span><br><span class="line">            <span class="keyword">int</span> mul = (num1.charAt(i) - <span class="string">'0'</span>) * (num2.charAt(j) - <span class="string">'0'</span>); </span><br><span class="line">            <span class="keyword">int</span> p1 = i + j, p2 = i + j + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">int</span> sum = mul + pos[p2];</span><br><span class="line"></span><br><span class="line">            pos[p1] += sum / <span class="number">10</span>;</span><br><span class="line">            pos[p2] = (sum) % <span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;  </span><br><span class="line">    </span><br><span class="line">    StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> p : pos) <span class="keyword">if</span>(!(sb.length() == <span class="number">0</span> &amp;&amp; p == <span class="number">0</span>)) sb.append(p);</span><br><span class="line">    <span class="keyword">return</span> sb.length() == <span class="number">0</span> ? <span class="string">"0"</span> : sb.toString();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -483,7 +483,7 @@ var jiathis_config={
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-count">58</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
