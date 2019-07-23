@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="odbc,sas,">
 
 
 
@@ -79,17 +79,27 @@
 
 
 
-<meta name="description" content="执中守正；折中致和；时中行权。">
+<meta name="description" content="1.配置hive-site.xml首先声明一下，这里默认大家已经安装好了hive和sas，没有安装好的请参考网上的教程安装。hive-site.xml是Hive的配置文件，位于$HIVE_HOME/conf文件夹下，在其中添加如下配置：  hive.server2.authentication NONE Expects one of [nosasl, none, ldap, kerberos, p">
+<meta name="keywords" content="odbc,sas">
 <meta property="og:type" content="article">
 <meta property="og:title" content="sas odbc 方式连接 hive">
 <meta property="og:url" content="https://riverzzz.github.io/2019/07/23/sas-odbc-方式连接-hive/index.html">
 <meta property="og:site_name" content="welcome，Riverzzz&#39;s github">
-<meta property="og:description" content="执中守正；折中致和；时中行权。">
+<meta property="og:description" content="1.配置hive-site.xml首先声明一下，这里默认大家已经安装好了hive和sas，没有安装好的请参考网上的教程安装。hive-site.xml是Hive的配置文件，位于$HIVE_HOME/conf文件夹下，在其中添加如下配置：  hive.server2.authentication NONE Expects one of [nosasl, none, ldap, kerberos, p">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-23T14:28:31.106Z">
+<meta property="og:image" content="https://riverzzz.github.io/2019/07/23/sas-odbc-方式连接-hive/t1.png">
+<meta property="og:image" content="https://riverzzz.github.io/2019/07/23/sas-odbc-方式连接-hive/t2.png">
+<meta property="og:image" content="https://riverzzz.github.io/2019/07/23/sas-odbc-方式连接-hive/t3.png">
+<meta property="og:image" content="https://riverzzz.github.io/2019/07/23/sas-odbc-方式连接-hive/t4.png">
+<meta property="og:image" content="https://riverzzz.github.io/2019/07/23/sas-odbc-方式连接-hive/t5.png">
+<meta property="og:image" content="https://riverzzz.github.io/2019/07/23/sas-odbc-方式连接-hive/t6.png">
+<meta property="og:image" content="https://riverzzz.github.io/2019/07/23/sas-odbc-方式连接-hive/t7.png">
+<meta property="og:image" content="https://riverzzz.github.io/2019/07/23/sas-odbc-方式连接-hive/t8.png">
+<meta property="og:updated_time" content="2019-07-23T15:14:35.690Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="sas odbc 方式连接 hive">
-<meta name="twitter:description" content="执中守正；折中致和；时中行权。">
+<meta name="twitter:description" content="1.配置hive-site.xml首先声明一下，这里默认大家已经安装好了hive和sas，没有安装好的请参考网上的教程安装。hive-site.xml是Hive的配置文件，位于$HIVE_HOME/conf文件夹下，在其中添加如下配置：  hive.server2.authentication NONE Expects one of [nosasl, none, ldap, kerberos, p">
+<meta name="twitter:image" content="https://riverzzz.github.io/2019/07/23/sas-odbc-方式连接-hive/t1.png">
 
 
 
@@ -295,6 +305,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/大数据/" itemprop="url" rel="index">
+                    <span itemprop="name">大数据</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -322,7 +354,24 @@
       
 
       
-        
+        <h2 id="1-配置hive-site-xml"><a href="#1-配置hive-site-xml" class="headerlink" title="1.配置hive-site.xml"></a>1.配置hive-site.xml</h2><p>首先声明一下，这里默认大家已经安装好了hive和sas，没有安装好的请参考网上的教程安装。<br>hive-site.xml是Hive的配置文件，位于$HIVE_HOME/conf文件夹下，在其中添加如下配置：</p>
+<property> <name>hive.server2.authentication</name> <value>NONE</value> <description><br>Expects one of [nosasl, none, ldap, kerberos, pam, custom]. Client authentication types.<br> NONE: no authentication check LDAP: LDAP/AD based authentication KERBEROS:<br> Kerberos/GSSAPI authentication CUSTOM: Custom authentication provider (Use with<br> property hive.server2.custom.authentication.class) PAM: Pluggable authentication module<br> NOSASL: Raw transport </description> </property>
+
+<p>远程访问Hive，有好几种身份验证方式，因为我们的Hive服务仅在局域网中访问，简单起见，可以配<br>置为NONE，也就是不进行身份验证，NONE也是hive.server2.authentication的默认值。<br><a id="more"></a></p>
+<h2 id="2-确认hiveserver2服务已经运行"><a href="#2-确认hiveserver2服务已经运行" class="headerlink" title="2.确认hiveserver2服务已经运行"></a>2.确认hiveserver2服务已经运行</h2><p>hive需要先作为服务运行起来，第三方应用才可以进行连接，使用下面的命令启动hive服务：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive --service hiveserver2 2018-07-25 11:40:51: Starting HiveServer2</span><br></pre></td></tr></table></figure>
+<p>这个服务的默认端口号是10000。同时，还提供了一个web UI，默认端口号是10002，可以通过浏览器<br>直接访问：<br><img src="/2019/07/23/sas-odbc-方式连接-hive/t1.png" title="t1"></p>
+<h2 id="3-下载、安装和配置ODBC-Connector"><a href="#3-下载、安装和配置ODBC-Connector" class="headerlink" title="3.下载、安装和配置ODBC Connector"></a>3.下载、安装和配置ODBC Connector</h2><p>可以从这里下载各个版本的HIVE ODBC： <a href="http://archive.mapr.com/tools/MapR-ODBC/MapR_Hive/，" target="_blank" rel="noopener">http://archive.mapr.com/tools/MapR-ODBC/MapR_Hive/，</a><br><strong>这里需要注意下，针对不同的hive版本可能需要使用不同的odbc驱动，大家使用上如果有问题可以几<br>个版本都试一下。</strong><br>Windows上odbc安装和配置说明：  Install the Hive ODBC Connector on Windows<br>windows上的安装很简单，一路next，就可以了。<br><img src="/2019/07/23/sas-odbc-方式连接-hive/t2.png" title="t2"></p>
+<p>安装完成后从“开始”菜单中找到：MapR Hive ODBC Connector 2.1 (64-bit)，打开<br>64-bit ODBC Administrato，可以看到下面的界面：<br><img src="/2019/07/23/sas-odbc-方式连接-hive/t3.png" title="t3"></p>
+<p>点击“添加”<br><img src="/2019/07/23/sas-odbc-方式连接-hive/t4.png" title="t4"></p>
+<p>选择“MapR Hive ODBC Connector”，按照下图这样配置，注意修改Hosts为运行Hive服务的主机IP：<br><img src="/2019/07/23/sas-odbc-方式连接-hive/t5.png" title="t5"></p>
+<p>Data Source Name：为数据源起的名字<br>Host(s):hive服务的主机ip<br>Port：默认是10000，大家根据实际修改<br>Database：对应hive的库名大家根据实际使用配置<br>User Name：对应hive机器上分配的linux用户名</p>
+<p>点击“Test”， 成功后可以看到下面的界面：<br><img src="/2019/07/23/sas-odbc-方式连接-hive/t6.png" title="t6"><br>如图所示，成功连接至hive。</p>
+<h2 id="4-编写sas程序代码访问Hive"><a href="#4-编写sas程序代码访问Hive" class="headerlink" title="4.编写sas程序代码访问Hive"></a>4.编写sas程序代码访问Hive</h2><p>如图，sas连接以odbc的方式连接hive：<br><img src="/2019/07/23/sas-odbc-方式连接-hive/t7.png" title="t7"></p>
+<p>libname hive odbc user= XXXXX password=XXXXX datasrc=hiveuat schema= XXXXX;<br>user：对应之前odbc设置的user<br>password：我没有配置密码，所以随便填<br>datasrc：对应之前odbc配置的odbc名<br>schema：指定读取表结构的库，对应之前odbc的库设置</p>
+<p>配置好连接后，就可以用sas的语法查询、分析数据，下图是查询结果：<br><img src="/2019/07/23/sas-odbc-方式连接-hive/t8.png" title="t8"></p>
+<p>至此，sas以odbc的方式连接hive就完成了。这种方式对比hadoop的方式可以减少配置，更加方便。</p>
+
       
     </div>
     
@@ -336,6 +385,14 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/odbc/" rel="tag"># odbc</a>
+          
+            <a href="/tags/sas/" rel="tag"># sas</a>
+          
+        </div>
       
 
       
@@ -432,8 +489,17 @@ var jiathis_config={
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -470,7 +536,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -503,6 +569,22 @@ var jiathis_config={
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-配置hive-site-xml"><span class="nav-number">1.</span> <span class="nav-text">1.配置hive-site.xml</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-确认hiveserver2服务已经运行"><span class="nav-number">2.</span> <span class="nav-text">2.确认hiveserver2服务已经运行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-下载、安装和配置ODBC-Connector"><span class="nav-number">3.</span> <span class="nav-text">3.下载、安装和配置ODBC Connector</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-编写sas程序代码访问Hive"><span class="nav-number">4.</span> <span class="nav-text">4.编写sas程序代码访问Hive</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
