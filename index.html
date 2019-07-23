@@ -347,10 +347,10 @@
 
       
         
-          <h2 id="1-配置hive-site-xml"><a href="#1-配置hive-site-xml" class="headerlink" title="1.配置hive-site.xml"></a>1.配置hive-site.xml</h2><p>首先声明一下，这里默认大家已经安装好了hive和sas，没有安装好的请参考网上的教程安装。<br>hive-site.xml是Hive的配置文件，位于$HIVE_HOME/conf文件夹下，在其中添加如下配置：</p>
+          <h2 id="1-配置hive-site-xml"><a href="#1-配置hive-site-xml" class="headerlink" title="1.配置hive-site.xml"></a>1.配置hive-site.xml</h2><p>首先声明一下，这里默认大家已经安装好了hive和sas，没有安装好的请参考网上的教程安装。hive-site.xml是<br>Hive的配置文件，位于$HIVE_HOME/conf文件夹下，在其中添加如下配置：</p>
 <property> <name>hive.server2.authentication</name> <value>NONE</value> <description><br>Expects one of [nosasl, none, ldap, kerberos, pam, custom]. Client authentication types.<br> NONE: no authentication check LDAP: LDAP/AD based authentication KERBEROS:<br> Kerberos/GSSAPI authentication CUSTOM: Custom authentication provider (Use with<br> property hive.server2.custom.authentication.class) PAM: Pluggable authentication module<br> NOSASL: Raw transport </description> </property>
 
-<p>远程访问Hive，有好几种身份验证方式，因为我们的Hive服务仅在局域网中访问，简单起见，可以配<br>置为NONE，也就是不进行身份验证，NONE也是hive.server2.authentication的默认值。<br>
+<p>远程访问Hive，有好几种身份验证方式，因为我们的Hive服务仅在局域网中访问，简单起见，可以配置为NONE，<br>也就是不进行身份验证，NONE也是hive.server2.authentication的默认值。<br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/07/23/sas-odbc-方式连接-hive/#more" rel="contents">

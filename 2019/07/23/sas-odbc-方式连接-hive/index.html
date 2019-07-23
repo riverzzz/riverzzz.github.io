@@ -95,7 +95,7 @@
 <meta property="og:image" content="https://riverzzz.github.io/2019/07/23/sas-odbc-方式连接-hive/t6.png">
 <meta property="og:image" content="https://riverzzz.github.io/2019/07/23/sas-odbc-方式连接-hive/t7.png">
 <meta property="og:image" content="https://riverzzz.github.io/2019/07/23/sas-odbc-方式连接-hive/t8.png">
-<meta property="og:updated_time" content="2019-07-23T15:14:35.690Z">
+<meta property="og:updated_time" content="2019-07-23T15:19:25.596Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="sas odbc 方式连接 hive">
 <meta name="twitter:description" content="1.配置hive-site.xml首先声明一下，这里默认大家已经安装好了hive和sas，没有安装好的请参考网上的教程安装。hive-site.xml是Hive的配置文件，位于$HIVE_HOME/conf文件夹下，在其中添加如下配置：  hive.server2.authentication NONE Expects one of [nosasl, none, ldap, kerberos, p">
@@ -354,10 +354,10 @@
       
 
       
-        <h2 id="1-配置hive-site-xml"><a href="#1-配置hive-site-xml" class="headerlink" title="1.配置hive-site.xml"></a>1.配置hive-site.xml</h2><p>首先声明一下，这里默认大家已经安装好了hive和sas，没有安装好的请参考网上的教程安装。<br>hive-site.xml是Hive的配置文件，位于$HIVE_HOME/conf文件夹下，在其中添加如下配置：</p>
+        <h2 id="1-配置hive-site-xml"><a href="#1-配置hive-site-xml" class="headerlink" title="1.配置hive-site.xml"></a>1.配置hive-site.xml</h2><p>首先声明一下，这里默认大家已经安装好了hive和sas，没有安装好的请参考网上的教程安装。hive-site.xml是<br>Hive的配置文件，位于$HIVE_HOME/conf文件夹下，在其中添加如下配置：</p>
 <property> <name>hive.server2.authentication</name> <value>NONE</value> <description><br>Expects one of [nosasl, none, ldap, kerberos, pam, custom]. Client authentication types.<br> NONE: no authentication check LDAP: LDAP/AD based authentication KERBEROS:<br> Kerberos/GSSAPI authentication CUSTOM: Custom authentication provider (Use with<br> property hive.server2.custom.authentication.class) PAM: Pluggable authentication module<br> NOSASL: Raw transport </description> </property>
 
-<p>远程访问Hive，有好几种身份验证方式，因为我们的Hive服务仅在局域网中访问，简单起见，可以配<br>置为NONE，也就是不进行身份验证，NONE也是hive.server2.authentication的默认值。<br><a id="more"></a></p>
+<p>远程访问Hive，有好几种身份验证方式，因为我们的Hive服务仅在局域网中访问，简单起见，可以配置为NONE，<br>也就是不进行身份验证，NONE也是hive.server2.authentication的默认值。<br><a id="more"></a></p>
 <h2 id="2-确认hiveserver2服务已经运行"><a href="#2-确认hiveserver2服务已经运行" class="headerlink" title="2.确认hiveserver2服务已经运行"></a>2.确认hiveserver2服务已经运行</h2><p>hive需要先作为服务运行起来，第三方应用才可以进行连接，使用下面的命令启动hive服务：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive --service hiveserver2 2018-07-25 11:40:51: Starting HiveServer2</span><br></pre></td></tr></table></figure>
 <p>这个服务的默认端口号是10000。同时，还提供了一个web UI，默认端口号是10002，可以通过浏览器<br>直接访问：<br><img src="/2019/07/23/sas-odbc-方式连接-hive/t1.png" title="t1"></p>
