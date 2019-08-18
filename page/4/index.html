@@ -255,6 +255,135 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://riverzzz.github.io/2019/01/23/Search-in-Rotated-Sorted-Array/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Riverzzz">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="welcome，Riverzzz's github">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/23/Search-in-Rotated-Sorted-Array/" itemprop="url">Search in Rotated Sorted Array</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-23T22:09:48+08:00">
+                2019-01-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>查找旋转排序数组</p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.</p>
+<p>(i.e., [0,1,2,4,5,6,7] might become [4,5,6,7,0,1,2]).</p>
+<p>You are given a target value to search. If found in the array return its index, otherwise return -1.</p>
+<p>You may assume no duplicate exists in the array.</p>
+<p>Your algorithm’s runtime complexity must be in the order of O(log n).</p>
+<p>Example 1:</p>
+<p>Input: nums = [4,5,6,7,0,1,2], target = 0<br>Output: 4<br>Example 2:</p>
+<p>Input: nums = [4,5,6,7,0,1,2], target = 3<br>Output: -1</p>
+<h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.依题我们可以知道，当我们使用二分法的时候，肯定会有一边是排序数组，如果target在排序数组里面，那么继续二分查找，如果不在，那么循环整个逻辑，继续在<br>另一边查找。</p>
+<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">search</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> start = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> end = nums.length - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (start &lt;= end)&#123;</span><br><span class="line">            <span class="keyword">int</span> mid = (start + end) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (nums[mid] == target)</span><br><span class="line">                <span class="keyword">return</span> mid;</span><br><span class="line">        </span><br><span class="line">            <span class="keyword">if</span> (nums[start] &lt;= nums[mid])&#123;<span class="comment">//如果左边是排序数组，target在左边，那么继续二分查找，不在的话在右边继续查找。</span></span><br><span class="line">                 <span class="keyword">if</span> (target &lt; nums[mid] &amp;&amp; target &gt;= nums[start]) </span><br><span class="line">                    end = mid - <span class="number">1</span>;</span><br><span class="line">                 <span class="keyword">else</span></span><br><span class="line">                    start = mid + <span class="number">1</span>;</span><br><span class="line">            &#125; </span><br><span class="line">        </span><br><span class="line">            <span class="keyword">if</span> (nums[mid] &lt;= nums[end])&#123;<span class="comment">//与上面逻辑相同</span></span><br><span class="line">                <span class="keyword">if</span> (target &gt; nums[mid] &amp;&amp; target &lt;= nums[end])</span><br><span class="line">                    start = mid + <span class="number">1</span>;</span><br><span class="line">                 <span class="keyword">else</span></span><br><span class="line">                    end = mid - <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://riverzzz.github.io/2019/01/23/读图解bert总结/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -696,19 +825,19 @@
 <p>Input: num1 = “123”, num2 = “456”<br>Output: “56088”<br>Note:</p>
 <p>The length of both num1 and num2 is &lt; 110.<br>Both num1 and num2 contain only digits 0-9.<br>Both num1 and num2 do not contain any leading zero, except the number 0 itself.<br>You must not use any built-in BigInteger library or convert the inputs to integer directly.</p>
 <h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>num1的第i位(高位从0开始)和num2的第j位相乘的结果在乘积中的位置是[i+j, i+j+1]<br>例: 123 * 45,  123的第1位 2 和45的第0位 4 乘积 08 存放在结果的第[1, 2]位中<br>  index:    0 1 2 3 4  </p>
-<pre><code>            1 2 3
-        *     4 5
-        ---------
-              1 5
-            1 0
-          0 5
-        ---------
-          0 6 1 5
-            1 2
-          0 8
-        0 4
-        ---------
-        0 5 5 3 5
+<pre><code>    1 2 3
+*     4 5
+---------
+      1 5
+    1 0
+  0 5
+---------
+  0 6 1 5
+    1 2
+  0 8
+0 4
+---------
+0 5 5 3 5
 </code></pre><p>这样我们就可以单独都对每一位进行相乘计算把结果存入相应的index中        </p>
 <h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">multiply</span><span class="params">(String num1, String num2)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> m = num1.length(), n = num2.length();</span><br><span class="line">    <span class="keyword">int</span>[] pos = <span class="keyword">new</span> <span class="keyword">int</span>[m + n];</span><br><span class="line">   </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = m - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = n - <span class="number">1</span>; j &gt;= <span class="number">0</span>; j--) &#123;</span><br><span class="line">            <span class="keyword">int</span> mul = (num1.charAt(i) - <span class="string">'0'</span>) * (num2.charAt(j) - <span class="string">'0'</span>); </span><br><span class="line">            <span class="keyword">int</span> p1 = i + j, p2 = i + j + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">int</span> sum = mul + pos[p2];</span><br><span class="line"></span><br><span class="line">            pos[p1] += sum / <span class="number">10</span>;</span><br><span class="line">            pos[p2] = (sum) % <span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;  </span><br><span class="line">    </span><br><span class="line">    StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> p : pos) <span class="keyword">if</span>(!(sb.length() == <span class="number">0</span> &amp;&amp; p == <span class="number">0</span>)) sb.append(p);</span><br><span class="line">    <span class="keyword">return</span> sb.length() == <span class="number">0</span> ? <span class="string">"0"</span> : sb.toString();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -1387,132 +1516,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://riverzzz.github.io/2019/01/10/Product-of-Array-Except-Self/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Riverzzz">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="welcome，Riverzzz's github">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/10/Product-of-Array-Except-Self/" itemprop="url">Product of Array Except Self</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-10T22:51:29+08:00">
-                2019-01-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>数组除了自己剩余数的乘积</p>
-<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Given an array nums of n integers where n &gt; 1,  return an array output such that output[i] is equal to the product of all the elements of nums except nums[i].</p>
-<p>Example:</p>
-<p>Input:  [1,2,3,4]<br>Output: [24,12,8,6]</p>
-<p>Note: Please solve it without division and in O(n).</p>
-<p>Follow up:<br>Could you solve it with constant space complexity? (The output array does not count as extra space for the purpose of space complexity analysis.)</p>
-<h2 id="解析重点"><a href="#解析重点" class="headerlink" title="解析重点"></a>解析重点</h2><p>1.一开始我想着计算数组所有数的乘积，然后一个循环除以每个数自身即可，但是这里不让用除法。<br>2.那么我们怎么得到结果呢？a[i]=a[1]<em>…a[i-1]</em>a[i+1]*…a[n],根据上式，我们可以以a[i]为界限，把计算分为两部分，左边和右边乘积。这样我们只需要把数组<br>循环两次，第一次计算左边的乘积，第二次计算右边的乘积，合起来即为结果。</p>
-<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] productExceptSelf(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">    <span class="keyword">int</span> n = nums.length;</span><br><span class="line">    <span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">    res[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">	<span class="comment">//计算左边乘积</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">        res[i] = res[i - <span class="number">1</span>] * nums[i - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> right = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = n - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        res[i] *= right;<span class="comment">//将右边乘积合并到左边</span></span><br><span class="line">        right *= nums[i];<span class="comment">//计算右边乘积</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1563,7 +1566,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-count">59</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1585,7 +1588,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

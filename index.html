@@ -255,6 +255,163 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://riverzzz.github.io/2019/08/18/kafka集成structure-streaming总结/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Riverzzz">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="welcome，Riverzzz's github">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/18/kafka集成structure-streaming总结/" itemprop="url">kafka集成structure streaming总结</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-18T19:53:55+08:00">
+                2019-08-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/大数据/" itemprop="url" rel="index">
+                    <span itemprop="name">大数据</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-集成配置"><a href="#1-集成配置" class="headerlink" title="1.集成配置"></a>1.集成配置</h2><p>我这边使用maven构建项目，大家根据实际修改。Pom文件配置，截取了需要的部分</p>
+<dependency><br>  <groupid>org.apache.spark</groupid><br>  <artifactid>spark-sql_${scala.binary.version}</artifactid><br>  <version>${spark.version}</version><br></dependency><br><!-- https://mvnrepository.com/artifact/org.apache.kudu/kudu-client --><br><dependency><br>  <groupid>org.apache.kudu</groupid><br>  <artifactid>kudu-client</artifactid><br>  <version>1.10.0</version><br></dependency>
+
+<!-- https://mvnrepository.com/artifact/org.apache.spark/spark-sql-kafka-0-10 -->
+<p><dependency><br>  <groupid>org.apache.spark</groupid><br>  <artifactid>spark-sql-kafka-0-10_2.11</artifactid><br>  <version>2.3.0</version></dependency></p>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2><p>打包配置，后面我会解释为什么打包这么配置</p>
+<plugin><br>  <groupid>org.apache.maven.plugins</groupid><br>  <artifactid>maven-shade-plugin</artifactid><br>  <version>3.0.0</version><br>  <executions><br>    <execution><br>      <phase>package</phase><br>      <goals><br>        <goal>shade</goal><br>      </goals><br>      <configuration><br>        <filters><br>          <filter><br>            <artifact><em>:</em></artifact><br>            <excludes><br>              <exclude>META-INF/<em>.SF</em></exclude><br>              <exclude>META-INF/.DSA</exclude><br>              <exclude>META-INF/*.RSA</exclude><br>            </excludes><br>          </filter><br>        </filters><br>        <transformers><br>          <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer"><br>            <resource>META-INF/services/org.apache.spark.sql.sources.DataSourceRegister</resource><br>          </transformer><br>        </transformers><br>      </configuration><br>    </execution><br>  </executions><br></plugin>
+
+<h2 id="2-demo代码"><a href="#2-demo代码" class="headerlink" title="2.demo代码"></a>2.demo代码</h2><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">val</span> df = spark</span><br><span class="line">  .readStream</span><br><span class="line">  .format(<span class="string">"kafka"</span>)</span><br><span class="line">  .option(<span class="string">"kafka.bootstrap.servers"</span>, <span class="type">ConfigConstant</span>.zkServers)<span class="comment">//kafka地址</span></span><br><span class="line">  .option(<span class="string">"subscribe"</span>, <span class="type">ProjectConstant</span>.<span class="type">KAFKA_TOPIC</span>)<span class="comment">//kafka topic</span></span><br><span class="line">  .load()</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> query = df.writeStream</span><br><span class="line">  .foreach(<span class="keyword">new</span> <span class="type">KuduForeachWriter</span>(<span class="type">ConfigConstant</span>.kuduMaster, <span class="type">ProjectConstant</span>.<span class="type">KUDU_MY_FIRST_TABLE</span>))<span class="comment">//kudu地址，kudu表名，这里通过structure streaming的                       //ForeachWriter写入数据到kudu，详细可以去spark官网了解</span></span><br><span class="line">  <span class="comment">//      .format("consle")</span></span><br><span class="line">  .outputMode(<span class="string">"update"</span>)</span><br><span class="line">  .start()</span><br><span class="line"></span><br><span class="line">query.awaitTermination()</span><br></pre></td></tr></table></figure>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">KuduForeachWriter</span>(<span class="params">val kuduMaster: <span class="type">String</span>, val kuduTableName: <span class="type">String</span></span>)</span></span><br><span class="line"><span class="class">  <span class="keyword">extends</span> <span class="title">ForeachWriter</span>[<span class="type">Row</span>] </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> client: <span class="type">KuduClient</span> = _</span><br><span class="line">  <span class="keyword">var</span> kuduSession: <span class="type">KuduSession</span> = _</span><br><span class="line">  <span class="keyword">var</span> kuduTable: <span class="type">KuduTable</span> = _</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">open</span></span>(partitionId: <span class="type">Long</span>, version: <span class="type">Long</span>): <span class="type">Boolean</span> = &#123;</span><br><span class="line">    <span class="keyword">this</span>.client = <span class="keyword">new</span> <span class="type">KuduClient</span>.<span class="type">KuduClientBuilder</span>(kuduMaster).build()</span><br><span class="line">    <span class="keyword">this</span>.kuduTable = client.openTable(kuduTableName);</span><br><span class="line">    <span class="keyword">this</span>.kuduSession = client.newSession()</span><br><span class="line">    <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">process</span></span>(record: <span class="type">Row</span>): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="keyword">val</span> upsert = <span class="keyword">this</span>.kuduTable.newUpsert();</span><br><span class="line">    <span class="keyword">val</span> row: <span class="type">PartialRow</span> = upsert.getRow();</span><br><span class="line">    row.addString(<span class="number">0</span>, record.getString(<span class="number">0</span>));</span><br><span class="line">    <span class="keyword">if</span> (record.isNullAt(<span class="number">1</span>)) &#123;</span><br><span class="line">      row.setNull(<span class="number">1</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      row.addInt(<span class="number">1</span>, record.getInt(<span class="number">1</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.kuduSession.apply(upsert);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">close</span></span>(errorOrNull: <span class="type">Throwable</span>): <span class="type">Unit</span> = &#123;</span><br><span class="line">    <span class="keyword">this</span>.kuduSession.close()</span><br><span class="line">    <span class="keyword">this</span>.client.shutdown()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-执行脚本"><a href="#3-执行脚本" class="headerlink" title="3.执行脚本"></a>3.执行脚本</h2><p>下面是提交的脚本，大家按自己的环境修改即可<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/sh</span></span><br><span class="line">env=$1</span><br><span class="line">echo "当前环境&gt;&gt;&gt;&gt;&gt;&gt;$env"</span><br><span class="line"></span><br><span class="line">export SPARK_KAFKA_VERSION=0.10</span><br><span class="line"></span><br><span class="line">spark2-submit \</span><br><span class="line">  --class weshare.data.center.taskinit.Kafka2KuduDemoInit \</span><br><span class="line">  --master yarn \</span><br><span class="line">  --deploy-mode client \</span><br><span class="line">  --driver-memory 1G \</span><br><span class="line">  --num-executors 2 \</span><br><span class="line">  --executor-memory 512M \</span><br><span class="line">  --executor-cores 1 \</span><br><span class="line">  --conf "spark.driver.extraJavaOptions=-Dscala.env=$env" \</span><br><span class="line">  --conf "spark.executor.extraJavaOptions=-Dscala.env=$env" \</span><br><span class="line">  data-application-0.0.1.jar</span><br></pre></td></tr></table></figure></p>
+<h2 id="4-出现问题以及解决方案"><a href="#4-出现问题以及解决方案" class="headerlink" title="4.出现问题以及解决方案"></a>4.出现问题以及解决方案</h2><h3 id="第一个问题，出现这个错误"><a href="#第一个问题，出现这个错误" class="headerlink" title="第一个问题，出现这个错误"></a>第一个问题，出现这个错误</h3><p>Exception in thread “main” java.lang.ClassNotFoundException: Failed to find data source: kafka. Please find packages at <a href="http://spark.apache.org/third-party-projects.html" target="_blank" rel="noopener">http://spark.apache.org/third-party-projects.html</a><br>at org.apache.spark.sql.execution.datasources.DataSource$.lookupDataSource(DataSource.scala:553)<br>at org.apache.spark.sql.execution.datasources.DataSource.providingClass$lzycompute(DataSource.scala:89)<br>at org.apache.spark.sql.execution.datasources.DataSource.providingClass(DataSource.scala:89)<br>at org.apache.spark.sql.execution.datasources.DataSource.sourceSchema(DataSource.scala:198)<br>at org.apache.spark.sql.execution.datasources.DataSource.sourceInfo$lzycompute(DataSource.scala:90)<br>at org.apache.spark.sql.execution.datasources.DataSource.sourceInfo(DataSource.scala:90)<br>at org.apache.spark.sql.execution.streaming.StreamingRelation$.apply(StreamingRelation.scala:30)<br>at org.apache.spark.sql.streaming.DataStreamReader.load(DataStreamReader.scala:150)<br>at com.example.KafkaConsumer.main(KafkaConsumer.java:21)<br>at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)<br>at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)<br>at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)<br>at java.lang.reflect.Method.invoke(Method.java:498)<br>at org.apache.spark.deploy.SparkSubmit$.org$apache$spark$deploy$SparkSubmit$runMain(SparkSubmit.scala:782)<br>at org.apache.spark.deploy.SparkSubmit$.doRunMain$1(SparkSubmit.scala:180)<br>at org.apache.spark.deploy.SparkSubmit$.submit(SparkSubmit.scala:205)<br>at org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:119)<br>at org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)<br>Caused by: java.lang.ClassNotFoundException: kafka.DefaultSource<br>at java.net.URLClassLoader.findClass(URLClassLoader.java:381)<br>at java.lang.ClassLoader.loadClass(ClassLoader.java:424)<br>at java.lang.ClassLoader.loadClass(ClassLoader.java:357)<br>at org.apache.spark.sql.execution.datasources.DataSource$anonfun$22$anonfun$apply$14.apply(DataSource.scala:537)<br>at org.apache.spark.sql.execution.datasources.DataSource$anonfun$22$anonfun$apply$14.apply(DataSource.scala:537)<br>at scala.util.Try$.apply(Try.scala:192)<br>at org.apache.spark.sql.execution.datasources.DataSource$anonfun$22.apply(DataSource.scala:537)<br>at org.apache.spark.sql.execution.datasources.DataSource$anonfun$22.apply(DataSource.scala:537)<br>at scala.util.Try.orElse(Try.scala:84)<br>at org.apache.spark.sql.execution.datasources.DataSource$.lookupDataSource(DataSource.scala:537)<br>… 17 more<br>这个问题需要我们修改pom文件的打包配置，也就是这一部分，<transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer"><br>            <resource>META-INF/services/org.apache.spark.sql.sources.DataSourceRegister</resource><br>          </transformer><br>需要多个包里面的DataSourceRegister以append的方式打包，而不是覆盖，这样我们就不会出现找不到类了。</p>
+<h3 id="第二个问题"><a href="#第二个问题" class="headerlink" title="第二个问题"></a>第二个问题</h3><p>19/01/15 19:36:40 WARN consumer.ConsumerConfig: The configuration max.poll.records = 1 was supplied but isn’t a known config.<br>19/01/15 19:36:40 INFO utils.AppInfoParser: Kafka version : 0.9.0-kafka-2.0.2<br>19/01/15 19:36:40 INFO utils.AppInfoParser: Kafka commitId : unknown<br>19/01/15 19:36:40 ERROR streaming.StreamExecution: Query queryMyBatchTopicData [id = 25b0620e-20b5-4efe-babb-dda94ef3ccc6, runId = 013d0674-23f7-4ebe-a5fb-84c8699ea1b9] terminated with error<br>java.lang.NoSuchMethodError: org.apache.kafka.clients.consumer.KafkaConsumer.subscribe(Ljava/util/Collection;)V<br>        at org.apache.spark.sql.kafka010.SubscribeStrategy.createConsumer(ConsumerStrategy.scala:63)<br>        at org.apache.spark.sql.kafka010.KafkaOffsetReader.createConsumer(KafkaOffsetReader.scala:297)<br>        at org.apache.spark.sql.kafka010.KafkaOffsetReader.<init>(KafkaOffsetReader.scala:78)<br>        at org.apache.spark.sql.kafka010.KafkaSourceProvider.createSource(KafkaSourceProvider.scala:88)<br>        at org.apache.spark.sql.execution.datasources.DataSource.createSource(DataSource.scala:243)<br>        at org.apache.spark.sql.execution.streaming.StreamExecution$$anonfun$2$$anonfun$applyOrElse$1.apply(StreamExecution.scala:158)<br>        at org.apache.spark.sql.execution.streaming.StreamExecution$$anonfun$2$$anonfun$applyOrElse$1.apply(StreamExecution.scala:155)<br>        at scala.collection.mutable.MapLike$class.getOrElseUpdate(MapLike.scala:194)<br>        at scala.collection.mutable.AbstractMap.getOrElseUpdate(Map.scala:80)<br>        at org.apache.spark.sql.execution.streaming.StreamExecution$$anonfun$2.applyOrElse(StreamExecution.scala:155)<br>        at org.apache.spark.sql.execution.streaming.StreamExecution$$anonfun$2.applyOrElse(StreamExecution.scala:153)<br>        at org.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$2.apply(TreeNode.scala:267)<br>        at org.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$2.apply(TreeNode.scala:267)<br>        at org.apache.spark.sql.catalyst.trees.CurrentOrigin$.withOrigin(TreeNode.scala:70)<br>        at org.apache.spark.sql.catalyst.trees.TreeNode.transformDown(TreeNode.scala:266)<br>        at org.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$transformDown$1.apply(TreeNode.scala:272)<br>        at org.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$transformDown$1.apply(TreeNode.scala:272)<br>        at org.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$4.apply(TreeNode.scala:306)<br>        at org.apache.spark.sql.catalyst.trees.TreeNode.mapProductIterator(TreeNode.scala:187)<br>这个问题是kafka版本问题导致的，可以参考官方的解决方案。地址如下：<a href="https://www.cloudera.com/documentation/spark2/latest/topics/spark2_kafka.html#running_jobs。" target="_blank" rel="noopener">https://www.cloudera.com/documentation/spark2/latest/topics/spark2_kafka.html#running_jobs。</a><br>主要有两种解决方式<br>方案一：在执行的提交脚本中添加参数</init></p>
+<h1 id="Set-the-environment-variable-for-the-duration-of-your-shell-session"><a href="#Set-the-environment-variable-for-the-duration-of-your-shell-session" class="headerlink" title="Set the environment variable for the duration of your shell session:"></a>Set the environment variable for the duration of your shell session:</h1><p>export SPARK_KAFKA_VERSION=0.10<br>spark-submit arguments</p>
+<h1 id="Or"><a href="#Or" class="headerlink" title="Or:"></a>Or:</h1><h1 id="Set-the-environment-variable-for-the-duration-of-a-single-command"><a href="#Set-the-environment-variable-for-the-duration-of-a-single-command" class="headerlink" title="Set the environment variable for the duration of a single command:"></a>Set the environment variable for the duration of a single command:</h1><p>SPARK_KAFKA_VERSION=0.10 spark-submit arguments</p>
+<p>方案二：修改cdh，spark2的配置<br><img src="/2019/08/18/kafka集成structure-streaming总结/cw.png" title="cw"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://riverzzz.github.io/2019/07/23/sas-odbc-方式连接-hive/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1541,151 +1698,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://riverzzz.github.io/2019/03/27/lightGBM总结/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Riverzzz">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="welcome，Riverzzz's github">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/27/lightGBM总结/" itemprop="url">lightGBM总结</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-27T22:12:25+08:00">
-                2019-03-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/机器学习算法/" itemprop="url" rel="index">
-                    <span itemprop="name">机器学习算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="lightGBM的优化"><a href="#lightGBM的优化" class="headerlink" title="lightGBM的优化"></a>lightGBM的优化</h2><p>1.直方图算法<br>2.按叶子生长（leaf-wise）<br>3.直方图加速<br>4.直接支持类别特征<br>5.特征并行和数据并行</p>
-<h2 id="使用注意"><a href="#使用注意" class="headerlink" title="使用注意"></a>使用注意</h2><p>1.设置提前停止<br>2.自动处理类别特征<br>3.缺失值处理</p>
-<p>spark 重点相关<br>1.spark job 提交流程，及dag有向无环图生成流程<br>2.spark shuffle 原理（shuffle read，shuffle write）<br>3.spark 内存区域管理（2.0以前，2.0后）</p>
-<p>col存储的特点（优势）<br>1.块遍历<br>2.压缩<br>3.延迟物化</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1736,7 +1748,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-count">59</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1758,7 +1770,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

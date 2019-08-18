@@ -333,12 +333,12 @@
       
         <p>下面是DNN推荐的描述及我的理解</p>
 <h2 id="DNN推荐架构"><a href="#DNN推荐架构" class="headerlink" title="DNN推荐架构"></a>DNN推荐架构</h2><p>下图是youtube推荐系统的架构图，和其他推荐系统一样，包括召回和排序这两个阶段，主要使用了深度学习。<br><img src="/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/DNN推荐架构图.png" title="DNN推荐架构图"></p>
-<h2 id="召回阶段"><a href="#召回阶段" class="headerlink" title="召回阶段"></a>召回阶段</h2><h3 id="召回问题建模"><a href="#召回问题建模" class="headerlink" title="召回问题建模"></a>召回问题建模</h3><p>youtube把召回阶段建模成了一个“超多大规模分类”问题。即在时刻t，为用户U（上下文信息C）在视频库V中精准的预测出视频i的<br>类别（每个具体的视频视为一个类别，i即为一个类别），用数学公式表达如下：<br><img src="/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/召回分类公式.png" title="分类公式"><br>很显然上式为一个softmax多分类器的形式。向量u\in R^N是<user, context="">信息的高维“embedding”，而向量v_{j}\in R^N则是<br>视频 j 的embedding向量。所以DNN的目标就是在用户信息和上下文信息为输入条件下学习用户的embedding向量u和视频的embedding向<br>量v。用公式表达DNN就是在拟合函数u,v = f_{DNN}(user_info, context_info)。</user,></p>
+<h2 id="召回阶段"><a href="#召回阶段" class="headerlink" title="召回阶段"></a>召回阶段</h2><h3 id="召回问题建模"><a href="#召回问题建模" class="headerlink" title="召回问题建模"></a>召回问题建模</h3><p>youtube把召回阶段建模成了一个“超多大规模分类”问题。即在时刻t，为用户U（上下文信息C）在视频库V中精准的预测出视频i的<br>类别（每个具体的视频视为一个类别，i即为一个类别），用数学公式表达如下：<br><img src="/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/召回分类公式.png" title="分类公式"><br>很显然上式为一个softmax多分类器的形式。向量u\in R^N是&lt;user, context&gt;信息的高维“embedding”，而向量v_{j}\in R^N则是<br>视频 j 的embedding向量。所以DNN的目标就是在用户信息和上下文信息为输入条件下学习用户的embedding向量u和视频的embedding向<br>量v。用公式表达DNN就是在拟合函数u,v = f_{DNN}(user_info, context_info)。</p>
 <h3 id="模型架构"><a href="#模型架构" class="headerlink" title="模型架构"></a>模型架构</h3><img src="/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/召回模型架构图.png" title="召回模型架构图">
 <p>模型是一个三层的网络架构，主要输入是观看、搜索历史，样本时间，用户场景信息以及用户画像信息等。<br>主要分为离线训练及线上服务两个部分。离线输出为softmax层，计算公式为之前提到的公式。而线上将训练得到的视频embedding向量v<br>存储起来，实时根据模型计算出用户向量u，然后利用lsh技术找到内积最近的topN。</p>
 <h3 id="主要特征"><a href="#主要特征" class="headerlink" title="主要特征"></a>主要特征</h3><p>1.观看历史和搜索历史：类似于word2vec每个视频embedding到固定维度的向量中。最终通过加权平均（重要性和时间）得到固定维度的<br>watch vector作为DNN的输入。<br>2.人口统计学信息：性别、年龄、地域等<br>3.上下文信息：设备、登陆状态、位置等<br>4.Example Age： 样本时间，表示样本产生的时间。因为机器学习系统在训练阶段都是利用过去的行为预估未来，因此通常对过去的行为<br>有个隐式的bias。视频网站视频的分布是高度非静态（non-stationary）的，但我们的推荐系统产生的视频集合在视频的分布，基本上反<br>映的是训练所取时间段的平均的观看喜好的视频。因此我们我们把样本的 “age” 作为一个feature加入模型训练中。从下图可以很清楚的<br>看出，加入“example age” feature后和经验分布更为match。<br><img src="/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/days-since-upload.png" title="days-since-upload"></p>
 <h3 id="样本和上下文选择"><a href="#样本和上下文选择" class="headerlink" title="样本和上下文选择"></a>样本和上下文选择</h3><p>在有监督学习问题中，最重要的选择是label了，因为label决定了你做什么，决定了你的上限，而feature和model都是在逼近label。我们<br>做了如下几个设计：<br>1.使用更广的数据源：不仅仅使用推荐场景的数据，训练样本是从全部youtube观看记录中产生。防止对推荐者的观看记录过度利用，加入<br>对新视频的测试。<br>2.为用户生成固定数量的训练样本：每个用户在损失函数中的权重都是相等的，防止一小部分超级活跃用户影响到损失函数的公平性。<br>3.抛弃数据的序列信息：我们在实现时尝试的是去掉序列信息，对过去观看视频/历史搜索query的embedding向量进行加权平均。这点其实<br>违反直觉，可能原因是模型对负反馈没有很好的建模。<br>4.不对称的共同浏览问题：所谓asymmetric co-watch值的是用户在浏览视频时候，往往都是序列式的，开始看一些比较流行的，逐渐找到<br>细分的视频。下图(a)是hled-out方式，利用上下文信息预估中间的一个视频；图(b)是predicting next watch的方式，则是利用上文信息，<br>预估下一次浏览的视频。<br><img src="/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/数据集划分.png" title="数据集划分"></p>
-<h3 id="不同网络深度和特征的实验"><a href="#不同网络深度和特征的实验" class="headerlink" title="不同网络深度和特征的实验"></a>不同网络深度和特征的实验</h3><p>基本和前面图中所示的网络架构相同，所有的视频和search token都embedded到256维的向量中，开始input层直接全连接到256维的<br>softmax层，依次增加网络深度（+512—&gt;+1024—&gt;+2048—&gt; …）。<br><br>下图反映了不同网络深度（横坐标）下不同特征组合情况下的holdout-MAP（纵坐标）。可以很明显看出，增加了观看历史之外的特征很<br>明显的提升了预测得准确率；从网络深度看，随着网络深度加大，预测准确率在提升，但继续增加第四层网络已经收益不大了。<br><img src="/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/特征和网络结构效果对比.png" title="特征和网络结构效果对比"></p>
+<h3 id="不同网络深度和特征的实验"><a href="#不同网络深度和特征的实验" class="headerlink" title="不同网络深度和特征的实验"></a>不同网络深度和特征的实验</h3><p>基本和前面图中所示的网络架构相同，所有的视频和search token都embedded到256维的向量中，开始input层直接全连接到256维的<br>softmax层，依次增加网络深度（+512–&gt;+1024–&gt;+2048–&gt; …）。<br><br>下图反映了不同网络深度（横坐标）下不同特征组合情况下的holdout-MAP（纵坐标）。可以很明显看出，增加了观看历史之外的特征很<br>明显的提升了预测得准确率；从网络深度看，随着网络深度加大，预测准确率在提升，但继续增加第四层网络已经收益不大了。<br><img src="/2018/12/19/读-Deep-Neural-Networks-for-YouTube-Recommendations-总结/特征和网络结构效果对比.png" title="特征和网络结构效果对比"></p>
 <h3 id="离线训练及在线服务模块"><a href="#离线训练及在线服务模块" class="headerlink" title="离线训练及在线服务模块"></a>离线训练及在线服务模块</h3><p>激活函数使用relu，softmax层的输出是预测的视频分类结果，我们通过离线训练得到离线模型。同时得到用户向量u和视频向量v。得到视<br>频向量后我们可以将其保存起来，用于在线服务。实时计算用户向量u，然后与v做内积，得到topN。这里需要使用hashing算法加速查找<br>topN。</p>
 <h3 id="个人理解"><a href="#个人理解" class="headerlink" title="个人理解"></a>个人理解</h3><p>1.特征里面的example age指的是样本时间，而不是网上所说的视频上传时间。论文也详细解释了，他可以很好的表示视频上传时间和时间<br>段上受欢迎程度。<br>2.用户向量u指的是输出层的前一层，而视频向量v指的是前一层到输出层的参数。所以训练完模型我们可以得到两个表示u和v，只不过用户<br>u我们后面实时计算。<br>3.输出层多分类时，当视频数量较大时，使用了负采样，提高计算效率。<br>4.实时计算topN时，当数据量比较大时，我们需要近似近邻查找来提升计算效率，但是会有一定精度损失。</p>
 <h2 id="排序阶段"><a href="#排序阶段" class="headerlink" title="排序阶段"></a>排序阶段</h2><p>排序阶段的最重要任务就是精准的预估用户对视频的喜好程度。不同于召回阶段面临的是百万级候选视频集，排序阶段面对的只是百级别<br>的商品集，因此可以使用更多更精细的feature来刻画视频。此外，还可以和其他召回方式得来的数据进行ensemble。</p>
@@ -486,7 +486,7 @@ var jiathis_config={
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-count">59</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -508,7 +508,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
